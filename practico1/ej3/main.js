@@ -17,6 +17,7 @@ for(let i=0;i < width;i++){
 ctx.putImageData(imageData,0,0);
 
 function setPixel(imageData,x,y,r,g,b,a){
+    let index;
     index = (x + y * imageData.width)*4;
     imageData.data[index+0]=r;
     imageData.data[index+1]=g;
