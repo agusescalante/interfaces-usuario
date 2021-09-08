@@ -59,7 +59,6 @@ document.querySelector(".download").addEventListener("click", () => {
 //------------------------------------------------------------------------
 
 
-
 //Filters____________________________________________________________
 document.querySelector("#addImage").addEventListener("click", () => {
     document.querySelector('.input1').click();
@@ -116,7 +115,6 @@ function toggleSelectedBtn(btn) {
     }
     lastSelected = btn;
 }
-
 
 function getRed(imageData, x, y) {
     let index = (x + y * imageData.width) * 4;
@@ -239,7 +237,6 @@ function binarizacion() {
     }
 }
 
-
 function saturation(filter_ammount) {
     restaurarOriginal();
 
@@ -342,6 +339,10 @@ function HSLToRGB(h, s, l) {
     };
 }
 
+//Filtro Blur
+
+var matrixEmpty = createMatrixEmpty();
+
 function createMatrixEmpty(){
     let arrCopia = Array();
     for(let i=0 ; i < canvas.height ; i++){
@@ -352,54 +353,6 @@ function createMatrixEmpty(){
     }
     return arrCopia;
 }
-
-var matrixEmpty = createMatrixEmpty();
-
-function avgRGB(r,g,b){
-    let retorno;
-     return retorno = (r + g + b)/3;
-}
-
-function isBorderVertical(i){
-    let resultado=false;
-    if(i == 0){
-        resultado = 'izq';
-    }else if(i == canvas.width-1){
-        resultado='der';
-    }
-    return resultado;
-}
-
-function isCornerLeft(j,i){
-    let resultado=false;
-    if(i == 0 && j == 0){
-        resultado='arriba';
-    }else if(i == 0 && j == canvas.height-1){
-        resultado='abajo'    
-    }
-    return resultado;
-}
-
-function isCornerRight(j,i){
-    let resultado=false;
-    if(i == (canvas.width-1) && j == 0){
-        resultado='arriba';
-    }else if(i == (canvas.width-1) && j == (canvas.height-1)){
-        resultado='abajo'    
-    }
-    return resultado;
-}
-
-function isTopDown(j){
-    let resultado=false;
-    if(j == 0){
-        resultado='arriba';
-    }else if(j == canvas.height-1){
-        resultado='abajo';
-    }
-    return resultado;
-}
-
 
 function getRedTodasPosiciones(imgData,j,i){
     let resultadoR = Array();  
@@ -445,14 +398,50 @@ function getBlueTodasPosiciones(imgData,j,i){
     return resultadoB;
 }
 
-function setPixel(imageData,y,x,r,g,b,a){
-    index = (y + x * imageData.width)*4;
-    imageData.data[index+0]=r;
-    imageData.data[index+1]=g;
-    imageData.data[index+2]=b;
-    imageData.data[index+3]=a;
+function isBorderVertical(i) {
+    let resultado = false;
+    if (i == 0) {
+        resultado = 'izq';
+    } else if (i == size - 1) {
+        resultado = 'der';
+    }
+    return resultado;
 }
 
+function isCornerLeft(j, i) {
+    let resultado = false;
+    if (i == 0 && j == 0) {
+        resultado = 'arriba';
+    } else if (i == 0 && j == size - 1) {
+        resultado = 'abajo'
+    }
+    return resultado;
+}
+
+function isCornerRight(j, i) {
+    let resultado = false;
+    if (i == (size - 1) && j == 0) {
+        resultado = 'arriba';
+    } else if (i == (size - 1) && j == (size - 1)) {
+        resultado = 'abajo'
+    }
+    return resultado;
+}
+
+function isTopDown(j) {
+    let resultado = false;
+    if (j == 0) {
+        resultado = 'arriba';
+    } else if (j == size - 1) {
+        resultado = 'abajo';
+    }
+    return resultado;
+}
+
+function avgRGB(r, g, b) {
+    let retorno;
+    return retorno = (r + g + b) / 3;
+}
 
 function Blur(){
     let arregloCopia = ctx.createImageData(canvas.width,canvas.height);
@@ -532,7 +521,6 @@ function Blur(){
     ctx.putImageData(arregloCopia,0,0);
     
 }
-
 
 function deteccionBordes() {
     restaurarOriginal();
@@ -656,15 +644,13 @@ function download() {
     }
 }
 
-    function setPixel(imageData, x, y, r, g, b, a) {
-        let index = (x + y * imageData.height) * 4;
-
-        imageData.data[index + 0] = r;
-        imageData.data[index + 1] = g;
-        imageData.data[index + 2] = b;
-        imageData.data[index + 3] = a;
-    }
-
+function setPixel(imageData, x, y, r, g, b, a) {
+    index = (x + y * imageData.width) * 4;
+    imageData.data[index + 0] = r;
+    imageData.data[index + 1] = g;
+    imageData.data[index + 2] = b;
+    imageData.data[index + 3] = a;
+}
 
 function pintar(selectedColor) {
     let x = 0, y = 0;
@@ -711,6 +697,7 @@ function dibujar(x1, y1, x2, y2) {
     context.lineTo(x2, y2);
     context.fill();
     context.stroke();
+
 }
 
 function drawCircle(x, y) {
