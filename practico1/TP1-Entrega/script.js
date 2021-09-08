@@ -1,223 +1,123 @@
-document.addEventListener("DOMContentLoaded", () => {
-    let canvas = document.querySelector("#canvas");
+let canvas = document.querySelector('.canvas1');
+let input = document.querySelector('.input1');
 
-    let mouseDown = 0;
-    let lastX = null;
-    let lastY = null;
-    let img = new Image();
-    let ctx = canvas.getContext("2d");
+var context = canvas.getContext('2d');
+context.fillStyle = "#ffffff";
+// context.fillStyle = "#545994";
+context.fillRect(0, 0, canvas.width, canvas.height);
 
-    let brushCurrentColor = "#000000";
-    // let brushCurrentColor = "#FF5511";
-    let brushSize = 3;
+let rect = canvas.getBoundingClientRect();
 
-    let borrador = "#ffffff";
+let borrando = false;
+let dibujando = false;
+let color = null;
+let customColor = null;
+let size = 1;
+var goma = "#FFFFFF";
+let lastSelected = null;
 
-    loadImage();
+var imagenCargada = false;
+var descartarImg = false;
 
-    function loadImage() {
-        img.src = 'prueba3.png';
-        // img.src = "prueba3.png";
+activateButtonSelection();
 
-        img.onload = function () {
-            let canvasWidth = canvas.clientWidth;
-            let canvasHeight = canvas.clientHeight;
+//EventListeners para los botones
+document.querySelector("#brush").addEventListener("click", () => {
+    pintar("black");
+});
 
-            // let aspectRatio = scalePreserveAspectRatio(img.width, img.height, canvasWidth, canvasHeight);
-            ctx.drawImage(img, 0, 0);
-            // , img.width * aspectRatio, img.height * aspectRatio);
-        };
-    }
+document.querySelector("#eraser").addEventListener("click", () => {
+    pintar("white");
+});
 
-    document.querySelector("#filtroBw").addEventListener("click", () => {
-        filterBlackAndWhite();
+let saturationRange = document.querySelector("#rangeSat");
+saturationRange.addEventListener("input", () => {
+    saturation(saturationRange.value)
+});
+
+//Guardar color seleccionado
+let inputColor = document.querySelector("#color");
+inputColor.addEventListener("input", () => {
+    customColor = inputColor.value;
+    pintar();
+});
+
+
+let brushRange = document.querySelector("#brushRange");
+brushRange.addEventListener("input", () => {
+    size = brushRange.value;
+});
+
+//Para descargar el canvas hay que hacer una cadena de clicks con el input.
+
+document.querySelector("#saveImage").addEventListener("click", () => {
+    document.querySelector(".download").click();
+});
+document.querySelector(".download").addEventListener("click", () => {
+    download();
+});
+//------------------------------------------------------------------------
+
+
+
+//Filters____________________________________________________________
+document.querySelector("#addImage").addEventListener("click", () => {
+    document.querySelector('.input1').click();
+});
+
+document.querySelector("#negative").addEventListener("click", () => {
+    negative();
+});
+
+document.querySelector("#sepia").addEventListener("click", () => {
+    sepia();
+});
+
+document.querySelector("#grayScale").addEventListener("click", () => {
+    grayScale();
+});
+
+document.querySelector("#binary").addEventListener("click", () => {
+    binarizacion();
+});
+
+document.querySelector("#borderDetection").addEventListener("click", () => {
+    deteccionBordes();
+});
+
+document.querySelector("#saturation").addEventListener("click", () => {
+    saturation();
+});
+
+document.querySelector("#clearCanvas").addEventListener("click", () => {
+    refresh();
+});
+
+//_________________________________
+
+function activateButtonSelection() {
+    let buttons = document.querySelector(".brush_column").childNodes;
+
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            toggleSelectedBtn(btn);
+        });
     });
 
-    document.querySelector("#filtroSepia").addEventListener("click", () => {
-        sepia();
-    });
+}
 
-    document.querySelector("#filtroBlur").addEventListener("click", () => {
-        blur();
-    });
+function toggleSelectedBtn(btn) {
+    btn.classList.add("selected");
+    btn.classList.remove("deselected");
 
-    function filterBlackAndWhite() {
-        width = canvas.width;
-        height = canvas.height;
-
-        let imageData = ctx.getImageData(0, 0, width, height);
-
-        let x = 0;
-        let y = 0;
-
-
-        for (x = 0; x < width; x++) {
-            for (y = 0; y < height; y++) {
-
-                let pixelData = getPixel(imageData, y, x);
-                let r = pixelData["r"];
-                let g = pixelData["g"];
-                let b = pixelData["b"];
-
-                let promedio = r + g + b;
-                promedio = promedio / 3;
-                if (promedio != 0) {
-                    setPixel(imageData, y, x, promedio, promedio, promedio, 255);
-                }
-                // console.log(getPixel(imageData, y, x));
-            }
-        }
-        ctx.putImageData(imageData, 0, 0);
+    if (lastSelected != null) {
+        lastSelected.classList.remove("selected");
+        lastSelected.classList.add("deselected");
     }
-
-    function sepia() {
-        width = canvas.width;
-        height = canvas.height;
-
-        let imageData = ctx.getImageData(0, 0, width, height);
-
-        let x = 0;
-        let y = 0;
+    lastSelected = btn;
+}
 
 
-        for (x = 0; x < width; x++) {
-            for (y = 0; y < height; y++) {
-
-                let pixelData = getPixel(imageData, y, x);
-                let r = pixelData["r"];
-                let g = pixelData["g"];
-                let b = pixelData["b"];
-
-                let luminosidad = .3 * r + .6 * g + .1 * b;
-
-                if (luminosidad != 0) {
-                    setPixel(imageData, y, x, Math.min(luminosidad + 40, 255), Math.min(luminosidad + 15, 255), luminosidad, 255);
-                }
-            }
-        }
-        ctx.putImageData(imageData, 0, 0);
-    }
-
-    function blur() {
-
-        width = canvas.width;
-        height = canvas.height;
-
-        let imageData = ctx.getImageData(0, 0, width, height);
-
-        let copiedImageData = ctx.createImageData(width, height);
-
-
-        let i;
-        let j;
-        for (i = 0; i < width; i++) {
-            for (j = 0; j < height; j++) {
-            //i = x
-            //j = y
-
-                let top = false;
-                let bottom = false;
-                let right = false;
-                let left = false;
-
-                let contador = 1;
-                let pixel_info;
-
-                let rgb = getPixel(imageData, j, i);
-
-                let container_r = rgb["r"];
-                let container_g = rgb["g"];
-                let container_b = rgb["b"];
-
-                if (j != 0) {
-                    //revisa el techo
-                    top = true;
-                    // container += matriz[i - 1][j];
-                    pixel_info = getPixel(imageData, j - 1, i);
-                    container_r += pixel_info["r"];
-                    container_g += pixel_info["g"];
-                    container_b += pixel_info["b"];
-                    contador++;
-                }
-                if (i != 0) {
-                    //reviso izq
-                    left = true;
-                    pixel_info = getPixel(imageData, j, i - 1);
-                    container_r += pixel_info["r"];
-                    container_g += pixel_info["g"];
-                    container_b += pixel_info["b"];
-                    contador++;
-                }
-                if (j != height - 1) {
-                    //Reviso abajo
-                    bottom = true;
-                    // container += matriz[i + 1][j];
-                    pixel_info = getPixel(imageData, j + 1, i);
-                    container_r += pixel_info["r"];
-                    container_g += pixel_info["g"];
-                    container_b += pixel_info["b"];
-                    contador++;
-                }
-                if (i != width - 1) {
-                    //Reviso der
-                    right = true;
-                    // container += matriz[i][j + 1];
-                    pixel_info = getPixel(imageData, j, i + 1);
-                    container_r += pixel_info["r"];
-                    container_g += pixel_info["g"];
-                    container_b += pixel_info["b"];
-                    contador++;
-                }
-
-                //puedo revisar arriba a la izq
-                if (top == true && left == true) {
-                    // container += matriz[i - 1][j - 1];
-                    pixel_info = getPixel(imageData, j - 1, i - 1);
-                    container_r += pixel_info["r"];
-                    container_g += pixel_info["g"];
-                    container_b += pixel_info["b"];
-                    contador++;
-                }
-
-                //puedo revisar arriba a la der
-                if (top == true && right == true) {
-                    // container += matriz[i - 1][j + 1];
-                    pixel_info = getPixel(imageData, j - 1, i + 1);
-                    container_r += pixel_info["r"];
-                    container_g += pixel_info["g"];
-                    container_b += pixel_info["b"];
-                    contador++;
-                }
-
-                //puedo revisar abajo a la izq
-                if (bottom == true && left == true) {
-                    // container += matriz[i + 1][j - 1];
-                    pixel_info = getPixel(imageData, j + 1, i - 1);
-                    container_r += pixel_info["r"];
-                    container_g += pixel_info["g"];
-                    container_b += pixel_info["b"];
-                    contador++;
-                }
-
-                //puedo revisar abajo a la der
-                if (bottom == true && right == true) {
-                    // container += matriz[i + 1][j + 1];
-                    pixel_info = getPixel(imageData, j + 1, i + 1);
-                    container_r += pixel_info["r"];
-                    container_g += pixel_info["g"];
-                    container_b += pixel_info["b"];
-                    contador++;
-                }
-
-                let resultado_r = container_r / contador;
-                let resultado_g = container_g / contador;
-                let resultado_b = container_b / contador;
-
-                setPixel(copiedImageData, j, i, resultado_r, resultado_g, resultado_b, 255);
-            }
-        }
-        ctx.putImageData(copiedImageData, 0, 0);
-    }
 
 
     function setPixel(imageData, x, y, r, g, b, a) {
