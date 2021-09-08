@@ -240,6 +240,107 @@ function binarizacion() {
 }
 
 
+function saturation(filter_ammount) {
+    restaurarOriginal();
+
+    let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+    //let filter_ammount = 4;
+    for (let x = 0; x < imageData.width; x++) {
+        for (let y = 0; y < imageData.height; y++) {
+            let index = (x + y * imageData.width) * 4;
+            let r = imageData.data[index];
+            let g = imageData.data[index + 1];
+            let b = imageData.data[index + 2];
+            let hsl_pixel = RGBToHSL(r, g, b);
+            if (filter_ammount <= 1) {
+                hsl_pixel.s = hsl_pixel.s * filter_ammount;
+            }
+            if (filter_ammount > 1) {
+                hsl_pixel.s = hsl_pixel.s + ((100 - hsl_pixel.s) * (filter_ammount - 1));
+            }
+            let new_rgb = HSLToRGB(hsl_pixel.h, hsl_pixel.s, hsl_pixel.l);
+            r = new_rgb.r;
+            g = new_rgb.g;
+            b = new_rgb.b;
+            setPixel(imageData, x, y, r, g, b, 255);
+        }
+    }
+    context.putImageData(imageData, 0, 0);
+}
+
+function RGBToHSL(r, g, b) {
+    r /= 255;
+    g /= 255;
+    b /= 255;
+
+    let cmin = Math.min(r, g, b),
+        cmax = Math.max(r, g, b),
+        delta = cmax - cmin,
+        h = 0,
+        s = 0,
+        l = 0;
+
+    if (delta == 0)
+        h = 0;
+    else if (cmax == r)
+        h = ((g - b) / delta) % 6;
+    else if (cmax == g)
+        h = (b - r) / delta + 2;
+    else
+        h = (r - g) / delta + 4;
+
+    h = Math.round(h * 60);
+
+    if (h < 0)
+        h += 360;
+
+    l = (cmax + cmin) / 2;
+    s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+
+    s = +(s * 100).toFixed(1);
+    l = +(l * 100).toFixed(1);
+
+    return {
+        "h": h,
+        "s": s,
+        "l": l
+    };
+}
+
+function HSLToRGB(h, s, l) {
+    s /= 100;
+    l /= 100;
+
+    let c = (1 - Math.abs(2 * l - 1)) * s,
+        x = c * (1 - Math.abs((h / 60) % 2 - 1)),
+        m = l - c / 2,
+        r = 0,
+        g = 0,
+        b = 0;
+    if (0 <= h && h < 60) {
+        r = c; g = x; b = 0;
+    } else if (60 <= h && h < 120) {
+        r = x; g = c; b = 0;
+    } else if (120 <= h && h < 180) {
+        r = 0; g = c; b = x;
+    } else if (180 <= h && h < 240) {
+        r = 0; g = x; b = c;
+    } else if (240 <= h && h < 300) {
+        r = x; g = 0; b = c;
+    } else if (300 <= h && h < 360) {
+        r = c; g = 0; b = x;
+    }
+    r = Math.round((r + m) * 255);
+    g = Math.round((g + m) * 255);
+    b = Math.round((b + m) * 255);
+
+    return {
+        "r": r,
+        "g": g,
+        "b": b
+    };
+}
 
 
     function setPixel(imageData, x, y, r, g, b, a) {
@@ -260,73 +361,6 @@ function binarizacion() {
         data["b"] = imageData.data[index + 2];
         data["a"] = imageData.data[index + 3];
         return data;
-    }
-
-    function scalePreserveAspectRatio(imgW, imgH, maxW, maxH) {
-        return (Math.min((maxW / imgW), (maxH / imgH)));
-    }
-
-    canvas.addEventListener("mousemove", (e) => {
-
-        //Si el mouse esta actualmente activo
-        if (mouseDown == 1) {
-
-            let canvasPos = canvas.getBoundingClientRect();
-
-            actualX = e.clientX - canvasPos.left;
-            actualY = e.clientY - canvasPos.top;
-
-            if (lastX != null) {
-                drawLine(lastX, lastY, actualX, actualY);
-            }
-
-            drawCircle(actualX, actualY);
-
-            lastX = actualX;
-            lastY = actualY;
-        } else {
-            lastX = null;
-            lastY = null;
-        }
-    });
-
-    //Arranco a clickear
-    canvas.onmousedown = function (e) {
-
-        let canvasPos = canvas.getBoundingClientRect();
-
-        actualX = e.clientX - canvasPos.left;
-        actualY = e.clientY - canvasPos.top;
-
-        drawCircle(actualX, actualY);
-    };
-
-    canvas.onmouseup = function () {
-        mouseDown = 0;
-    }
-
-    function drawCircle(x, y) {
-        mouseDown = 1;
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.arc(x, y, brushSize, 0, 2 * Math.PI);
-        ctx.fillStyle = brushCurrentColor;
-        ctx.strokeStyle = brushCurrentColor;
-        ctx.fill();
-        ctx.stroke();
-    }
-
-    function drawLine(Bx, By, x, y) {
-        ctx.beginPath();
-        ctx.moveTo(Bx, By);
-        ctx.lineTo(x, y);
-
-        //Si del radio del circulo = brushSize, entonces total del círculo = brushSize * 2
-        //y +2 para un lienzo mas refinado.
-        ctx.lineWidth = brushSize * 2 + 2;
-        ctx.strokeStyle = brushCurrentColor;
-        ctx.fill();
-        ctx.stroke();
     }
 
     function scalePreserveAspectRatio(imgW, imgH, maxW, maxH) {
