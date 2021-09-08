@@ -607,7 +607,6 @@ function deteccionBordes() {
 
 }
 
-
 function scalePreserveAspectRatio(imgW, imgH, maxW, maxH) {
     return (Math.min((maxW / imgW), (maxH / imgH)));
 }
@@ -657,7 +656,6 @@ function download() {
     }
 }
 
-
     function setPixel(imageData, x, y, r, g, b, a) {
         let index = (x + y * imageData.height) * 4;
 
@@ -667,18 +665,60 @@ function download() {
         imageData.data[index + 3] = a;
     }
 
-    function getPixel(imageData, x, y) {
-        let index = (x + y * imageData.height) * 4;
 
-        let data = [];
-        data["r"] = imageData.data[index + 0];
-        data["g"] = imageData.data[index + 1];
-        data["b"] = imageData.data[index + 2];
-        data["a"] = imageData.data[index + 3];
-        return data;
+function pintar(selectedColor) {
+    let x = 0, y = 0;
+
+    if (selectedColor != "white") {
+        if (customColor == null) {
+            color = "black";
+        } else {
+            color = customColor;
+        }
+    } else {
+        color = selectedColor;
     }
 
-    function scalePreserveAspectRatio(imgW, imgH, maxW, maxH) {
-        return (Math.min((maxW / imgW), (maxH / imgH)));
-    }
-});
+
+    canvas.addEventListener('mousedown', function (e) {
+        x = e.clientX - rect.left;
+        y = e.clientY - rect.top;
+        dibujando = true;
+    });
+    canvas.addEventListener('mousemove', function (e) {
+        if (dibujando) {
+            drawCircle(e.clientX - rect.left, e.clientY - rect.top);
+            dibujar(x, y, e.clientX - rect.left, e.clientY - rect.top);
+            x = e.clientX - rect.left;
+            y = e.clientY - rect.top;
+        }
+    });
+    canvas.addEventListener('mouseup', function (e) {
+        if (dibujando) {
+            dibujar(x, y, e.clientX - rect.left, e.clientY - rect.top);
+            x = 0;
+            y = 0;
+            dibujando = false;
+        }
+    });
+}
+
+function dibujar(x1, y1, x2, y2) {
+    context.beginPath();
+    context.strokeStyle = color;
+    context.lineWidth = size * 2 + 2;
+    context.moveTo(x1, y1);
+    context.lineTo(x2, y2);
+    context.fill();
+    context.stroke();
+}
+
+function drawCircle(x, y) {
+    context.lineWidth = 1;
+    context.beginPath();
+    context.arc(x, y, size, 0, 2 * Math.PI);
+    context.fillStyle = color;
+    context.strokeStyle = color;
+    context.fill();
+    context.stroke();
+}
