@@ -533,6 +533,81 @@ function Blur(){
     
 }
 
+
+function deteccionBordes() {
+    restaurarOriginal();
+
+    let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+    let maskX = [[-1, 0, 1],
+    [-2, 0, 2],
+    [-1, 0, 1]];
+    let maskY = [[-1, -2, -1],
+    [0, 0, 0],
+    [1, 2, 1]];
+    let sobel_data = imageData;
+    let gray_scale = [];
+
+
+    let width = imageData.width;
+    let height = imageData.height;
+    function combine(data) {
+        return function (x, y, i) {
+            i = i || 0;
+            return data[((width * y) + x) * 4 + i];
+        };
+    }
+
+    let data = imageData.data;
+    let pixelAt = combine(data);
+    let x, y;
+
+    for (y = 0; y < height; y++) {
+        for (x = 0; x < width; x++) {
+            let r = pixelAt(x, y, 0);
+            let g = pixelAt(x, y, 1);
+            let b = pixelAt(x, y, 2);
+            let avg = (r + g + b) / 3;
+            gray_scale.push(avg, avg, avg, 255);
+        }
+    }
+
+    pixelAt = combine(gray_scale);
+
+    for (y = 0; y < height; y++) {
+        for (x = 0; x < width; x++) {
+            let pixelX = (
+                (maskX[0][0] * pixelAt(x - 1, y - 1)) +
+                (maskX[0][1] * pixelAt(x, y - 1)) +
+                (maskX[0][2] * pixelAt(x + 1, y - 1)) +
+                (maskX[1][0] * pixelAt(x - 1, y)) +
+                (maskX[1][1] * pixelAt(x, y)) +
+                (maskX[1][2] * pixelAt(x + 1, y)) +
+                (maskX[2][0] * pixelAt(x - 1, y + 1)) +
+                (maskX[2][1] * pixelAt(x, y + 1)) +
+                (maskX[2][2] * pixelAt(x + 1, y + 1))
+            );
+            let pixelY = (
+                (maskY[0][0] * pixelAt(x - 1, y - 1)) +
+                (maskY[0][1] * pixelAt(x, y - 1)) +
+                (maskY[0][2] * pixelAt(x + 1, y - 1)) +
+                (maskY[1][0] * pixelAt(x - 1, y)) +
+                (maskY[1][1] * pixelAt(x, y)) +
+                (maskY[1][2] * pixelAt(x + 1, y)) +
+                (maskY[2][0] * pixelAt(x - 1, y + 1)) +
+                (maskY[2][1] * pixelAt(x, y + 1)) +
+                (maskY[2][2] * pixelAt(x + 1, y + 1))
+            );
+            let measure = Math.sqrt((pixelX * pixelX) + (pixelY * pixelY)) >>> 0;
+            measure = (measure / 1000) * 255;
+            setPixel(sobel_data, x, y, measure, measure, measure, 255);
+        }
+    }
+    context.putImageData(sobel_data, 0, 0);
+
+}
+
+
     function setPixel(imageData, x, y, r, g, b, a) {
         let index = (x + y * imageData.height) * 4;
 
