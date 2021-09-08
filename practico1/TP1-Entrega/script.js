@@ -608,6 +608,56 @@ function deteccionBordes() {
 }
 
 
+function scalePreserveAspectRatio(imgW, imgH, maxW, maxH) {
+    return (Math.min((maxW / imgW), (maxH / imgH)));
+}
+
+input.onchange = e => {
+    let file = e.target.files[0];
+
+    let reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.onload = readerEvent => {
+
+        let content = readerEvent.target.result;
+
+        let image = new Image();
+
+        image.src = content;
+
+        image.onload = function () {
+
+            let aspectRatio = scalePreserveAspectRatio(image.width, image.height, canvas.width, canvas.height);
+            context.drawImage(this, 0, 0, image.width * aspectRatio, image.height * aspectRatio);
+
+
+            let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+            context.putImageData(imageData, 0, 0);
+
+            imagenOriginal = imageData;
+            imagenCargada = true;
+            descartarImg = false;
+        }
+    }
+}
+
+function download() {
+    var filename = prompt("Guardar como...", "Nombre del archivo");
+    if (canvas.msToBlob) { //para internet explorer
+        var blob = canvas.msToBlob();
+        window.navigator.msSaveBlob(blob, filename + ".png");
+    } else {
+        link = document.getElementById("download");
+        //Otrs navegadores: Google chrome, Firefox etc...
+        link.href = canvas.toDataURL("image/png");// Extensión .png ("image/png") --- Extension .jpg ("image/jpeg")
+        link.download = filename;
+    }
+}
+
+
     function setPixel(imageData, x, y, r, g, b, a) {
         let index = (x + y * imageData.height) * 4;
 
