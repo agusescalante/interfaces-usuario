@@ -342,6 +342,196 @@ function HSLToRGB(h, s, l) {
     };
 }
 
+function createMatrixEmpty(){
+    let arrCopia = Array();
+    for(let i=0 ; i < canvas.height ; i++){
+        arrCopia[i] = Array();
+        for(let j=0 ; j < canvas.width ; j++){
+            arrCopia[i][j] = 0;
+        }
+    }
+    return arrCopia;
+}
+
+var matrixEmpty = createMatrixEmpty();
+
+function avgRGB(r,g,b){
+    let retorno;
+     return retorno = (r + g + b)/3;
+}
+
+function isBorderVertical(i){
+    let resultado=false;
+    if(i == 0){
+        resultado = 'izq';
+    }else if(i == canvas.width-1){
+        resultado='der';
+    }
+    return resultado;
+}
+
+function isCornerLeft(j,i){
+    let resultado=false;
+    if(i == 0 && j == 0){
+        resultado='arriba';
+    }else if(i == 0 && j == canvas.height-1){
+        resultado='abajo'    
+    }
+    return resultado;
+}
+
+function isCornerRight(j,i){
+    let resultado=false;
+    if(i == (canvas.width-1) && j == 0){
+        resultado='arriba';
+    }else if(i == (canvas.width-1) && j == (canvas.height-1)){
+        resultado='abajo'    
+    }
+    return resultado;
+}
+
+function isTopDown(j){
+    let resultado=false;
+    if(j == 0){
+        resultado='arriba';
+    }else if(j == canvas.height-1){
+        resultado='abajo';
+    }
+    return resultado;
+}
+
+
+function getRedTodasPosiciones(imgData,j,i){
+    let resultadoR = Array();  
+    resultadoR.push(getRed(imgData,j,i+1));//rDerecha  0
+    resultadoR.push(getRed(imgData,j,i-1));//rIzquierda  1
+    resultadoR.push(getRed(imgData,j,i));//rActual 2
+    resultadoR.push(getRed(imgData,j+1,i));//rAbajo 3
+    resultadoR.push(getRed(imgData,j+1,i-1));//rAbajoIzquierda 4
+    resultadoR.push(getRed(imgData,j+1,i+1));//rAbajoDerecha 5
+    resultadoR.push(getRed(imgData,j-1,i));//rArriba 6
+    resultadoR.push(getRed(imgData,j-1,i+1));//rArribaDerecha 7 
+    resultadoR.push(getRed(imgData,j-1,i-1));//rArribaIzquierda 8
+    return resultadoR;
+}
+
+function getGreenTodasPosiciones(imgData,j,i){
+    let resultadoG = Array();
+    resultadoG.push(getGreen(imgData,j,i+1)); //gDerecha
+    resultadoG.push(getGreen(imgData,j,i-1)); //gIzquierda
+    resultadoG.push(getGreen(imgData,j,i));//gActual
+    resultadoG.push(getGreen(imgData,j+1,i));//gAbajo
+    resultadoG.push(getGreen(imgData,j+1,i-1));//gAbajoIzquierda
+    resultadoG.push(getGreen(imgData,j+1,i+1));//gAbajoDerecha
+    resultadoG.push(getGreen(imgData,j-1,i));//gArriba
+    resultadoG.push(getGreen(imgData,j-1,i+1));//gArribaDerecha
+    resultadoG.push(getGreen(imgData,j-1,i-1));//gArribaIzquierda
+    
+    return resultadoG;
+}
+
+function getBlueTodasPosiciones(imgData,j,i){
+    let resultadoB = Array();
+    resultadoB.push(getBlue(imgData,j,i+1));//bDerecha
+    resultadoB.push(getBlue(imgData,j,i-1));//bIzquierda
+    resultadoB.push(getBlue(imgData,j,i));//bActual
+    resultadoB.push(getBlue(imgData,j+1,i));//bAbajo
+    resultadoB.push(getBlue(imgData,j+1,i-1));//bAbajoIzquierda
+    resultadoB.push(getBlue(imgData,j+1,i+1));//bAbajoDerecha
+    resultadoB.push(getBlue(imgData,j-1,i));//bArriba
+    resultadoB.push(getBlue(imgData,j-1,i+1));//bArribaDerecha
+    resultadoB.push(getBlue(imgData,j-1,i-1));//bArribaIzquierda
+
+    return resultadoB;
+}
+
+function setPixel(imageData,y,x,r,g,b,a){
+    index = (y + x * imageData.width)*4;
+    imageData.data[index+0]=r;
+    imageData.data[index+1]=g;
+    imageData.data[index+2]=b;
+    imageData.data[index+3]=a;
+}
+
+
+function Blur(){
+    let arregloCopia = ctx.createImageData(canvas.width,canvas.height);
+    let original = ctx.getImageData(0,0,canvas.width,canvas.height);
+    let divCornerOrLat=4;
+    let divTopDown=6;
+    let divCenter=9;
+    for(let j=0 ; j < original.width ; j++){
+        for(let i=0 ; i < original.height ; i++){
+
+           let avgR,avgB,avgG; 
+           let bluePosc= getBlueTodasPosiciones(original,j,i);
+           let redPosc= getRedTodasPosiciones(original,j,i);
+           let greenPosc =getGreenTodasPosiciones(original,j,i);
+           let pxActualR,pxIzquierdaR,pxActualArribaIzquierdaR,pxActualArribaR,pxActualArribaDerechaR,pxDerechaR,pxActualAbajoR,pxActualAbajoIzquierdaR,pxActualAbajoDerechaR;
+           let pxActualG,pxIzquierdaG,pxActualArribaIzquierdaG,pxActualArribaG,pxActualArribaDerechaG,pxDerechaG,pxActualAbajoG,pxActualAbajoIzquierdaG,pxActualAbajoDerechaG;
+           let pxActualB,pxIzquierdaB,pxActualArribaIzquierdaB,pxActualArribaB,pxActualArribaDerechaB,pxDerechaB,pxActualAbajoB,pxActualAbajoIzquierdaB,pxActualAbajoDerechaB;
+
+           pxActualR=redPosc[2],pxIzquierdaR=redPosc[1],pxActualArribaIzquierdaR=redPosc[8],pxActualArribaR=redPosc[6],pxActualArribaDerechaR=redPosc[7],pxDerechaR=redPosc[0],pxActualAbajoR=redPosc[3],pxActualAbajoIzquierdaR=redPosc[4],pxActualAbajoDerechaR=redPosc[5];
+           pxActualG=greenPosc[2],pxIzquierdaG=greenPosc[1],pxActualArribaIzquierdaG=greenPosc[8],pxActualArribaG=greenPosc[6],pxActualArribaDerechaG=greenPosc[7],pxDerechaG=greenPosc[0],pxActualAbajoG=greenPosc[3],pxActualAbajoIzquierdaG=greenPosc[4],pxActualAbajoDerechaG=greenPosc[5];
+           pxActualB=bluePosc[2],pxIzquierdaB=bluePosc[1],pxActualArribaIzquierdaB=bluePosc[8],pxActualArribaB=bluePosc[6],pxActualArribaDerechaB=bluePosc[7],pxDerechaB=bluePosc[0],pxActualAbajoB=bluePosc[3],pxActualAbajoIzquierdaB=bluePosc[4],pxActualAbajoDerechaB=bluePosc[5];
+              
+                        //limite de arriba o abajo sin las esquinas
+                    if(isTopDown(j) == 'abajo' && !(isCornerLeft(j,i),isCornerRight(j,i) )){
+                        avgR= Math.round((pxActualR+pxIzquierdaR+pxActualArribaIzquierdaR+pxActualArribaR+pxActualArribaDerechaR+pxDerechaR)/divTopDown);
+                        avgG= Math.round((pxActualG+pxIzquierdaG+pxActualArribaIzquierdaG+pxActualArribaG+pxActualArribaDerechaG+pxDerechaG)/divTopDown);
+                        avgB= Math.round((pxActualB+pxIzquierdaB+pxActualArribaIzquierdaB+pxActualArribaB+pxActualArribaDerechaB+pxDerechaB)/divTopDown);
+                        setPixel(arregloCopia,j,i,avgR,avgG,avgB,255);
+                    }else if(isTopDown(j) == 'arriba' && !(isCornerLeft(j,i),isCornerRight(j,i))){
+                        avgR= Math.round((pxActualR+pxIzquierdaR+pxActualAbajoDerechaR+pxActualAbajoR+pxActualAbajoDerechaR+pxDerechaR)/divTopDown);
+                        avgG= Math.round((pxActualG+pxIzquierdaG+pxActualAbajoDerechaG+pxActualAbajoG+pxActualAbajoDerechaG+pxDerechaG)/divTopDown);
+                        avgB= Math.round((pxActualB+pxIzquierdaB+pxActualAbajoDerechaB+pxActualAbajoB+pxActualAbajoDerechaB+pxDerechaB)/divTopDown);
+                        setPixel(arregloCopia,j,i,avgR,avgG,avgB,255);
+                    //limite laterales verticales sin las esquinas            
+                    }else if(isBorderVertical(i) == 'der' && !(isCornerLeft(j,i),isCornerRight(j,i) && isTopDown(j) !== 'abajo') ){
+                        avgR= Math.round((pxActualR+pxIzquierdaR+pxActualAbajoIzquierdaR+pxActualAbajoR)/divCornerOrLat);
+                        avgG= Math.round((pxActualG+pxIzquierdaG+pxActualAbajoIzquierdaG+pxActualAbajoG)/divCornerOrLat);
+                        avgB= Math.round((pxActualB+pxIzquierdaB+pxActualAbajoIzquierdaB+pxActualAbajoB)/divCornerOrLat);
+                        setPixel(arregloCopia,j,i,avgR,avgG,avgB,255);
+                    }else if(isBorderVertical(i) == 'izq' && !(isCornerLeft(j,i),isCornerRight(j,i) && isTopDown(j) !== 'abajo')){
+                        avgR= Math.round((pxActualR+pxDerechaR+pxActualAbajoR+pxActualAbajoDerechaR)/divCornerOrLat);
+                        avgG= Math.round((pxActualG+pxDerechaG+pxActualAbajoG+pxActualAbajoDerechaG)/divCornerOrLat);
+                        avgB= Math.round((pxActualB+pxDerechaB+pxActualAbajoB+pxActualAbajoDerechaB)/divCornerOrLat);
+                        setPixel(arregloCopia,j,i,avgR,avgG,avgB,255);
+
+                    //en el caso que tengamos las 9 posiciones, que no haya ningun limite    
+                    }else if(!isBorderVertical(i) && !isCornerLeft(j,i) && !isCornerRight(j,i) && !isTopDown(j)){
+                        avgR = Math.round((pxIzquierdaR+pxActualR+pxActualAbajoR+pxActualAbajoIzquierdaR+pxActualArribaDerechaR+pxActualArribaR+pxActualAbajoDerechaR+pxActualAbajoDerechaR+pxActualArribaIzquierdaR)/divCenter);         
+                        avgG = Math.round((pxIzquierdaG+pxActualG+pxActualAbajoG+pxActualAbajoIzquierdaG+pxActualArribaDerechaG+pxActualArribaG+pxActualAbajoDerechaG+pxActualAbajoDerechaG+pxActualArribaIzquierdaG)/divCenter);         
+                        avgB = Math.round((pxIzquierdaB+pxActualB+pxActualAbajoB+pxActualAbajoIzquierdaB+pxActualArribaDerechaB+pxActualArribaB+pxActualAbajoDerechaB+pxActualAbajoDerechaB+pxActualArribaIzquierdaB)/divCenter);         
+                        setPixel(arregloCopia,j,i,avgR,avgG,avgB,255);
+                    
+                    //vemos si estamos en alguna de las esquinas
+                    }else if(isCornerLeft(j,i) == 'arriba'){
+                        avgR = Math.round((pxActualR+pxDerechaR+pxActualAbajoR+pxActualAbajoDerechaR)/divCornerOrLat);
+                        avgG = Math.round((pxActualG+pxDerechaG+pxActualAbajoG+pxActualAbajoDerechaG)/divCornerOrLat);
+                        avgB = Math.round((pxActualB+pxDerechaB+pxActualAbajoB+pxActualAbajoDerechaB)/divCornerOrLat);
+                        setPixel(arregloCopia,j,i,avgR,avgG,avgB,255);
+                   }else if(isCornerLeft(j,i) == 'abajo'){
+                       avgR = Math.round((pxActualR+pxDerechaR+pxActualArribaR+pxActualArribaDerechaR)/divCornerOrLat);
+                       avgG = Math.round((pxActualG+pxDerechaG+pxActualArribaG+pxActualArribaDerechaG)/divCornerOrLat);
+                       avgB = Math.round((pxActualB+pxDerechaB+pxActualArribaB+pxActualArribaDerechaB)/divCornerOrLat);
+                       setPixel(arregloCopia,j,i,avgR,avgG,avgB,255);
+                   }else if(isCornerRight(j,i) == 'arriba'){
+                       avgR= Math.round((pxActualR+pxIzquierdaR+pxActualAbajoR+pxActualAbajoIzquierdaR)/divCornerOrLat);
+                       avgG= Math.round((pxActualG+pxIzquierdaG+pxActualAbajoG+pxActualAbajoIzquierdaG)/divCornerOrLat);
+                       avgB= Math.round((pxActualB+pxIzquierdaB+pxActualAbajoB+pxActualAbajoIzquierdaB)/divCornerOrLat);
+                       setPixel(arregloCopia,j,i,avgR,avgG,avgB,255);
+                   }else if(isCornerRight(j,i) == 'abajo'){
+                       avgR= Math.round((pxActualR+pxIzquierdaR+pxActualArribaR+pxActualArribaIzquierdaR)/divCornerOrLat);
+                       avgG= Math.round((pxActualG+pxIzquierdaG+pxActualArribaG+pxActualArribaIzquierdaG)/divCornerOrLat);
+                       avgB= Math.round((pxActualB+pxIzquierdaB+pxActualArribaB+pxActualArribaIzquierdaB)/divCornerOrLat);
+                       setPixel(arregloCopia,j,i,avgR,avgG,avgB,255);
+                   }
+        }
+    }
+    ctx.putImageData(arregloCopia,0,0);
+    
+}
 
     function setPixel(imageData, x, y, r, g, b, a) {
         let index = (x + y * imageData.height) * 4;
