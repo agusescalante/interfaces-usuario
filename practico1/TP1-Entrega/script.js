@@ -118,6 +118,61 @@ function toggleSelectedBtn(btn) {
 }
 
 
+function getRed(imageData, x, y) {
+    let index = (x + y * imageData.width) * 4;
+    return imageData.data[index + 0];
+}
+
+function getGreen(imageData, x, y) {
+    let index = (x + y * imageData.width) * 4;
+    return imageData.data[index + 1];
+}
+
+function getBlue(imageData, x, y) {
+    let index = (x + y * imageData.width) * 4;
+    return imageData.data[index + 2];
+}
+function getAlpha(imageData, x, y) {
+    let index = (x + y * imageData.width) * 4;
+    return imageData.data[index + 3];
+}
+
+function refresh() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    let imageData2 = context.getImageData(0, 0, canvas.width, canvas.height);
+
+    context.putImageData(imageData2, 0, 0);
+
+    borrando = false;
+    dibujando = false;
+}
+
+function restaurarOriginal() {
+    if ((imagenCargada === true) && (descartarImg === false))
+        context.putImageData(imagenOriginal, 0, 0);
+    lapiz = false;
+    goma = false;
+}
+
+function negative() {
+    restaurarOriginal();
+    let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+    for (let x = 0; x < imageData.width; x++) {
+        for (let y = 0; y < imageData.height; y++) {
+            let r = 255 - getRed(imageData, x, y);
+            let g = 255 - getGreen(imageData, x, y);
+            let b = 255 - getBlue(imageData, x, y);
+            setPixel(imageData, x, y, r, g, b, 255);
+        }
+    }
+    context.putImageData(imageData, 0, 0);
+}
+
+
+
 
 
     function setPixel(imageData, x, y, r, g, b, a) {
