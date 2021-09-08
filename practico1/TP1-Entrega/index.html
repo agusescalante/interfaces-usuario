@@ -5,21 +5,109 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/3e02f7f1bd.js" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Daipar</title>
 </head>
 
 <body>
     <div class="container">
-        <div class="brushes"></div>
-        <canvas id="canvas" width="800" height="600"></canvas>
-        <div class="filters">
-            <button id="filtroBw">Activar filtro B&N</button>
-            <button id="filtroSepia">Activar filtro Sepia</button>
-            <button id="filtroBlur">Activar filtro Blur</button>
+        <div class="row_top">
+            <h1>Daipar</h1>
+
+            <div id="brush_size">
+                <h2>Tamaño del Pincel</h2>
+                <input type="range" id="brushRange" min="2" max="12" value="2">
+            </div>
+
+            <button id="clearCanvas">
+                <i class="fas fa-broom"></i>
+                Limpiar Canvas
+            </button>
+        </div>
+        <div class="row_main">
+            <div class="brush_column ">
+                <button id="brush" class="deselected">
+                    <i class="fas fa-paint-brush fa-2x"></i>
+                </button>
+
+                <button id="eraser" class="deselected">
+                    <i class="fas fa-eraser fa-2x"></i>
+                </button>
+
+                <button id="color_selector" class="deselected">
+                    <input type="color" id="color">
+                </button>
+
+                <button id="addImage" class="deselected">
+                    <i class="far fa-folder-open fa-2x"></i>
+                    <input class="input1" type="file" style="display: none;">
+                </button>
+
+                <button id="saveImage" class="deselected">
+                    <i class="fas fa-download fa-2x"></i>
+                    <a id="download" style="display: none;">
+                        <input class="download" style="display: none;">
+                    </a>
+                </button>
+
+            </div>
+            <div class="main_column">
+                <div class="canvas_container">
+                    <canvas class="canvas1" width="700" height="500"></canvas>
+                </div>
+            </div>
+            <div class="filter_column">
+                <div class="filter_section">
+                    <div class="section_name">
+                        <h3>Filtros</h3>
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <ul class="filter_list">
+                        <li>
+                            <button id="negative">
+                                Negativo
+                            </button>
+                        </li>
+                        <li>
+                            <button id="sepia">
+                                Sepia
+                            </button>
+                        </li>
+                        <li>
+                            <button id="grayScale">
+                                Escala de grises
+                            </button>
+                        </li>
+                        <li>
+                            <button id="binary">
+                                Binarización
+                            </button>
+                        </li>
+                        <li>
+                            <button id="borderDetection">
+                                Detección de Bordes
+                            </button>
+                        </li>
+                        <li class="saturation_btn">
+                            <button id="saturation">
+                                Saturación
+                            </button>
+                            <input type="range" id="rangeSat" min="2" max="5" value="2">
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
