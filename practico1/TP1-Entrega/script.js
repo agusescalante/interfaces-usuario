@@ -172,6 +172,73 @@ function negative() {
 }
 
 
+function grayScale() {
+    restaurarOriginal();
+
+    let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+    for (let x = 0; x < imageData.width; x++) {
+        for (let y = 0; y < imageData.height; y++) {
+
+            let r = getRed(imageData, x, y);
+            let g = getGreen(imageData, x, y);
+            let b = getBlue(imageData, x, y);
+            let valueGray = (r + g + b) / 3;
+
+            setPixel(imageData, x, y, valueGray, valueGray, valueGray, 255);
+        }
+    }
+    context.putImageData(imageData, 0, 0);
+}
+
+
+function sepia() {
+    restaurarOriginal();
+    let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+    for (let x = 0; x < imageData.width; x++) {
+        for (let y = 0; y < imageData.height; y++) {
+            let r = getRed(imageData, x, y);
+            let g = getGreen(imageData, x, y);
+            let b = getBlue(imageData, x, y);
+            r = (r * 0.393) + (g * 0.769) + (b * 0.189)
+            g = (r * 0.349) + (g * 0.686) + (b * 0.168)
+            b = (r * 0.272) + (g * 0.534) + (b * 0.131)
+            setPixel(imageData, x, y, r, g, b, 255);
+        }
+    }
+    context.putImageData(imageData, 0, 0);
+}
+
+function binarizacion() {
+    restaurarOriginal();
+
+    let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    for (let x = 0; x < imageData.width; x++) {
+        for (let y = 0; y < imageData.height; y++) {
+            let r = getRed(imageData, x, y);
+            let g = getGreen(imageData, x, y);
+            let b = getBlue(imageData, x, y);
+            let a = getAlpha(imageData, x, y);
+
+            let gray = Math.floor((r + g + b) / 3);
+            if (gray > 255 / 2) {
+                r = 255
+                g = 255
+                b = 255
+                a = 255;
+                setPixel(imageData, x, y, r, g, b, a);
+            } else {
+                r = 0
+                g = 0
+                b = 0
+                setPixel(imageData, x, y, r, g, b, a);
+            }
+        }
+        context.putImageData(imageData, 0, 0);
+    }
+}
+
 
 
 
