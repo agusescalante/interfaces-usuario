@@ -99,11 +99,19 @@
                                 Detección de Bordes
                             </button>
                         </li>
+
+                        <li class="brightness_btn">
+                            <button id="brightness">
+                                Brillo
+                            </button>
+                            <input type="range" id="rangeBright" min="1" max="10" value="1">
+                        </li>
+
                         <li class="saturation_btn">
                             <button id="saturation">
                                 Saturación
                             </button>
-                            <input type="range" id="rangeSat" min="2" max="5" value="2">
+                            <input type="range" id="rangeSat" min="1" max="10" value="1">
                         </li>
 
                     </ul>
@@ -112,6 +120,7 @@
         </div>
     </div>
     <script src="script.js"></script>
+    <script src="blur.js"></script>
 </body>
 
 </html>

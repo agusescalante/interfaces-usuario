@@ -143,13 +143,13 @@ body, .container {
     padding: 5px;
 }
 
-.saturation_btn {
+.saturation_btn, .brightness_btn {
     border: 2px solid var(--third-color);
     border-radius: var(--radius);
     padding: 5px;
 }
 
-#saturation {
+#saturation, #brightness {
     border: none;
 }
 
