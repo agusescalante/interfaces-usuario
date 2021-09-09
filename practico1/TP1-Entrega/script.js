@@ -142,6 +142,7 @@ function getAlpha(imageData, x, y) {
 
 function refresh() {
     context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillStyle = "#ffffff";
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     let imageData2 = context.getImageData(0, 0, canvas.width, canvas.height);
