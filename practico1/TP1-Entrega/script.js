@@ -1,5 +1,6 @@
 let canvas = document.querySelector('.canvas1');
 let input = document.querySelector('.input1');
+let input2 = document.querySelector('.input2');
 
 var context = canvas.getContext('2d');
 context.fillStyle = "#ffffff";
@@ -67,6 +68,10 @@ document.querySelector(".download").addEventListener("click", () => {
 //Filters____________________________________________________________
 document.querySelector("#addImage").addEventListener("click", () => {
     document.querySelector('.input1').click();
+});
+
+document.querySelector("#load_start").addEventListener("click", () => {
+    document.querySelector('.input2').click();
 });
 
 document.querySelector("#negative").addEventListener("click", () => {
@@ -577,7 +582,7 @@ function scalePreserveAspectRatio(imgW, imgH, maxW, maxH) {
     return (Math.min((maxW / imgW), (maxH / imgH)));
 }
 
-input.onchange = e => {
+function loadImage(e) {
     let file = e.target.files[0];
 
     let reader = new FileReader();
@@ -607,6 +612,27 @@ input.onchange = e => {
             descartarImg = false;
         }
     }
+}
+
+// input.onchange = e => {
+
+// }
+
+input.addEventListener("change", (e) => {
+    loadImage(e);
+});
+
+input2.addEventListener("change", (e) => {
+    removeDialog();
+    loadImage(e);
+});
+
+document.querySelector("#simple_start").addEventListener("click", () => {
+    removeDialog();
+});
+
+function removeDialog() {
+    document.querySelector(".dialog").classList.add("dialog_hidden");
 }
 
 function download() {
