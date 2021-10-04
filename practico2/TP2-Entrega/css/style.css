@@ -1,0 +1,104 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    background-color: #E6A26E;
+}
+
+.game_misc {
+    padding-top: 2.5%;
+    display: flex;
+}
+
+.game_info {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.game_config {
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.game_config_options {
+    width: fit-content;
+    padding-left: 5%;
+    list-style: none;
+    text-decoration: none;
+}
+
+.player_options {
+    margin-top: 5%;
+    margin-left: 5%;
+    width: auto;
+    display: flex;
+    align-items: center;
+}
+
+.player_options button {
+    margin-right: 5%;
+}
+
+.player_options input {
+    height: 25px;
+    margin-right: 10%;
+}
+
+.player_options select {
+    height: 25px;
+}
+
+.game_option {
+    margin-bottom: 5%;
+}
+
+.start_btn {}
+
+.color_rect {
+    width: 40px;
+    height: 25px;
+}
+
+.canvas_container {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* ___________________________________________________ */
+
+
+/* Legacy */
+
+.jugadores {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 10px;
+    width: 95%;
+    background-color: #143527;
+    margin: 2%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.jugadores .j1 {
+    color: #F37A15;
+}
+
+.jugadores .j2 {
+    color: #3F5BCF;
+}

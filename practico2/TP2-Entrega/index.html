@@ -1,15 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>4 en linea</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <title>Document</title>
 </head>
+
 <body>
-    <canvas class="canvas" width="1080" height="720"></canvas>
-    <script src="main.js"></script>
-    <script src="ficha.js"></script>
-    <script src="tablero.js"></script>
+    <div class="container">
+        <div class="game_misc">
+            <div class="game_config">
+                <ul class="game_config_options">
+                    <li class="game_option">
+                        <h2>Jugador 1</h2>
+                        <div class="player_options">
+                            <input id="nameP1" type="text" placeholder="Nombre">
+
+                            <!-- <select name="p1" id="selectP1"> -->
+
+                            <button id="#795C8F" class="button_color_1">
+                                    <div class="color_rect"></div>
+                                </button>
+                            <button id="#72E0E0" class="button_color_1">
+                                    <div class="color_rect"></div>
+                                </button>
+                            <button id="#D6D8D9" class="button_color_1">
+                                    <div class="color_rect"></div>
+                                </button>
+                        </div>
+                    </li>
+                    <li class="game_option">
+                        <h2>Jugador 2</h2>
+                        <div class="player_options">
+                            <input id="nameP2" type="text" placeholder="Jugador 2">
+                            <!-- <select name="p2" id="selectP2"> -->
+                            <!-- </select> -->
+
+                            <button id="#C62017" class="button_color_2">
+                                <div class="color_rect"></div>
+                            </button>
+                            <button id="#FDD962" class="button_color_2">
+                                <div class="color_rect"></div>
+                            </button>
+                            <button id="#5A1D18" class="button_color_2">
+                                <div class="color_rect"></div>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="game_option">
+                        <h2>Tablero</h2>
+                        <div class="player_options">
+                            <select name="tableros" id="selectTablero">
+                                <option value="4x5x3">3 en linea</option>
+                                <option value="6x7x4" selected>4 en linea</option>
+                                <option value="8x9x5">5 en linea</option>
+                            </select>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="game_info">
+                <p>Pasos para Jugar:</p>
+                <p>1° Selecionar nombres y color de fichas para los jugadores (opcional)</p>
+                <p>2° Elegir reglas del juego</p>
+                <p>3° Sortear para ver quien empieza jugando</p>
+            </div>
+        </div>
+        <div class="canvas_container">
+            <div class="jugadores">
+                <h3 class="j1">JUGADOR 1</h3>
+                <button id="btn-sorteo" class="start_btn">Arrancar!</button>
+                <!-- <button id="btn-restart" class="">Reiniciar!</button> -->
+                <h3 class="j2">JUGADOR 2</h3>
+            </div>
+            <canvas class="canvas" width="1100" height="900" style="background-color: #E6A26E;"></canvas>
+        </div>
+    </div>
+
+    <script src="js/Cronometro.js"></script>
+    <script src="js/Tablero.js"></script>
+    <script src="js/Jugador.js"></script>
+    <script src="js/Ficha.js"></script>
+    <script src="js/Juego.js"></script>
 </body>
+
 </html>
