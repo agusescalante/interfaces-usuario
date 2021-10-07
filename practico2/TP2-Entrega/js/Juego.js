@@ -15,6 +15,10 @@
     let fichas1 = [],
         fichas2 = [];
 
+    let fichaSelected;
+    let fichaSelectedPosX;
+    let fichaSelectedPosY;
+
     //select tablero
     let tagTablero = document.querySelector('#selectTablero');
 
@@ -37,7 +41,7 @@
     setBtnsColorListeners("button_color_1", Jugador1);
     setBtnsColorListeners("button_color_2", Jugador2);
 
-    //Cuando se hace click en el btn sorteo
+    //Cuando se inicia el juego se hace un sorteo a ver quien arranca primero
     document.querySelector('#btn-sorteo').addEventListener("click", function() {
 
         setPlayersNames();
@@ -45,8 +49,13 @@
 
     });
 
-    let fichaSelected;
+    //En caso de querer reiniciar
+    document.querySelector("#btn-restart").addEventListener("click", () => {
+        restart();
+    });
 
+
+    //Si no se termino el juego, permite seleccionar una ficha del color correspondiente
     canvas.addEventListener("mousedown", function(e) {
         let array;
         if (jugadorActual == Jugador1.name) {
@@ -60,11 +69,15 @@
             for (let i = 0; i < array.length; i++) {
                 if (array[i].isInside(e.clientX, e.clientY, canvas)) {
                     fichaSelected = array[i];
+                    fichaSelectedPosX = fichaSelected.posX;
+                    fichaSelectedPosY = fichaSelected.posY;
+                    //Aca cuando selecciono una ficha
                 }
             }
         }
     });
 
+    //Si seleccionó una ficha la arrastra.
     canvas.addEventListener("mousemove", function(e) {
         if (fichaSelected) {
             fichaSelected.posX = e.layerX;
@@ -75,10 +88,10 @@
         }
     });
 
-    //checkea si pasa algo
+    //Cuando levanta el dedo del mouse, checkea si solto la ficha en un lugar, etc
     canvas.addEventListener("mouseup", function(e) {
-
-        if (fichaSelected) {
+        tablero.isInRangeX(2);
+        if (fichaSelected != null) {
 
             let winnerName;
             let rect = canvas.getBoundingClientRect();
@@ -86,22 +99,27 @@
 
             let posInX = tablero.getXFromPx(fichaX);
             //35 seria el radius de la ficha
-
+            console.log(fichaSelected.posY + 35);
+            console.log(tablero.posY);
             //checkear si esta arriba del tablero
-            if ((fichaSelected.posY + 35) < tablero.posY) {
+            if ((fichaSelected.posY + 35) < tablero.posY && tablero.isInRangeX(fichaSelected.posX)) {
 
+                //Si pudo colocar la ficha en el lugar elegido
                 if (tablero.colocarFichaInTablero(fichaSelected, posInX) == true) {
 
 
+                    //Remueve esa ficha desde el array de fichas
                     if (jugadorActual == Jugador1.name) {
                         removeFromArray(fichas1, fichaSelected);
                     } else {
                         removeFromArray(fichas2, fichaSelected);
                     }
 
+                    //Recalcula los vecinos de todas las fichas
                     tablero.refreshVecinosOfFichas();
                     reDrawTable();
 
+                    //Comprueba las condiciones de corte
                     let fullTablero = tablero.checkTableroLleno();
                     endedGame = fichaSelected.checkWinGame(1, fichaSelected.vecinos, fichaSelected.jugador, limite);
 
@@ -111,12 +129,13 @@
                         //Switch players
                         if (jugadorActual == Jugador1.name) {
                             jugadorActual = Jugador2.name;
-                            tablero.drawTurno(jugadorActual, Jugador1, Jugador2);
                         } else {
                             jugadorActual = Jugador1.name;
-                            tablero.drawTurno(jugadorActual, Jugador1, Jugador2);
                         }
+                        toggleTurn(jugadorActual, Jugador1);
                     } else {
+
+                        //Termina el juego
                         let retorno;
 
                         if (endedGame) retorno = "se termino por jugador " + winnerName;
@@ -127,34 +146,41 @@
                         endedGame = true;
                     }
                 }
+            } else {
+                console.log("pasa por caca");
+                fichaSelected.posX = fichaSelectedPosX;
+                fichaSelected.posY = fichaSelectedPosY;
+
+                reDrawTable();
             }
             fichaSelected = null;
         }
     });
 
+    //Cuando se quiere reiniciar
     function restart() {
-        Jugador1 = {
-            color: '#F37A15',
-            name: 'Jugador 1'
-        }
-
-        Jugador2 = {
-            color: '#3F5BCF',
-            name: 'Jugador 2'
-        }
-
+        clearInterval(crono.ticker);
+        endedGame = false;
+        startGame(Jugador1, Jugador2);
     }
 
-
+    //Lógica del juego
     function startGame(Jugador1, Jugador2) {
+        clearGameSpace();
         let numRandom = Math.round(Math.random() * 10);
 
         endedGame = false
 
+        let player1_banner = document.querySelector(".j1");
+        let player2_banner = document.querySelector(".j2");
 
         //Setea colores a los jugadores
-        document.querySelector(".j1").style.color = Jugador1.color;
-        document.querySelector(".j2").style.color = Jugador2.color;
+        player1_banner.style.color = Jugador1.color;
+        player2_banner.style.color = Jugador2.color;
+
+        //Setea los nombres
+        player1_banner.innerHTML = Jugador1.name;
+        player2_banner.innerHTML = Jugador2.name;
 
         //Trae el tamanio deseado del tablero desde el select
         let valueBoard = tagTablero.value;
@@ -163,8 +189,6 @@
         cols = arrColsRows[1];
         limite = arrColsRows[2];
         limite = parseInt(limite);
-
-
 
         tablero = new Tablero(filas, cols, ctx, imgFicha, imgTablero);
 
@@ -188,17 +212,21 @@
         reDrawTable();
 
         //dibuja de quien es el turno
-        tablero.drawTurno(jugadorActual, Jugador1, Jugador2);
+        toggleTurn(jugadorActual, Jugador1);
+
         tablero.drawTablero();
         tablero.drawCasilleros();
 
         //dibuja las fichas de cada jugador
         tablero.colocarIdleFichas(fichas1, fichas2);
 
-        crono = new Cronometro(2, 10);
+        // crono = new Cronometro(5, 0);
+
+
     }
 
 
+    //Asigna los nombres en base a los inputs
     function setPlayersNames() {
         //Si puso algun nombre se lo setea
         if (document.querySelector("#nameP1").value !== '') {
@@ -210,8 +238,9 @@
     }
 
 
+    //Redibuja todo el canvas.
     function reDrawTable() {
-        ctx.fillStyle = "#E6A26E";
+        ctx.fillStyle = "#005392";
         ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
         tablero.drawTablero();
         tablero.drawCasilleros();
@@ -219,6 +248,7 @@
         tablero.refreshIdleFichas(fichas1, fichas2);
     }
 
+    //Remueve del array sin alterar el orden
     function removeFromArray(array, obj) {
         let index = array.indexOf(obj);
         if (index > -1) {
@@ -226,27 +256,86 @@
         }
     }
 
+    //Mostrar que finalizó el juego
     function endGame(string) {
         alert(string);
     }
 
+    //Listeners de click de los botones para elegir el color
     function setBtnsColorListeners(clase, jugador) {
-
-        //agarra los botones y los prepara
         let select_player_btns = document.querySelectorAll("." + clase);
-
         select_player_btns.forEach(btn => {
-            //cuando se haga click cambiara el boton
             btn.addEventListener("click", function() {
                 jugador.color = btn.id;
             });
         });
     }
 
+    //Quita los inputs y reglas que ocupan espacio una vez arrancado el juego
+    function clearGameSpace() {
+        document.querySelector(".game_misc").classList.add("game_misc_hidden");
+
+        setTimeout(function() {
+            document.querySelector(".game_misc").classList.add("no_display");
+            document.querySelector(".canvas_container").classList.remove("canvas_container_top");
+            document.querySelector(".banner").classList.remove("banner_margin");
+        }, 1000);
+    }
+
+    //Alterna el cartel de "TURNO DE" entre los jugadores
+    function toggleTurn(jActual, j1) {
+
+        if (jActual == j1.name) {
+            addToView(".j1");
+            removeFromView(".j2");
+        } else {
+            removeFromView(".j1");
+            addToView(".j2");
+        }
+    }
+
+    //Remueve las clases que permiten que sea visible el "TURNO DE".
+    function removeFromView(j) {
+        let sign = document.querySelector(j).previousElementSibling;
+        let container = sign.parentElement;
+
+        container.classList.remove("widen");
+        sign.classList.add("hidden");
+        sign.classList.remove("shown");
+    }
+
+    //Añade las clases que permiten que sea visible el "TURNO DE".
+    function addToView(j) {
+        let sign = document.querySelector(j).previousElementSibling;
+        let container = sign.parentElement;
+
+        container.classList.add("widen");
+        sign.classList.remove("hidden");
+        sign.classList.add("shown");
+    }
+
+    //Setea los colores de los botones en base a su id
     function setBtnColors() {
         let players_btns = document.querySelectorAll(".color_rect");
         players_btns.forEach(rect => {
             let btn = rect.parentElement;
             rect.style.backgroundColor = btn.id;
         });
+    }
+
+    //Calcula y muestra el tiempo en el cronometro
+    function setTime(min, sec) {
+        let total_time;
+
+        if (min < 10) {
+            total_time = "0" + min;
+        } else total_time = min;
+
+        total_time += ":";
+
+        if (sec < 10) {
+            total_time += "0" + sec;
+        } else total_time += sec;
+
+        document.querySelector("#time").innerHTML = total_time;
     }

@@ -6,7 +6,7 @@ class Cronometro {
     constructor(minutos, segundos) {
         this.minutos = minutos;
         this.segundos = segundos;
-
+        setTime(minutos, segundos);
         this.countDown();
     }
 
@@ -14,27 +14,33 @@ class Cronometro {
         let minutos = this.minutos;
         let segundos = this.segundos;
 
-        let ticker = setInterval(function() {
-            console.log(minutos, segundos);
-
-            if (minutos == 0 && segundos == 0) {
-                clearInterval(ticker);
-                fichaSelected = null;
-                endedGame = true;
-                endGame("Se terminó el tiempo");
-            } else if (!endedGame) {
-                if (segundos != 0) {
-                    segundos--;
+        this.ticker = setInterval(function() {
+            if (!endedGame) {
+                if (minutos == 0 && segundos == 0) {
+                    timeOut(ticker, "Se terminó el tiempo.");
                 } else {
-                    minutos--;
-                    segundos = 59;
+                    if (segundos != 0) {
+                        segundos--;
+                    } else {
+                        minutos--;
+                        segundos = 59;
+                    }
                 }
-            }
-
+                setTime(minutos, segundos);
+            } else stopTimer(ticker);
         }, 1000);
     }
 
-    stopTimer() {
-        this.stop = true;
-    }
+
+}
+
+function stopTimer(ticker) {
+    clearInterval(ticker);
+    fichaSelected = null;
+}
+
+function timeOut(ticker, reason) {
+    clearInterval(ticker);
+    fichaSelected = null;
+    endGame(reason);
 }

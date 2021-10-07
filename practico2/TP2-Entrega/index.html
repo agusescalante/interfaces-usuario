@@ -11,6 +11,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+
     <title>Document</title>
 </head>
 
@@ -40,7 +44,7 @@
                     <li class="game_option">
                         <h2>Jugador 2</h2>
                         <div class="player_options">
-                            <input id="nameP2" type="text" placeholder="Jugador 2">
+                            <input id="nameP2" type="text" placeholder="Nombre">
                             <!-- <select name="p2" id="selectP2"> -->
                             <!-- </select> -->
 
@@ -75,14 +79,25 @@
                 <p>3° Sortear para ver quien empieza jugando</p>
             </div>
         </div>
-        <div class="canvas_container">
-            <div class="jugadores">
-                <h3 class="j1">JUGADOR 1</h3>
-                <button id="btn-sorteo" class="start_btn">Arrancar!</button>
-                <!-- <button id="btn-restart" class="">Reiniciar!</button> -->
-                <h3 class="j2">JUGADOR 2</h3>
+        <div class="canvas_container canvas_container_top">
+            <div class="banner banner_margin">
+                <div class="player_info">
+                    <h4 class="hidden">TURNO DE</h4>
+                    <h3 class="j1">JUGADOR 1</h3>
+                </div>
+                <div class="match_info">
+                    <button id="btn-sorteo">Arrancar</button>
+                    <div class="timer">
+                        <h4 id="time">00:00</h4>
+                    </div>
+                    <button id="btn-restart">Reiniciar</button>
+                </div>
+                <div class="player_info">
+                    <h4 class="hidden">TURNO DE</h4>
+                    <h3 class="j2">JUGADOR 2</h3>
+                </div>
             </div>
-            <canvas class="canvas" width="1100" height="900" style="background-color: #E6A26E;"></canvas>
+            <canvas class="canvas" width="1100" height="900"></canvas>
         </div>
     </div>
 

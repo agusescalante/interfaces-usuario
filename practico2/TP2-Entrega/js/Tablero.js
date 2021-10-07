@@ -21,15 +21,10 @@ class Tablero {
         this.imgTablero = imgTablero;
     }
 
-    printMatrix() {
-        console.table(this.tablero);
-        console.log(this.getVecinos(5, 1));
-    }
-
     drawTablero() {
         this.ctx.beginPath();
         this.ctx.drawImage(this.imgTablero, this.posX, this.posY, this.recuadroSize * this.anchura, this.recuadroSize * this.altura);
-        this.ctx.fillStyle = '#E6A26E';
+        this.ctx.fillStyle = '#005392';
         this.ctx.stroke();
         this.ctx.closePath();
     }
@@ -63,7 +58,6 @@ class Tablero {
 
     drawFichaInTablero(color, x, y) {
         this.ctx.beginPath();
-        //Offset = this.recuadroSize + this.posX
         this.ctx.arc(x * this.recuadroSize + this.posX + 40, y * this.recuadroSize + this.posY + 40, 35, 0, 2 * Math.PI);
         this.ctx.fillStyle = color;
         this.ctx.fill();
@@ -94,26 +88,13 @@ class Tablero {
         }
         y = 100;
         for (let i = 0; i < fichas2.length; i++) {
+
             //para que se acomode al tablero
             let xFichasDerechas = this.recuadroSize * this.anchura + this.posX + 80;
             this.drawFicha(fichas2[i].relleno, xFichasDerechas, y);
             fichas2[i].posX = xFichasDerechas;
             fichas2[i].posY = y;
             y += 20;
-        }
-    }
-
-    // muestra quien juega en ese momento
-    drawTurno(jugadorActual, j1, j2) {
-        if (jugadorActual == j1.name) {
-            this.ctx.fillStyle = j1.color;
-            this.ctx.font = "bold 30px Prompt";
-            this.ctx.fillText("Juega " + j1.name, this.posX - 40, this.posY - 40);
-        } else {
-            let xFichasDerechas = this.recuadroSize * this.anchura;
-            this.ctx.fillStyle = j2.color;
-            this.ctx.font = "bold 30px Prompt";
-            this.ctx.fillText("Juega " + j2.name, xFichasDerechas, this.posY - 40);
         }
     }
 
@@ -150,6 +131,13 @@ class Tablero {
             ficha = fichas2[i];
             this.drawFicha(ficha.relleno, ficha.posX, ficha.posY);
         }
+    }
+
+    isInRangeX(coordX) {
+        //160????
+        if ((coordX >= this.posX) && (coordX <= (this.anchura * this.recuadroSize + 160))) {
+            return true;
+        } else return false;
     }
 
     colocarFichaInTablero(ficha, x) {
