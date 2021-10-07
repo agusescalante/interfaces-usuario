@@ -21,6 +21,7 @@ class Tablero {
         this.imgTablero = imgTablero;
     }
 
+    //dibuja el tablero
     drawTablero() {
         this.ctx.beginPath();
         this.ctx.drawImage(this.imgTablero, this.posX, this.posY, this.recuadroSize * this.anchura, this.recuadroSize * this.altura);
@@ -29,6 +30,7 @@ class Tablero {
         this.ctx.closePath();
     }
 
+    //Dibuja todos los casilleros del tablero en el canvas
     drawCasilleros() {
         for (let i = this.posX; i < this.recuadroSize * this.anchura + this.posX; i += this.recuadroSize) {
             for (let j = this.posY; j < this.recuadroSize * this.altura + this.posY; j += this.recuadroSize) {
@@ -45,6 +47,7 @@ class Tablero {
         }
     }
 
+    //Inicializa la matriz
     initTablero() {
         let tablero = [];
         for (let i = 0; i < this.altura; i++) {
@@ -56,6 +59,7 @@ class Tablero {
         return tablero;
     }
 
+    //Dibuja una ficha en el tablero
     drawFichaInTablero(color, x, y) {
         this.ctx.beginPath();
         this.ctx.arc(x * this.recuadroSize + this.posX + 40, y * this.recuadroSize + this.posY + 40, 35, 0, 2 * Math.PI);
@@ -67,6 +71,7 @@ class Tablero {
         this.ctx.closePath();
     }
 
+    //Dibuja una ficha.
     drawFicha(color, x, y) {
         this.ctx.beginPath();
         this.ctx.arc(x, y, 35, 0, 2 * Math.PI);
@@ -78,6 +83,7 @@ class Tablero {
         this.ctx.closePath();
     }
 
+    //Coloca las fichas para usar de los 2 lados
     colocarIdleFichas(fichas1, fichas2) {
         let y = 100;
         for (let i = 0; i < fichas1.length; i++) {
@@ -98,6 +104,7 @@ class Tablero {
         }
     }
 
+    //Dibuja las fichas en el tablero
     refreshTablero() {
         for (let i = 0; i < this.altura; i++) {
             for (let j = 0; j < this.anchura; j++) {
@@ -109,6 +116,7 @@ class Tablero {
         }
     }
 
+    //Setea los vecinos de cada ficha
     refreshVecinosOfFichas() {
         for (let y = 0; y < this.tablero.length; y++) {
             for (let x = 0; x < this.tablero[y].length; x++) {
@@ -120,6 +128,7 @@ class Tablero {
 
     }
 
+    //Redibuja las fichas todavia no usadas
     refreshIdleFichas(fichas1, fichas2) {
         let ficha;
         for (let i = 0; i < fichas1.length; i++) {
@@ -133,12 +142,14 @@ class Tablero {
         }
     }
 
+    //Retorna si una coordenada X esta en el rango del tablero para colocar la ficha
     isInRangeX(coordX) {
         if ((coordX >= this.posX) && (coordX <= ((this.anchura * this.recuadroSize) + this.posX))) {
             return true;
         } else return false;
     }
 
+    //Coloca y dibuja la ficha en la matriz y en el tablero
     colocarFichaInTablero(ficha, x) {
         for (let y = this.altura - 1; y >= 0; y--) {
             if (this.tablero[y][x] == 0) {
@@ -150,10 +161,12 @@ class Tablero {
         return false;
     }
 
+    //Calcula que columna de la matriz corresponde en base a los pixeles del canvas
     getXFromPx(Xpixels) {
         return Math.floor((Xpixels - this.posX) / 80);
     }
 
+    //Devuelve si determinada pos en la matriz existe y se puede acceder
     itsCandidate(y, x) {
         try {
             if (this.tablero[y][x] != undefined && this.tablero[y][x] != 0) {
@@ -164,6 +177,7 @@ class Tablero {
         }
     }
 
+    //Verifica si todas las posiciones de la matriz han sido ocupadas
     checkTableroLleno() {
         let contador = 0;
         for (let y = 0; y < this.tablero.length; y++) {
@@ -176,6 +190,7 @@ class Tablero {
         return true;
     }
 
+    //Consigue los vecinos de cada ficha.
     getVecinos(y, x) {
 
         let vecinos = [];

@@ -169,8 +169,6 @@ canvas {
     display: block;
 }
 
-.player_info h3 {}
-
 .popup_container {
     position: absolute;
     top: 0;

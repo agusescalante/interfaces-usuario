@@ -102,8 +102,7 @@
 
             let posInX = tablero.getXFromPx(fichaX);
             //35 seria el radius de la ficha
-            console.log(fichaSelected.posY + 35);
-            console.log(tablero.posY);
+
             //checkear si esta arriba del tablero
             if ((fichaSelected.posY + 35) < tablero.posY && tablero.isInRangeX(fichaSelected.posX)) {
 
@@ -124,7 +123,9 @@
 
                     //Comprueba las condiciones de corte
                     let fullTablero = tablero.checkTableroLleno();
-                    endedGame = fichaSelected.checkWinGame(1, fichaSelected.vecinos, fichaSelected.jugador, limite);
+                    endedGame = fichaSelected.checkWinGame(1,
+                        // fichaSelected.vecinos, fichaSelected.jugador,
+                        limite);
 
                     winnerName = fichaSelected.jugador;
 
@@ -150,7 +151,6 @@
                     }
                 }
             } else {
-                console.log("pasa por caca");
                 fichaSelected.posX = fichaSelectedPosX;
                 fichaSelected.posY = fichaSelectedPosY;
 

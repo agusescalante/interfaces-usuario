@@ -17,7 +17,7 @@ class Cronometro {
         this.ticker = setInterval(function() {
             if (!endedGame) {
                 if (minutos == 0 && segundos == 0) {
-                    timeOut(ticker, "Se terminó el tiempo.");
+                    timeOut(this.ticker, "Se terminó el tiempo.");
                 } else {
                     if (segundos != 0) {
                         segundos--;
@@ -27,7 +27,7 @@ class Cronometro {
                     }
                 }
                 setTime(minutos, segundos);
-            } else stopTimer(ticker);
+            } else stopTimer(this.ticker);
         }, 1000);
     }
 
