@@ -20,6 +20,12 @@
 
 <body>
     <div class="container">
+        <div class="popup_container popup_container_hidden">
+            <div class="popup">
+                <h3 id="popup_reason">Se acabó el tiempo.</h3>
+                <button class="btn-restart">Reiniciar</button>
+            </div>
+        </div>
         <div class="game_misc">
             <div class="game_config">
                 <ul class="game_config_options">
@@ -27,9 +33,6 @@
                         <h2>Jugador 1</h2>
                         <div class="player_options">
                             <input id="nameP1" type="text" placeholder="Nombre">
-
-                            <!-- <select name="p1" id="selectP1"> -->
-
                             <button id="#795C8F" class="button_color_1">
                                     <div class="color_rect"></div>
                                 </button>
@@ -45,9 +48,6 @@
                         <h2>Jugador 2</h2>
                         <div class="player_options">
                             <input id="nameP2" type="text" placeholder="Nombre">
-                            <!-- <select name="p2" id="selectP2"> -->
-                            <!-- </select> -->
-
                             <button id="#C62017" class="button_color_2">
                                 <div class="color_rect"></div>
                             </button>
@@ -90,7 +90,7 @@
                     <div class="timer">
                         <h4 id="time">00:00</h4>
                     </div>
-                    <button id="btn-restart">Reiniciar</button>
+                    <button class="btn-restart">Reiniciar</button>
                 </div>
                 <div class="player_info">
                     <h4 class="hidden">TURNO DE</h4>

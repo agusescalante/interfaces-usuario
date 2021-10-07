@@ -14,6 +14,7 @@
     width: 100%;
     height: 100%;
     background-color: var(--background);
+    position: relative;
 }
 
 canvas {
@@ -169,6 +170,52 @@ canvas {
 }
 
 .player_info h3 {}
+
+.popup_container {
+    position: absolute;
+    top: 0;
+    z-index: 200;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup_container_hidden {
+    transition: 1s;
+    top: -5000px;
+}
+
+.popup_container_shown {
+    transition: 1s;
+    top: 0;
+}
+
+.popup {
+    background-color: white;
+    width: 400px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
+.popup h3 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.popup button {
+    margin-top: 5%;
+    border: 1px solid black;
+    background-color: transparent;
+    padding: 1.5%;
+    color: black;
+}
 
 
 /* ___________________________________________________ */

@@ -50,10 +50,13 @@
     });
 
     //En caso de querer reiniciar
-    document.querySelector("#btn-restart").addEventListener("click", () => {
-        restart();
-    });
+    let buttons = document.querySelectorAll(".btn-restart");
 
+    buttons.forEach(b => {
+        b.addEventListener("click", () => {
+            restart();
+        });
+    });
 
     //Si no se termino el juego, permite seleccionar una ficha del color correspondiente
     canvas.addEventListener("mousedown", function(e) {
@@ -138,8 +141,8 @@
                         //Termina el juego
                         let retorno;
 
-                        if (endedGame) retorno = "se termino por jugador " + winnerName;
-                        else retorno = "se termino por tablero lleno";
+                        if (endedGame) retorno = "Ganó jugador " + winnerName;
+                        else retorno = "se finalizó por tablero lleno";
 
                         endGame(retorno);
                         //bloquear todos los listener de las fichas
@@ -161,6 +164,7 @@
     function restart() {
         clearInterval(crono.ticker);
         endedGame = false;
+        togglePopup(document.querySelector(".popup_container"));
         startGame(Jugador1, Jugador2);
     }
 
@@ -220,7 +224,7 @@
         //dibuja las fichas de cada jugador
         tablero.colocarIdleFichas(fichas1, fichas2);
 
-        // crono = new Cronometro(5, 0);
+        crono = new Cronometro(5, 0);
 
 
     }
@@ -258,7 +262,19 @@
 
     //Mostrar que finalizó el juego
     function endGame(string) {
-        alert(string);
+        let container = document.querySelector(".popup_container");
+        togglePopup(container);
+        document.querySelector("#popup_reason").innerHTML = string;
+    }
+
+    function togglePopup(container) {
+        if (container.classList.contains("popup_container_hidden")) {
+            container.classList.add("popup_container_shown");
+            container.classList.remove("popup_container_hidden");
+        } else {
+            container.classList.remove("popup_container_shown");
+            container.classList.add("popup_container_hidden");
+        }
     }
 
     //Listeners de click de los botones para elegir el color

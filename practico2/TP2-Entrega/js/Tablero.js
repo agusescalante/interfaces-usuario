@@ -134,8 +134,7 @@ class Tablero {
     }
 
     isInRangeX(coordX) {
-        //160????
-        if ((coordX >= this.posX) && (coordX <= (this.anchura * this.recuadroSize + 160))) {
+        if ((coordX >= this.posX) && (coordX <= ((this.anchura * this.recuadroSize) + this.posX))) {
             return true;
         } else return false;
     }
