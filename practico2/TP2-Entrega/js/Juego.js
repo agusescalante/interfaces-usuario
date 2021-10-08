@@ -1,11 +1,11 @@
     let canvas = document.querySelector('.canvas');
     let ctx = canvas.getContext('2d');
 
-    let filas, cols;
+    let filas, cols ,timeGame;
 
     //Fichas por jugador
     let tablero;
-    let endedGame;
+    let endedGame = false;;
 
     // 'x' en linea, depende de la dimension de tablero
     let limite;
@@ -21,6 +21,7 @@
 
     //select tablero
     let tagTablero = document.querySelector('#selectTablero');
+    let tagTableroPU = document.querySelector('#selectTableroPU');
 
     let imgTablero = new Image();
     imgTablero.src = "./images/fondoTablero2.jpg";
@@ -43,9 +44,9 @@
 
     //Cuando se inicia el juego se hace un sorteo a ver quien arranca primero
     document.querySelector('#btn-sorteo').addEventListener("click", function() {
-
         setPlayersNames();
-        startGame(Jugador1, Jugador2);
+        startGame(Jugador1, Jugador2, tagTablero);
+        document.querySelector("#btn-sorteo").style.display='none';
 
     });
 
@@ -165,12 +166,13 @@
         clearInterval(crono.ticker);
         endedGame = false;
         togglePopup(document.querySelector(".popup_container"));
-        startGame(Jugador1, Jugador2);
+        startGame(Jugador1, Jugador2, tagTableroPU);
     }
 
     //Lógica del juego
-    function startGame(Jugador1, Jugador2) {
+    function startGame(Jugador1, Jugador2, table) {
         clearGameSpace();
+        fichas1 = [], fichas2 = [];
         let numRandom = Math.round(Math.random() * 10);
 
         endedGame = false
@@ -187,11 +189,12 @@
         player2_banner.innerHTML = Jugador2.name;
 
         //Trae el tamanio deseado del tablero desde el select
-        let valueBoard = tagTablero.value;
+        let valueBoard = table.value;
         let arrColsRows = valueBoard.split('x');
         filas = arrColsRows[0];
         cols = arrColsRows[1];
         limite = arrColsRows[2];
+        timeGame = arrColsRows [3];
         limite = parseInt(limite);
 
         tablero = new Tablero(filas, cols, ctx, imgFicha, imgTablero);
@@ -224,7 +227,7 @@
         //dibuja las fichas de cada jugador
         tablero.colocarIdleFichas(fichas1, fichas2);
 
-        crono = new Cronometro(5, 0);
+        crono = new Cronometro(timeGame, 0);
 
 
     }
@@ -241,6 +244,10 @@
         }
     }
 
+    //recibe los valores que manda el tablero selecionado
+    function reglasGame(table){
+        
+    }
 
     //Redibuja todo el canvas.
     function reDrawTable() {
@@ -265,6 +272,7 @@
         let container = document.querySelector(".popup_container");
         togglePopup(container);
         document.querySelector("#popup_reason").innerHTML = string;
+        
     }
 
     function togglePopup(container) {

@@ -15,15 +15,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 
-    <title>Document</title>
+    <title>X en linea</title>
 </head>
 
 <body>
     <div class="container">
         <div class="popup_container popup_container_hidden">
             <div class="popup">
-                <h3 id="popup_reason">Se acabó el tiempo.</h3>
+                <h3 id="popup_reason">Se ha reiniciado.</h3>
                 <button class="btn-restart">Reiniciar</button>
+                
+                <select name="tableros" id="selectTableroPU">
+                    <option value="4x5x3x3">3 en linea</option>
+                    <option value="6x7x4x5" selected>4 en linea</option>
+                    <option value="8x9x5x7">5 en linea</option>
+                </select>
+
             </div>
         </div>
         <div class="game_misc">
@@ -63,9 +70,9 @@
                         <h2>Tablero</h2>
                         <div class="player_options">
                             <select name="tableros" id="selectTablero">
-                                <option value="4x5x3">3 en linea</option>
-                                <option value="6x7x4" selected>4 en linea</option>
-                                <option value="8x9x5">5 en linea</option>
+                                <option value="4x5x3x3">3 en linea</option>
+                                <option value="6x7x4x5" selected>4 en linea</option>
+                                <option value="8x9x5x7">5 en linea</option>
                             </select>
 
                         </div>

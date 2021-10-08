@@ -42,5 +42,7 @@ function stopTimer(ticker) {
 function timeOut(ticker, reason) {
     clearInterval(ticker);
     fichaSelected = null;
+    endedGame = true;
     endGame(reason);
+    
 }
