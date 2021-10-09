@@ -15,15 +15,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 
-    <title>Document</title>
+    <title>X en linea</title>
 </head>
 
 <body>
     <div class="container">
         <div class="popup_container popup_container_hidden">
             <div class="popup">
-                <h3 id="popup_reason">Se acabó el tiempo.</h3>
+                <h3 id="popup_reason">Se ha reiniciado.</h3>
                 <button class="btn-restart">Reiniciar</button>
+                <br>
+                <select name="tableros" id="selectTableroPU">
+                    <option value="4x5x3x3">3 en linea</option>
+                    <option value="6x7x4x5" selected>4 en linea</option>
+                    <option value="8x9x5x7">5 en linea</option>
+                </select>
+
             </div>
         </div>
         <div class="game_misc">
@@ -63,9 +70,9 @@
                         <h2>Tablero</h2>
                         <div class="player_options">
                             <select name="tableros" id="selectTablero">
-                                <option value="4x5x3">3 en linea</option>
-                                <option value="6x7x4" selected>4 en linea</option>
-                                <option value="8x9x5">5 en linea</option>
+                                <option value="4x5x3x3">3 en linea</option>
+                                <option value="6x7x4x5" selected>4 en linea</option>
+                                <option value="8x9x5x7">5 en linea</option>
                             </select>
 
                         </div>
@@ -75,26 +82,26 @@
             <div class="game_info">
                 <p>Pasos para Jugar:</p>
                 <p>1° Selecionar nombres y color de fichas para los jugadores (opcional)</p>
-                <p>2° Elegir reglas del juego</p>
-                <p>3° Sortear para ver quien empieza jugando</p>
+                <p>2° Elegir reglas del juego, en el Tablero</p>
+                <p>3° Comenzar para ver quien empieza jugando, es por sorteo</p>
             </div>
         </div>
         <div class="canvas_container canvas_container_top">
             <div class="banner banner_margin">
                 <div class="player_info">
-                    <h4 class="hidden">TURNO DE</h4>
-                    <h3 class="j1">JUGADOR 1</h3>
+                    <h4 class="hidden">TURNO </h4>
+                    <h3 class="j1">Jugador 1</h3>
                 </div>
                 <div class="match_info">
-                    <button id="btn-sorteo">Arrancar</button>
+                    <button id="btn-sorteo">Comenzar</button>
                     <div class="timer">
                         <h4 id="time">00:00</h4>
                     </div>
                     <button class="btn-restart">Reiniciar</button>
                 </div>
                 <div class="player_info">
-                    <h4 class="hidden">TURNO DE</h4>
-                    <h3 class="j2">JUGADOR 2</h3>
+                    <h4 class="hidden">TURNO </h4>
+                    <h3 class="j2">Jugador 2</h3>
                 </div>
             </div>
             <canvas class="canvas" width="1100" height="900"></canvas>
