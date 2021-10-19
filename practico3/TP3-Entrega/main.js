@@ -1,15 +1,18 @@
-const avatar = document.getElementById("avatar");
-const rock = document.getElementById("rock");
-const score = document.getElementById("score");
+let avatar = document.getElementById("avatar");
+let rock = document.getElementById("rock");
+let score = document.getElementById("score");
+
+
 
 function jump() {
+  avatar.style.
   avatar.classList.add("jump-animation");
-  setTimeout(() =>
-    avatar.classList.remove("jump-animation"), 500);
+    setTimeout(() =>
+        avatar.classList.remove("jump-animation"), 500);
 }
 
 document.addEventListener('keypress', (event) => {
-  if (!avatar.classList.contains('jump-animation')) {
+    if (!avatar.classList.contains('jump-animation')) {
     jump();
   }
 })
@@ -19,7 +22,7 @@ setInterval(() => {
     .getPropertyValue('top'));
   const rockLeft = parseInt(window.getComputedStyle(rock)
     .getPropertyValue('left'));
- // score.innerText++;
+//  score.innerText++;
 
   if (rockLeft < 0) {
     rock.style.display = 'none';

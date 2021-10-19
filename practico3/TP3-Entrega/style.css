@@ -31,7 +31,7 @@
   width:2560px;
   height:1440px;
   background:url(images/foreground.png) repeat-x;
-  animation: movebg 3s linear infinite;
+  animation: movebg 5s linear infinite;
   position:relative;
   /* top:145px; */
   /* Pequeño degradado interior para suavizar el mar. Puede consumir muchos recursos */
@@ -56,7 +56,7 @@
   left: 1000px;
   background-image: url(images/rock.png);
   background-size: cover;
-  animation: rock 2.33s infinite;
+  animation: rock 3s infinite linear;
 }
 
 #avatar {
@@ -66,29 +66,32 @@
   top:900px;
   left:400px;
   background-image: url(images/spritestrip-.png);
-  animation: run .9s steps(6) infinite;
+  animation: run .9s steps(6) infinite; 
   background-size: cover;
 }
 
 /* key frames */
 @keyframes rock {
-  0%{left: 2000px;}
+  0%{left: 2500px ;
+    transform: rotate(360deg);}
   100%{left: -50px;}
 }
 
 .jump-animation {
+  background-image: url(images/spritestrip-.png);
   animation: jump 0.5s;
 }
+
 @keyframes movebg {
   0%{background-position:2560px}
   100% {background-position: 0px}
 } 
 
 @keyframes jump {
-  0%{top: 250px;}
-  50%{top: 200px;}
-  75%{top: 200px;}
-  100%{top: 250px;}
+  0%{top: 800px;}
+  50%{top: 750px;}
+  75%{top: 750px;}
+  100%{top: 800px;}
 }
 
 @keyframes run{
