@@ -66,20 +66,24 @@
   top:900px;
   left:400px;
   background-image: url(images/spritestrip-.png);
-  animation: run .9s steps(6) infinite; 
+  /* animation: run .9s steps(6) forwards;  */
   background-size: cover;
 }
 
 /* key frames */
 @keyframes rock {
   0%{left: 2500px ;
-    transform: rotate(360deg);}
+    transform: rotate(720deg);}
   100%{left: -50px;}
 }
 
 .jump-animation {
-  background-image: url(images/spritestrip-.png);
-  animation: jump 0.5s;
+   background-image: url(images/image-jump.png); 
+    animation: jump .4s  forwards; 
+}
+
+.run{
+  animation: run .9s steps(6) infinite;
 }
 
 @keyframes movebg {
@@ -88,13 +92,14 @@
 } 
 
 @keyframes jump {
-  0%{top: 800px;}
+  0%{   top: 800px;  
+        }
   50%{top: 750px;}
   75%{top: 750px;}
   100%{top: 800px;}
 }
 
-@keyframes run{
+@keyframes run {
   0%{background-position: 0px;}
   100%{background-position: -1463px;}
 }
