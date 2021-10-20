@@ -70,8 +70,11 @@
 
 /* key frames */
 @keyframes rock {
-  0%{left: 110% ;
-    transform: rotate(720deg);}
+  0%{left: 110%;  transform: rotate(720deg);}
+  20%{top:50%; }
+  40%{top:80%; }
+  60%{top:50%; }
+  80%{top:80%; }
   100%{left: -10%;}
 }
 
