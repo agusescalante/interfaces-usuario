@@ -1,38 +1,36 @@
 #score { text-align: center; }
 
-#sky{
-  width:2560px;
-  height:1440px;
-  background:url(images/sky.png) repeat-X;
+.layer{
+  width:100%;
+  height:100%;
+  min-height:700px;
+  background-repeat: repeat-x;
+  background-size: cover;
+  position: absolute;
+  top : 0;
+  left : 0;
+}
+.sky{
+  background:url(images/sky.png) ;
 }
 
-#middle{
-  width:2560px;
-  height:1440px;
-  background:url(images/middle_part.png) repeat-X;
+.middle{
+  background:url(images/middle_part.png) ;
   animation: movebg 20s linear infinite;
 }
 
-#hills{
-  width:2560px;
-  height:1440px;
-  background:url(images/background_hills.png) repeat-X;
+.hills{
+  background:url(images/background_hills.png) ;
   animation: movebg 15s linear infinite;
 }
-
-#cloud{
-  width:2560px;
-  height:1440px;
-  background:url(images/clouds.png) repeat-X;
+.cloud{
+  background:url(images/clouds.png) ;
   animation: movebg 7s linear infinite;
 }
 /* arboles negros */
-#fore{
-  width:2560px;
-  height:1440px;
-  background:url(images/foreground.png) repeat-x;
+.fore{
+  background:url(images/foreground.png) ;
   animation: movebg 5s linear infinite;
-  position:relative;
   /* top:145px; */
   /* Pequeño degradado interior para suavizar el mar. Puede consumir muchos recursos */
   /* box-shadow:10px 10px 45px RGBA(0,0,0, 0.85) inset; */
@@ -65,21 +63,23 @@
   height:253px;
   top:900px;
   left:400px;
-  background-image: url(images/spritestrip-.png);
+  /* background-image: url(images/spritestrip-.png); */
   /* animation: run .9s steps(6) forwards;  */
   background-size: cover;
 }
 
 /* key frames */
 @keyframes rock {
-  0%{left: 2500px ;
+  0%{left: 110% ;
     transform: rotate(720deg);}
-  100%{left: -50px;}
+  100%{left: -10%;}
 }
 
 .jump-animation {
-   background-image: url(images/image-jump.png); 
-    animation: jump .4s  forwards; 
+  /* width:256px;
+  height:256px; */
+  /* background-image: url(images/jump-right.png);  */
+  animation: jump .4s  forwards; 
 }
 
 .run{
