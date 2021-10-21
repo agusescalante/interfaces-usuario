@@ -3,7 +3,7 @@ let rock = document.getElementById("rock");
 let score = document.getElementById("score");
 let tecla = false;
 let imgJump = 'url(images/jump-right.png)';
-let imgRun = 'url(images/spritestrip-.png)';
+let imgRun = 'url(images/avatarRun.png)';
 //38 arriba
 //40 abajo
 

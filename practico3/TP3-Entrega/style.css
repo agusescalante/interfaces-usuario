@@ -69,18 +69,18 @@
   animation: rock 3s infinite linear;
 }
 .rseg{
-  animation: rock 5s infinite linear;
+  animation: rock 7s infinite linear;
 
 }
 .rter{
-  animation: rock 7s infinite linear;
+  animation: rock 10s infinite linear;
 
 }
 #avatar {
   position : absolute;
   width:243px;
   height:253px;
-  top:75%;
+  top:70%;
   left:20%;
   /* background-image: url(images/spritestrip-.png); */
   /* animation: run .9s steps(6) forwards;  */
@@ -117,11 +117,11 @@
 } 
 
 @keyframes jump {
-  0%{   top: 800px;  
+  0%{   top: 63%;  
         }
   50%{top: 750px;}
   75%{top: 750px;}
-  100%{top: 800px;}
+  100%{top: 63%;}
 }
 
 @keyframes run {
