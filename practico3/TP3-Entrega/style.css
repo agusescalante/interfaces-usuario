@@ -45,24 +45,43 @@
   background:linear-gradient(to top,#467ca5,transparent);
   z-index: 10000;
 }
+#apple{
+  position: relative;
+  width: 90px;
+  height: 90px;
+  left: 110%;
+  top: 65%;
+  background-image: url(images/apple.png);
+  animation: apple 7s infinite linear;
+  background-size: cover;
+}
 
-#rock {
+.rock {
   width: 100px;
   height: 100px;
   position: relative;
-  top: 1050px;
-  left: 1000px;
+  top: 70%;
   background-image: url(images/rock.png);
   background-size: cover;
-  animation: rock 3s infinite linear;
 }
 
+.rpri{
+  animation: rock 3s infinite linear;
+}
+.rseg{
+  animation: rock 5s infinite linear;
+
+}
+.rter{
+  animation: rock 7s infinite linear;
+
+}
 #avatar {
   position : absolute;
   width:243px;
   height:253px;
-  top:900px;
-  left:400px;
+  top:75%;
+  left:20%;
   /* background-image: url(images/spritestrip-.png); */
   /* animation: run .9s steps(6) forwards;  */
   background-size: cover;
@@ -71,13 +90,16 @@
 /* key frames */
 @keyframes rock {
   0%{left: 110%;  transform: rotate(720deg);}
-  20%{top:50%; }
-  40%{top:80%; }
-  60%{top:50%; }
-  80%{top:80%; }
+  20%{top:60%; }
+  40%{top:75%; }
+  60%{top:60%; }
+  80%{top:75%; }
   100%{left: -10%;}
 }
-
+@keyframes apple {
+  0%{left: 110%;  transform: scale(0.8);}
+  100%{left: -10%;}
+}
 .jump-animation {
   /* width:256px;
   height:256px; */
