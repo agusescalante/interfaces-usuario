@@ -11,25 +11,25 @@
   left : 0;
 }
 .sky{
-  background:url(images/sky.png) ;
+  background:url(images/forest/sky.png) ;
 }
 
 .middle{
-  background:url(images/middle_part.png) ;
+  background:url(images/forest/middle_part.png) ;
   animation: movebg 20s linear infinite;
 }
 
 .hills{
-  background:url(images/background_hills.png) ;
+  background:url(images/forest/background_hills.png) ;
   animation: movebg 15s linear infinite;
 }
 .cloud{
-  background:url(images/clouds.png) ;
+  background:url(images/forest/clouds.png) ;
   animation: movebg 7s linear infinite;
 }
 /* arboles negros */
 .fore{
-  background:url(images/foreground.png) ;
+  background:url(images/forest/foreground.png) ;
   animation: movebg 5s linear infinite;
   /* top:145px; */
   /* Pequeño degradado interior para suavizar el mar. Puede consumir muchos recursos */
@@ -45,15 +45,24 @@
   background:linear-gradient(to top,#467ca5,transparent);
   z-index: 10000;
 }
-#apple{
+.apple{
   position: relative;
   width: 90px;
   height: 90px;
   left: 110%;
-  top: 65%;
+  top: 60%;
   background-image: url(images/apple.png);
-  animation: apple 7s infinite linear;
+  /* animation: apple 7s infinite linear; */
   background-size: cover;
+}
+.a1{
+  animation: apple 7s infinite linear;
+
+}
+
+.a2{
+  animation: apple 15s infinite linear;
+
 }
 
 .rock {
