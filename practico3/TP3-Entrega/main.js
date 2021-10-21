@@ -6,6 +6,7 @@ let imgJump = 'url(images/jump-right.png)';
 let imgRun = 'url(images/avatarRun.png)';
 //38 arriba
 //40 abajo
+//git credenciales
 
 avatar.style.backgroundImage = imgRun;
    avatar.classList.add("run");
