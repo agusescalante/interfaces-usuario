@@ -46,29 +46,40 @@
   z-index: 10000;
 }
 .apple{
-  position: relative;
+  position: absolute;
+  display: flex;
   width: 90px;
   height: 90px;
   left: 110%;
-  top: 60%;
+  top: 75%;
   background-image: url(images/apple.png);
   /* animation: apple 7s infinite linear; */
   background-size: cover;
 }
 .a1{
   animation: apple 7s infinite linear;
-
 }
 
 .a2{
   animation: apple 15s infinite linear;
+}
 
+#tronco{
+  position: absolute;
+  display: flex;
+  width: 200px;
+  height: 100px;
+  left: 110%;
+  top: 80%;
+  background-image: url(images/tronco.png);
+  animation: tronco 3s infinite linear; 
+  background-size: cover;
 }
 
 .rock {
   width: 100px;
   height: 100px;
-  position: relative;
+  position: absolute;
   top: 70%;
   background-image: url(images/rock.png);
   background-size: cover;
@@ -106,8 +117,26 @@
   100%{left: -10%;}
 }
 @keyframes apple {
-  0%{left: 110%;  transform: scale(0.8);}
+  0%{left: 110%;  transform: scale(1);}
+  10%{transform: scale(1);}
+  20%{transform: scale(.5);}
+  30%{transform: scale(1);}
+  40%{transform: scale(.5);}
+  50%{transform: scale(1);}
+  60%{transform: scale(.5);}
+  70%{transform: scale(1);}
+  80%{transform: scale(.5);}
+  90%{transform: scale(1);}
   100%{left: -10%;}
+}
+
+@keyframes tronco{
+  0%{left: 110%; perspective:800px; transform: rotateZ(35deg)}
+  20%{transform: rotateZ(35deg)}
+  40%{transform: rotateZ(-20deg)}
+  60%{transform: rotateZ(35deg)}
+  80%{transform: rotateZ(-20deg)}
+  100%{left: -10%; transform: rotateZ(45deg);}
 }
 .jump-animation {
   /* width:256px;
