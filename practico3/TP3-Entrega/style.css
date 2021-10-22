@@ -1,192 +1,303 @@
-#score { text-align: center; }
-
-.layer{
-  width:100%;
-  height:100%;
-  min-height:700px;
-  background-repeat: repeat-x;
-  background-size: cover;
-  position: absolute;
-  top : 0;
-  left : 0;
-}
-.sky{
-  background:url(images/forest/sky.png) ;
+* {
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
-.middle{
-  background:url(images/forest/middle_part.png) ;
-  animation: movebg 20s linear infinite;
+:root {
+    --salto: "images/avatarBetty/jump-right.png";
 }
 
-.hills{
-  background:url(images/forest/background_hills.png) ;
-  animation: movebg 15s linear infinite;
+#score {
+    text-align: center;
 }
-.cloud{
-  background:url(images/forest/clouds.png) ;
-  animation: movebg 7s linear infinite;
+
+.layer {
+    width: 100%;
+    height: 100%;
+    min-height: 700px;
+    background-repeat: repeat-x;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
+
+.sky {
+    background: url(images/forest/sky.png);
+}
+
+.middle {
+    background: url(images/forest/middle_part.png);
+    animation: movebg 20s linear infinite;
+}
+
+.hills {
+    background: url(images/forest/background_hills.png);
+    animation: movebg 15s linear infinite;
+}
+
+.cloud {
+    background: url(images/forest/clouds.png);
+    animation: movebg 7s linear infinite;
+}
+
+
 /* arboles negros */
-.fore{
-  background:url(images/forest/foreground.png) ;
-  animation: movebg 5s linear infinite;
-  /* top:145px; */
-  /* Pequeño degradado interior para suavizar el mar. Puede consumir muchos recursos */
-  /* box-shadow:10px 10px 45px RGBA(0,0,0, 0.85) inset; */
+
+.fore {
+    background: url(images/forest/foreground.png);
+    animation: movebg 5s linear infinite;
+    /* top:145px; */
+    /* Pequeño degradado interior para suavizar el mar. Puede consumir muchos recursos */
+    /* box-shadow:10px 10px 45px RGBA(0,0,0, 0.85) inset; */
 }
 
-#sky:before{
-  content:"";
-  position: absolute;
-  bottom: 0;
-  /*width: 100%;
+#sky:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    /*width: 100%;
    height: 100px; */
-  background:linear-gradient(to top,#467ca5,transparent);
-  z-index: 10000;
-}
-.apple{
-  position: absolute;
-  display: flex;
-  width: 90px;
-  height: 90px;
-  left: 110%;
-  top: 75%;
-  background-image: url(images/apple.png);
-  /* animation: apple 7s infinite linear; */
-  background-size: cover;
-}
-.a1{
-  animation: apple 7s infinite linear;
+    background: linear-gradient(to top, #467ca5, transparent);
+    z-index: 10000;
 }
 
-.a2{
-  animation: apple 3s infinite linear;
+.apple {
+    position: absolute;
+    display: flex;
+    width: 90px;
+    height: 90px;
+    left: 110%;
+    top: 75%;
+    background-image: url(images/apple.png);
+    /* animation: apple 7s infinite linear; */
+    background-size: cover;
 }
 
-#tronco{
-  position: absolute;
-  display: flex;
-  width: 200px;
-  height: 100px;
-  left: 110%;
-  top: 80%;
-  background-image: url(images/tronco.png);
-  animation: tronco 4s infinite linear; 
-  background-size: cover;
-  z-index: 100px;
-}
-#tesoro{
-  position: absolute;
-  display: flex;
-  width: 300px;
-  height: 200px;
-  animation: tesoro 35s forwards linear;
-  animation-delay: 12s; 
-  background-size: cover;
+.a1 {
+    animation: apple 7s infinite linear;
 }
 
+.a2 {
+    animation: apple 3s infinite linear;
+}
+
+#tronco {
+    position: absolute;
+    display: flex;
+    width: 200px;
+    height: 100px;
+    left: 110%;
+    top: 80%;
+    background-image: url(images/tronco.png);
+    animation: tronco 4s infinite linear;
+    background-size: cover;
+    z-index: 100px;
+}
+
+#tesoro {
+    position: absolute;
+    display: flex;
+    width: 300px;
+    height: 200px;
+    animation: tesoro 35s forwards linear;
+    animation-delay: 12s;
+    background-size: cover;
+}
 
 .rock {
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  top: 70%;
-  background-image: url(images/rock.png);
-  background-size: cover;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 70%;
+    background-image: url(images/rock.png);
+    background-size: cover;
 }
 
-.rpri{
-  animation: rock 7s infinite linear;
+.rpri {
+    animation: rock 7s infinite linear;
 }
-.rseg{
-  animation: rock 7s infinite linear;
 
+.rseg {
+    animation: rock 7s infinite linear;
 }
-.rter{
-  animation: rock 10s infinite linear;
 
+.rter {
+    animation: rock 10s infinite linear;
 }
+
 #avatar {
-  position : absolute;
-  width:243px;
-  height:253px;
-  top:70%;
-  left:20%;
-  /* background-image: url(images/spritestrip-.png); */
-  /* animation: run .9s steps(6) forwards;  */
-  background-size: cover;
+    position: absolute;
+    width: 243px;
+    height: 217px;
+    top: 70%;
+    left: 20%;
+    /* background-image: url(images/spritestrip-.png); */
+    /* animation: run .9s steps(6) forwards;  */
+    background-size: cover;
 }
+
 
 /* key frames */
+
 @keyframes rock {
-  0%{left: 100%;  transform: rotate(720deg);}
-  20%{top:60%; }
-  40%{top:75%; }
-  60%{top:60%; }
-  80%{top:75%; }
-  100%{left: -10%;}
+    0% {
+        left: 100%;
+        transform: rotate(720deg);
+    }
+    20% {
+        top: 60%;
+    }
+    40% {
+        top: 75%;
+    }
+    60% {
+        top: 60%;
+    }
+    80% {
+        top: 75%;
+    }
+    100% {
+        left: -10%;
+    }
 }
+
 @keyframes apple {
-  0%{left: 110%;  transform: scale(1);}
-  10%{transform: scale(1);}
-  20%{transform: scale(.5);}
-  30%{transform: scale(1);}
-  40%{transform: scale(.5);}
-  50%{transform: scale(1);}
-  60%{transform: scale(.5);}
-  70%{transform: scale(1);}
-  80%{transform: scale(.5);}
-  90%{transform: scale(1);}
-  100%{left: -10%;}
+    0% {
+        left: 110%;
+        transform: scale(1);
+    }
+    10% {
+        transform: scale(1);
+    }
+    20% {
+        transform: scale(.5);
+    }
+    30% {
+        transform: scale(1);
+    }
+    40% {
+        transform: scale(.5);
+    }
+    50% {
+        transform: scale(1);
+    }
+    60% {
+        transform: scale(.5);
+    }
+    70% {
+        transform: scale(1);
+    }
+    80% {
+        transform: scale(.5);
+    }
+    90% {
+        transform: scale(1);
+    }
+    100% {
+        left: -10%;
+    }
 }
 
 @keyframes tesoro {
-  0%{left: 110%;  top:75%;  background-image: url(images/tesoro.png);}
-  100%{left: -15%;  top:75%; background-image: url(images/tesoro.png)}
+    0% {
+        left: 110%;
+        top: 75%;
+        background-image: url(images/tesoro.png);
+    }
+    100% {
+        left: -15%;
+        top: 75%;
+        background-image: url(images/tesoro.png)
+    }
 }
-
 
 @keyframes tronco {
-  0%{left: 110%; perspective:800px; transform: rotateZ(35deg);    }
-  20%{transform: rotate(35deg)}
-  40%{transform: rotate(-20deg)}
-  60%{transform: rotate(35deg);}
-  80%{perspective:900px; transform: rotateZ(-20deg)}
-  100%{left: -10%; transform: rotate(35deg);}
-}
-.jump-animation {
-  /* width:256px;
-  height:256px; */
-  /* background-image: url(images/jump-right.png);  */
-  animation: jump .4s  forwards; 
-}
-.down-animation {
-  animation: down .4s  forwards; 
+    0% {
+        left: 110%;
+        /* perspective: 800px; */
+        /* transform: rotateZ(35deg); */
+    }
+    20% {
+        /* transform: rotate(35deg) */
+    }
+    40% {
+        /* transform: rotate(-20deg) */
+    }
+    60% {
+        /* transform: rotate(35deg); */
+    }
+    80% {
+        /* perspective: 900px; */
+        /* transform: rotateZ(-20deg) */
+    }
+    100% {
+        left: -10%;
+        /* transform: rotate(35deg); */
+    }
 }
 
-.run{
-  animation: run .9s steps(6) infinite;
+.jump-animation {
+    /* width:256px;
+  height:256px; */
+    /* background-image: url(images/jump-right.png);  */
+    animation: jump .4s forwards;
+}
+
+.down-animation {
+    animation: down .4s forwards;
+}
+
+.run {
+    animation: run .9s steps(6) infinite;
 }
 
 @keyframes movebg {
-  0%{background-position:2560px}
-  100% {background-position: 0px}
-} 
+    0% {
+        background-position: 2560px
+    }
+    100% {
+        background-position: 0px
+    }
+}
 
 @keyframes jump {
-  0%{  top: 60%; left: 22%; width:190px; height:200px;}
-  50%{ left: 24%}
-  100%{ top: 53%; left: 26%; width:190px; height:200px;}
+    0% {
+        top: 60%;
+        /* left: 22%; */
+        /* width: 190px;
+        height: 200px; */
+        background-image: url("images/avatarBetty/jump-right.png")
+    }
+    12.5% {
+        background-image: url("images/avatarBetty/jump-right.png")
+    }
+    50% {
+        /* left: 24%; */
+        background-image: url("images/avatarBetty/jump-right.png")
+    }
+    100% {
+        top: 53%;
+        /* left: 26%; */
+        background-image: url("images/avatarBetty/jump-right.png")
+        /* width: 190px;
+        height: 200px; */
+    }
 }
 
 @keyframes down {
-  0%{  }
-  100%{  width:243px;
-        height:253px; }
+    0% {}
+    100% {
+        width: 243px;
+        height: 253px;
+    }
 }
 
 @keyframes run {
-  0%{background-position: 0px;}
-  100%{background-position: -1463px;}
+    0% {
+        background-position: 0px;
+    }
+    100% {
+        background-position: -1463px;
+    }
 }

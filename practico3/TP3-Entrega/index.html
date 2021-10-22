@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DaiPar Game</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="images/icon-game.png" sizes="16x16">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaiPar Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/icon-game.png" sizes="16x16">
 </head>
+
 <body>
-  <div class="layer sky">
-      <div class="layer hills">
-          <div class="layer middle">
-              <div class="layer fore">
-                  <div class="layer cloud">  
-                      <div id="avatar"></div>
-                      <div class="rock rpri"></div>
-                      <!-- <div class="rock rseg"></div> -->
-                      <div class="apple a1"></div>
-                      <div class="apple a2"></div>
-                      <span id="tronco"></span>
-                      <span id="tesoro"></span>
-                  </div>
-              </div>  
-          </div>
+    <div class="layer sky">
+        <div class="layer hills">
+            <div class="layer middle">
+                <div class="layer fore">
+                    <div class="layer cloud">
+                        <div id="avatar"></div>
+                        <!-- <div class="rock rpri"></div> -->
+                        <!-- <div class="rock rseg"></div> -->
+                        <!-- <div class="apple a1"></div> -->
+                        <!-- <div class="apple a2"></div> -->
+                        <span id="tronco"></span>
+                        <span id="tesoro"></span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-  <h1 id="score">0</h1>
-  <script src="main.js"></script>
+    <h1 id="score">0</h1>
+
+    <script src="js/Obstaculo.js"></script>
+    <script src="js/Personaje.js"></script>
+    <script src="js/Pickup.js"></script>
+    <script src="js/Coordenada.js"></script>
+    <script src="js/main.js"></script>
 </body>
+
 </html>
