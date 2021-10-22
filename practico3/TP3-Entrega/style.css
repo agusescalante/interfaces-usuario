@@ -74,17 +74,15 @@
   background-image: url(images/tronco.png);
   animation: tronco 4s infinite linear; 
   background-size: cover;
+  z-index: 100px;
 }
 #tesoro{
   position: absolute;
   display: flex;
   width: 300px;
   height: 200px;
-  left: 110%;
-  top: 75%;
-  background-image: url(images/tesoro.png);
-  animation: tesoro 35s infinite linear;
-  animation-delay: 120s; 
+  animation: tesoro 35s forwards linear;
+  animation-delay: 12s; 
   background-size: cover;
 }
 
@@ -144,18 +142,18 @@
 }
 
 @keyframes tesoro {
-  0%{left: 110%;}
-  100%{left: -10%;}
+  0%{left: 110%;  top:75%;  background-image: url(images/tesoro.png);}
+  100%{left: -15%;  top:75%; background-image: url(images/tesoro.png)}
 }
 
 
-@keyframes tronco{
-  0%{left: 110%; perspective:800px; transform: rotateZ(35deg)}
-  20%{transform: rotateZ(35deg)}
-  40%{transform: rotateZ(-20deg)}
-  60%{transform: rotateZ(35deg)}
-  80%{perspective:900px; transform:rotate(220deg) ;transform: rotateZ(-20deg)}
-  100%{left: -10%; transform: rotateZ(45deg);}
+@keyframes tronco {
+  0%{left: 110%; perspective:800px; transform: rotateZ(35deg);    }
+  20%{transform: rotate(35deg)}
+  40%{transform: rotate(-20deg)}
+  60%{transform: rotate(35deg);}
+  80%{perspective:900px; transform: rotateZ(-20deg)}
+  100%{left: -10%; transform: rotate(35deg);}
 }
 .jump-animation {
   /* width:256px;
