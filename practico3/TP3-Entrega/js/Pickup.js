@@ -22,37 +22,37 @@ class Pickup {
         this.type = "Pickup";
     }
 
-    create() {
-        let div = document.createElement("div");
-        div.classList.add("pickup");
-        div.classList.add("shown");
-        div.style.width = this.width + "px";
-        div.style.height = this.height + "px";
-        this.view = div;
-        return div;
-    }
+    // create() {
+    //     let div = document.createElement("div");
+    //     div.classList.add("a1");
+    //   //  div.classList.add("a1");
+    //     div.style.width = this.width + "px";
+    //     div.style.height = this.height + "px";
+    //     this.view = div;
+    //     return div;
+    // }
 
-    setHeight(height) {
-        this.view.style.height = height + "px";
-    }
+    // setHeight(height) {
+    //     this.view.style.height = height + "px";
+    // }
 
-    setSpeed(speed) {
-        this.view.style.animationDuration = speed + "s";
-    }
+    // setSpeed(speed) {
+    //     this.view.style.animationDuration = speed + "s";
+    // }
 
-    freeze() {
-        this.view.style.animationPlayState = "paused";
-    }
+    // freeze() {
+    //     this.view.style.animationPlayState = "paused";
+    // }
 
-    toggleView() {
-        if (this.view.classList.contains("shown")) {
-            this.view.classList.remove("shown");
-            this.view.classList.add("hidden");
-        } else {
-            this.view.classList.add("shown");
-            this.view.classList.remove("hidden");
-        }
-    }
+    // toggleView() {
+    //     if (this.view.classList.contains("shown")) {
+    //         this.view.classList.remove("shown");
+    //         this.view.classList.add("hidden");
+    //     } else {
+    //         this.view.classList.add("shown");
+    //         this.view.classList.remove("hidden");
+    //     }
+    // }
 
     update() {
         let pos = this.view.getBoundingClientRect();

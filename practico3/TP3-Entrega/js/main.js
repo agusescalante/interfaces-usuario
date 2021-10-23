@@ -1,5 +1,5 @@
 let avatar = document.getElementById("avatar");
-let manzana = document.getElementsByClassName("aplle");
+let manzana = document.querySelector("#apple");
 let tronco = document.querySelector("#tronco");
 // let rock = document.getElementById("rock");
 // let score = document.getElementById("score");
@@ -12,10 +12,14 @@ let tecla = false;
 
 avatar = new Personaje(avatar);
 tronco = new Obstaculo(tronco);
-manzana = new Pickup(manzana);
+manzana = new Obstaculo(manzana);
+//manzana.create();
 
+
+// console.log(manzana);
 avatar.debug();
 tronco.debug();
+manzana.debug();
 
 
 window.addEventListener('keydown', (e) => {
@@ -23,6 +27,8 @@ window.addEventListener('keydown', (e) => {
 });
 
 window.addEventListener("keyup", function() {
+    avatar.update();
+    tronco.update();
     tecla = null;
     avatar.restaurarEstado();
 });
@@ -32,6 +38,10 @@ setInterval(() => {
 
     avatar.update();
     tronco.update();
+    manzana.update();
+    if(checkCollision(avatar,manzana)){
+        alert("termino");
+    }
     if (tecla == 38) {
         avatar.saltar();
   } else if (tecla == 40) {

@@ -62,7 +62,7 @@
     z-index: 10000;
 }
 
-.apple {
+#apple {
     position: absolute;
     display: flex;
     width: 90px;
@@ -70,12 +70,14 @@
     left: 110%;
     top: 75%;
     background-image: url(images/apple.png);
+    animation: apple 7s infinite linear;
     /* animation: apple 7s infinite linear; */
     background-size: cover;
 }
 
 .a1 {
     animation: apple 7s infinite linear;
+    animation-delay: 3s;
 }
 
 .a2 {
@@ -250,6 +252,12 @@
 
 .run {
     animation: run .9s steps(6) infinite;
+}
+
+@keyframes opacity-collection{
+    0%{ opacity: 0.7}
+    50%{opacity: 0.4}
+    100%{opacity: 0;}
 }
 
 @keyframes movebg {
