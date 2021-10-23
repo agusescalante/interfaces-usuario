@@ -241,7 +241,7 @@
     /* width:256px;
   height:256px; */
     /* background-image: url(images/jump-right.png);  */
-    animation: jump .4s forwards;
+    animation: jump 4s forwards;
 }
 
 .down-animation {
@@ -267,19 +267,19 @@
         /* left: 22%; */
         /* width: 190px;
         height: 200px; */
-        background-image: url("images/avatarBetty/jump-right.png")
+        background-image: url("images/avatarBetty/down.png");
     }
-    12.5% {
-        background-image: url("images/avatarBetty/jump-right.png")
+    20.5% {
+        background-image: url("images/avatarBetty/jump-right.png");
     }
     50% {
+        top: 53%;
+        background-image: url("images/avatarBetty/jump-right.png");
         /* left: 24%; */
-        background-image: url("images/avatarBetty/jump-right.png")
     }
     100% {
         top: 53%;
         /* left: 26%; */
-        background-image: url("images/avatarBetty/jump-right.png")
         /* width: 190px;
         height: 200px; */
     }

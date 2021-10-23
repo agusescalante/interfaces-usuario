@@ -1,5 +1,5 @@
 let avatar = document.getElementById("avatar");
-
+let manzana = document.getElementsByClassName("aplle");
 let tronco = document.querySelector("#tronco");
 // let rock = document.getElementById("rock");
 // let score = document.getElementById("score");
@@ -12,6 +12,7 @@ let tecla = false;
 
 avatar = new Personaje(avatar);
 tronco = new Obstaculo(tronco);
+manzana = new Pickup(manzana);
 
 avatar.debug();
 tronco.debug();
@@ -19,7 +20,6 @@ tronco.debug();
 
 window.addEventListener('keydown', (e) => {
     tecla = e.keyCode;
-    // avatar.view.classList.remove("jump-animation");
 });
 
 window.addEventListener("keyup", function() {
@@ -32,11 +32,9 @@ setInterval(() => {
 
     avatar.update();
     tronco.update();
-    // console.log(checkCollision(avatar, tronco));
-
-    if (tecla === 38) {
+    if (tecla == 38) {
         avatar.saltar();
-    } else if (tecla == 40) {
+  } else if (tecla == 40) {
         avatar.agachar();
     }
 }, 70);

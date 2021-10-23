@@ -55,7 +55,7 @@ class Personaje {
     }
 
     saltar() {
-        // this.view.style.backgroundImage = this.imgJump;
+         this.view.style.backgroundImage = this.imgJump;
         this.view.classList.remove("run");
         this.view.classList.add("jump-animation");
     }
@@ -67,10 +67,12 @@ class Personaje {
     }
 
     restaurarEstado() {
+        this.view.classList.remove("jump-animation");
         this.view.classList.remove("down-animation");
         this.view.classList.add("run");
         this.view.style.backgroundImage = this.imgRun;
     }
+ 
 
     debug() {
         this.view.style.backgroundColor = "green";
