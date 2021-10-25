@@ -8,7 +8,16 @@
 }
 
 #score {
+    font-family: 'Press Start 2P', cursive;
     text-align: center;
+    position: absolute;
+    top: 0;
+    right: 2.5vw;
+    z-index: 200;
+    background-color: white;
+    border: 6px solid black;
+    border-radius: 2000px;
+    padding: 15px 20px;
 }
 
 .layer {
@@ -41,6 +50,14 @@
     animation: movebg 7s linear infinite;
 }
 
+.shown {
+    opacity: 100%;
+}
+
+.hidden {
+    opacity: 0;
+}
+
 
 /* arboles negros */
 
@@ -59,7 +76,7 @@
     /*width: 100%;
    height: 100px; */
     background: linear-gradient(to top, #467ca5, transparent);
-    z-index: 10000;
+    z-index: 100;
 }
 
 #apple {
@@ -67,7 +84,6 @@
     display: flex;
     width: 90px;
     height: 90px;
-    left: 110%;
     top: 75%;
     background-image: url(images/apple.png);
     animation: apple 7s infinite linear;
@@ -90,11 +106,11 @@
     width: 200px;
     height: 100px;
     left: 110%;
-    top: 80%;
+    top: 85%;
     background-image: url(images/tronco.png);
     animation: tronco 4s infinite linear;
     background-size: cover;
-    z-index: 100px;
+    z-index: 50;
 }
 
 #tesoro {
@@ -254,10 +270,16 @@
     animation: run .9s steps(6) infinite;
 }
 
-@keyframes opacity-collection{
-    0%{ opacity: 0.7}
-    50%{opacity: 0.4}
-    100%{opacity: 0;}
+@keyframes opacity-collection {
+    0% {
+        opacity: 0.7
+    }
+    50% {
+        opacity: 0.4
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 @keyframes movebg {

@@ -1,5 +1,6 @@
 class Pickup {
     view;
+    points;
 
     type;
     width;
@@ -10,49 +11,60 @@ class Pickup {
     esquinaAbajoIzquierda;
     esquinaAbajoDerecha;
 
-    constructor(x, y, width, height) {
-        this.width = width;
-        this.height = height;
+    constructor(div, puntos) {
+        let pos = div.getBoundingClientRect();
+
+        let x = pos.x;
+        let y = pos.y;
+
+        this.x = x;
+        this.y = y;
+        this.width = pos.width;
+        this.height = pos.height;
+
+        this.points = puntos;
+
 
         this.esquinaArribaIzquierda = new Coordenada(x, y);
-        this.esquinaArribaDerecha = new Coordenada(x + width, y);
-        this.esquinaAbajoIzquierda = new Coordenada(x, y + height);
-        this.esquinaAbajoDerecha = new Coordenada(x + width, y + height);
+        this.esquinaArribaDerecha = new Coordenada(x + this.width, y);
+        this.esquinaAbajoIzquierda = new Coordenada(x, y + this.height);
+        this.esquinaAbajoDerecha = new Coordenada(x + this.width, y + this.height);
 
+        this.view = div;
         this.type = "Pickup";
+
+        //this == this.view
+        this.view.addEventListener("animationiteration", function() {
+            let random = Math.floor(Math.random() * 3);
+
+            //si sale 1, muestra y permite colisión con el pickup 
+            if (random == 1) {
+                pickup_collision = true;
+
+                //si esta escondida que se muestre
+                if (this.classList.contains("hidden")) {
+                    this.classList.add("shown");
+                    this.classList.remove("hidden");
+                }
+            } else {
+                pickup_collision = false;
+            }
+        });
     }
 
-    // create() {
-    //     let div = document.createElement("div");
-    //     div.classList.add("a1");
-    //   //  div.classList.add("a1");
-    //     div.style.width = this.width + "px";
-    //     div.style.height = this.height + "px";
-    //     this.view = div;
-    //     return div;
-    // }
+    freeze() {
+        this.view.style.animationPlayState = "paused";
+    }
 
-    // setHeight(height) {
-    //     this.view.style.height = height + "px";
-    // }
-
-    // setSpeed(speed) {
-    //     this.view.style.animationDuration = speed + "s";
-    // }
-
-    // freeze() {
-    //     this.view.style.animationPlayState = "paused";
-    // }
-
-    // toggleView() {
-    //     if (this.view.classList.contains("shown")) {
-    //         this.view.classList.remove("shown");
-    //         this.view.classList.add("hidden");
-    //     } else {
-    //         this.view.classList.add("shown");
-    //         this.view.classList.remove("hidden");
-    //     }
-    // }
+    toggleView() {
+        if (this.view.classList.contains("shown")) {
+            this.view.classList.remove("shown");
+            this.view.classList.add("hidden");
+        } else {
+            this.view.classList.add("shown");
+            this.view.classList.remove("hidden");
+        }
+    }
 
     update() {
         let pos = this.view.getBoundingClientRect();
@@ -66,5 +78,9 @@ class Pickup {
     print() {
         let pos = this.view.getBoundingClientRect();
         console.log(pos.x, pos.y);
+    }
+
+    debug() {
+        this.view.style.backgroundColor = "blue";
     }
 }

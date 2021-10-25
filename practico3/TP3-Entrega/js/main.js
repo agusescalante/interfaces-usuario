@@ -1,9 +1,12 @@
 let avatar = document.getElementById("avatar");
-let manzana = document.querySelector("#apple");
+let pickup = document.querySelector("#apple");
 let tronco = document.querySelector("#tronco");
 // let rock = document.getElementById("rock");
-// let score = document.getElementById("score");
+let score = document.querySelector("#score");
 let tecla = false;
+let pickup_collision = true;
+
+let puntaje = 0;
 
 
 // //38 arriba
@@ -12,14 +15,13 @@ let tecla = false;
 
 avatar = new Personaje(avatar);
 tronco = new Obstaculo(tronco);
-manzana = new Obstaculo(manzana);
-//manzana.create();
+pickup = new Pickup(pickup, 50);
 
 
 // console.log(manzana);
 avatar.debug();
 tronco.debug();
-manzana.debug();
+pickup.debug();
 
 
 window.addEventListener('keydown', (e) => {
@@ -38,16 +40,36 @@ setInterval(() => {
 
     avatar.update();
     tronco.update();
-    manzana.update();
-    if(checkCollision(avatar,manzana)){
-        alert("termino");
+    pickup.update();
+
+    // if (checkCollision(avatar, tronco)) {
+    //     // alert("termino");
+    // }
+
+    //colision con pickup
+    if (pickup_collision == true) {
+        if (checkCollision(avatar, pickup)) {
+            pickup.toggleView();
+
+            puntaje += pickup.points;
+            score.innerHTML = convertScore(puntaje);
+
+            //quito la colision
+            pickup_collision = false;
+        }
     }
+
     if (tecla == 38) {
         avatar.saltar();
-  } else if (tecla == 40) {
+    } else if (tecla == 40) {
         avatar.agachar();
     }
 }, 70);
+
+pickup.view.addEventListener("animationiteration", function() {
+    // console.log("a");
+});
+
 
 function checkCollision(pj, item) {
 
@@ -83,5 +105,18 @@ function checkCollision(pj, item) {
     return false;
 }
 
+function convertScore(score) {
+    score = score + "";
+    let largo = score.length;
+    let resto = 6 - largo;
+    let resultado = "";
+
+    for (let i = 0; i < resto; i++) {
+        resultado = resultado + "0";
+    }
+
+    resultado += score;
+    return resultado;
+}
 
 //test
