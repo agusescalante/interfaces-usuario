@@ -1,23 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Runner</title>
+    <title>DaiPar Game</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/icon-game.png" sizes="16x16">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <div id="robot"></div>
-    <div id="run"></div>
-    <section>
-        <img src="images/sky.png" id="sky">
-        <img src="images/background_hills.png" id="background_hills">
-        <img src="images/clouds.png" id="cloud">
-        <img src="images/middle_part.png" id="middle_tree">
-        <img src="images/foreground.png" id="forest">
-        <!-- <img src="spritestrip-.png" id="run"> -->
-    </section>
-    <script src="main.js"></script>
+    <div class="layer sky">
+        <div class="layer hills">
+            <div class="layer middle">
+                <div class="layer fore">
+                    <div class="layer cloud">
+                        <div id="avatar"></div>
+                        <!-- <div class="rock rpri"></div> -->
+                        <!-- <div class="rock rseg"></div> -->
+                        <div id="apple" class="shown"></div>
+                        <!-- <div class="apple a2"></div> -->
+                        <span id="tronco"></span>
+                        <span id="tesoro"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 id="score">000000</h1>
+
+    <script src="js/Obstaculo.js"></script>
+    <script src="js/Personaje.js"></script>
+    <script src="js/Pickup.js"></script>
+    <script src="js/Coordenada.js"></script>
+    <script src="js/main.js"></script>
 </body>
+
 </html>
