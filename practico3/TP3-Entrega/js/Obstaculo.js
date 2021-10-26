@@ -29,6 +29,25 @@ class Obstaculo {
 
         this.view = div;
         this.type = "Obstaculo";
+
+        this.view.addEventListener("animationiteration", function() {
+            let random = Math.floor(Math.random() * 4);
+
+            // depende el valor, randomiza el obstaculo
+            // if (random == 1) {
+            // this.classList.add("tronco");
+            // this.classList.remove("roca");
+            // this.classList.remove("roca2");
+            // } else if (random == 2) {
+            //     this.classList.remove("tronco");
+            //     this.classList.remove("roca2");
+            //     this.classList.add("roca");
+            // } else {
+            this.classList.remove("tronco");
+            this.classList.remove("roca");
+            this.classList.add("roca2");
+            // }
+        });
     }
 
     // create() {
