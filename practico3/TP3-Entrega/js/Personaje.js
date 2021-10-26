@@ -55,19 +55,22 @@ class Personaje {
     }
 
     saltar() {
-        this.view.style.backgroundImage = this.imgJump;
+        // this.view.style.backgroundImage = this.imgJump;
         this.view.classList.remove("run");
         this.view.classList.add("jump-animation");
+
+        // this.view.addEventListener("mousemove", myFunction);
     }
 
     agachar() {
-        this.view.style.backgroundImage = this.imgDown;
+        // this.view.style.backgroundImage = this.imgDown;
         this.view.classList.remove("run");
         this.view.classList.add("down-animation");
     }
 
     restaurarEstado() {
         this.view.classList.remove("jump-animation");
+        this.view.classList.remove("down-animation");
         this.view.classList.add("run");
         this.view.style.backgroundImage = this.imgRun;
     }
