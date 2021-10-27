@@ -56,6 +56,12 @@ class Pickup {
         this.view.style.animationPlayState = "paused";
     }
 
+
+    unfreeze() {
+        this.view.style.animationPlayState = "running";
+    }
+
+
     toggleView() {
         if (this.view.classList.contains("shown")) {
             this.view.classList.remove("shown");

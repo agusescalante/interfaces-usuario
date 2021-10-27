@@ -1,7 +1,6 @@
 let avatar = document.getElementById("avatar");
 let pickup = document.querySelector("#apple");
 let tronco = document.querySelector("#obstaculo");
-// let rock = document.getElementById("rock");
 let score = document.querySelector("#score");
 let tecla = false;
 let pickup_collision = true;
@@ -17,11 +16,13 @@ avatar = new Personaje(avatar);
 tronco = new Obstaculo(tronco);
 pickup = new Pickup(pickup, 50);
 
+// freeze();
+setTheme("city");
 
 // Debug hitboxes
-avatar.debug();
-tronco.debug();
-pickup.debug();
+// avatar.debug();
+// tronco.debug();
+// pickup.debug();
 
 
 window.addEventListener('keydown', (e) => {
@@ -43,7 +44,8 @@ setInterval(() => {
     pickup.update();
 
     if (checkCollision(avatar, tronco)) {
-        alert("termino");
+        // alert("termino");
+        freeze();
         // console.log("Chocó");
     }
 
@@ -66,7 +68,7 @@ setInterval(() => {
     } else if (tecla == 40) {
         avatar.agachar();
     }
-}, 10);
+}, 50);
 
 function checkCollision(pj, item) {
 
@@ -118,6 +120,30 @@ function checkCollision(pj, item) {
     return false;
 }
 
+function freeze() {
+    document.querySelector(".sky").style.animationPlayState = "paused";
+    document.querySelector(".hills").style.animationPlayState = "paused";
+    document.querySelector(".middle").style.animationPlayState = "paused";
+    document.querySelector(".fore").style.animationPlayState = "paused";
+    document.querySelector(".cloud").style.animationPlayState = "paused";
+
+    avatar.freeze();
+    tronco.freeze();
+    pickup.freeze();
+}
+
+function unfreeze() {
+    document.querySelector(".sky").style.animationPlayState = "running";
+    document.querySelector(".hills").style.animationPlayState = "running";
+    document.querySelector(".middle").style.animationPlayState = "running";
+    document.querySelector(".fore").style.animationPlayState = "running";
+    document.querySelector(".cloud").style.animationPlayState = "running";
+
+    avatar.unfreeze();
+    tronco.unfreeze();
+    pickup.unfreeze();
+}
+
 function convertScore(score) {
     score = score + "";
     let largo = score.length;
@@ -130,6 +156,33 @@ function convertScore(score) {
 
     resultado += score;
     return resultado;
+}
+
+function setTheme(theme) {
+    let sky = document.querySelector(".sky");
+    if (theme == "forest") {
+        document.querySelector(".hills").classList.add("forest_hills");
+        document.querySelector(".sky").classList.add("forest_sky");
+        document.querySelector(".middle").classList.add("forest_middle");
+        document.querySelector(".fore").classList.add("forest_fore");
+        document.querySelector(".cloud").classList.add("forest_cloud");
+    } else if (theme == "city") {
+        setAnimationBG();
+        document.querySelector(".sky").classList.add("city_sky");
+        document.querySelector(".hills").classList.add("city_hills");
+        document.querySelector(".middle").classList.add("city_middle");
+        // document.querySelector(".fore").classList.add("city_fore");
+        document.querySelector(".cloud").classList.add("city_cloud");
+    }
+}
+
+
+function setAnimationBG() {
+    document.querySelector(".sky").classList.add("movebg_city");
+    document.querySelector(".hills").classList.add("movebg_city");
+    document.querySelector(".middle").classList.add("movebg_cityy");
+    // document.querySelector(".fore").classList.add("movebg_city");
+    document.querySelector(".cloud").classList.add("movebg_city");
 }
 
 //test

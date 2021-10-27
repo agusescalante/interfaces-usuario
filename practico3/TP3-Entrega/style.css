@@ -8,6 +8,41 @@
     --base: 60%;
 }
 
+
+/* Pop Up */
+
+.popupContainer {
+    font-family: 'Press Start 2P', cursive;
+    display: flex;
+    position: absolute;
+    z-index: 5000;
+    top: 0;
+    left: 0;
+    background-color: black;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.popupContent {
+    border-radius: 8px;
+    width: 30vw;
+    height: 80vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.popupText {
+    text-align: center;
+}
+
+
+/* -------------- */
+
 #score {
     font-family: 'Press Start 2P', cursive;
     text-align: center;
@@ -32,23 +67,64 @@
     left: 0;
 }
 
-.sky {
+.forest_sky {
     background: url(images/forest/sky.png);
 }
 
-.middle {
-    background: url(images/forest/middle_part.png);
+.city_sky {
+    background: url(images/city/sky.png);
+}
+
+.forest_middle {
     animation: movebg 20s linear infinite;
+    background: url(images/forest/middle_part.png);
 }
 
-.hills {
-    background: url(images/forest/background_hills.png);
+.city_middle {
+    animation: movebg_city 20s linear infinite;
+    background: url(images/city/middle_part.png);
+}
+
+.forest_hills {
     animation: movebg 15s linear infinite;
+    background: url(images/forest/background_hills.png);
 }
 
-.cloud {
-    background: url(images/forest/clouds.png);
+.floor {
+    background: url(images/city/piso.png);
+    /* height: 10vh;
+    top: unset;
+    bottom: 0;
+    z-index: 2500; */
+    z-index: 50;
+}
+
+.city_hills {
+    animation: movebg_city 15s linear infinite;
+    background: url(images/city/background.png);
+}
+
+.forest_cloud {
     animation: movebg 7s linear infinite;
+    background: url(images/forest/clouds.png);
+}
+
+.city_cloud {
+    animation: movebg_city 7s linear infinite;
+    background: url(images/city/clouds.png);
+}
+
+.forest_fore {
+    animation: movebg 7s linear infinite;
+    background: url(images/forest/foreground.png);
+}
+
+.city_fore {
+    position: absolute;
+    right: 0;
+    background-repeat: repeat-x;
+    animation: movetree_city 7s linear infinite;
+    background: url(images/city/foreground.png);
 }
 
 .shown {
@@ -63,21 +139,10 @@
 /* arboles negros */
 
 .fore {
-    background: url(images/forest/foreground.png);
     animation: movebg 5s linear infinite;
     /* top:145px; */
     /* Pequeño degradado interior para suavizar el mar. Puede consumir muchos recursos */
     /* box-shadow:10px 10px 45px RGBA(0,0,0, 0.85) inset; */
-}
-
-#sky:before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    /*width: 100%;
-   height: 100px; */
-    background: linear-gradient(to top, #467ca5, transparent);
-    z-index: 100;
 }
 
 #apple {
@@ -328,6 +393,24 @@
     }
     100% {
         background-position: 0px
+    }
+}
+
+@keyframes movebg_city {
+    0% {
+        background-position: 0
+    }
+    100% {
+        background-position: -1920px
+    }
+}
+
+@keyframes movetree_city {
+    0% {
+        background-position: 1920px
+    }
+    100% {
+        background-position: 0
     }
 }
 
