@@ -16,7 +16,6 @@
     display: flex;
     position: absolute;
     z-index: 5000;
-    top: 0;
     left: 0;
     background-color: black;
     width: 100%;
@@ -27,8 +26,8 @@
 
 .popupContent {
     border-radius: 8px;
-    width: 30vw;
-    height: 80vh;
+    width: 40vw;
+    height: 70vh;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -36,8 +35,45 @@
     align-items: center;
 }
 
+.popupText h3 {
+    color: green;
+}
+
+.popupText {
+    margin-bottom: 5%;
+}
+
+.popUp_hidden {
+    transition: top 1s;
+    top: -100vh;
+}
+
+.popUp_shown {
+    transition: top 1s;
+    top: 0;
+}
+
 .popupText {
     text-align: center;
+}
+
+.popupChoice {
+    margin-top: 15%;
+    display: flex;
+}
+
+#city {
+    margin-right: 10%;
+}
+
+#city,
+#forest {
+    border: none;
+}
+
+#city img,
+#forest img {
+    width: 200px;
 }
 
 
@@ -90,6 +126,11 @@
     background: url(images/forest/background_hills.png);
 }
 
+.city_hills {
+    animation: movebg_city 15s linear infinite;
+    background: url(images/city/background.png);
+}
+
 .floor {
     background: url(images/city/piso.png);
     /* height: 10vh;
@@ -97,11 +138,6 @@
     bottom: 0;
     z-index: 2500; */
     z-index: 50;
-}
-
-.city_hills {
-    animation: movebg_city 15s linear infinite;
-    background: url(images/city/background.png);
 }
 
 .forest_cloud {
@@ -152,9 +188,12 @@
     height: 90px;
     top: 75%;
     background-image: url(images/apple.png);
-    animation: apple 7s infinite linear;
     /* animation: apple 7s infinite linear; */
     background-size: cover;
+}
+
+.apple_anim {
+    animation: apple 7s infinite linear;
 }
 
 .a1 {

@@ -48,6 +48,11 @@ class Pickup {
                 }
             } else {
                 pickup_collision = false;
+
+                if (this.classList.contains("shown")) {
+                    this.classList.remove("shown");
+                    this.classList.add("hidden");
+                }
             }
         });
     }
