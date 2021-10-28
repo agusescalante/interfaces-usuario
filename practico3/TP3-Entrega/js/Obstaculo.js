@@ -34,52 +34,28 @@ class Obstaculo {
             let random = Math.floor(Math.random() * 4);
 
             // depende el valor, randomiza el obstaculo
-            // if (random == 1) {
-            // this.classList.add("tronco");
-            // this.classList.remove("roca");
-            // this.classList.remove("roca2");
-            // } else if (random == 2) {
-            //     this.classList.remove("tronco");
-            //     this.classList.remove("roca2");
-            //     this.classList.add("roca");
-            // } else {
-            this.classList.remove("tronco");
-            this.classList.remove("roca");
-            this.classList.add("roca2");
-            // }
+            if (random == 1) {
+                this.classList.add("tronco");
+                this.classList.remove("roca");
+                this.classList.remove("roca2");
+            } else if (random == 2) {
+                this.classList.remove("tronco");
+                this.classList.remove("roca2");
+                this.classList.add("roca");
+            } else {
+                this.classList.remove("tronco");
+                this.classList.remove("roca");
+                this.classList.add("roca2");
+            }
         });
     }
 
-    // create() {
-    //     let div = document.createElement("div");
-    //     div.classList.add("obstaculo");
-    //     div.classList.add("shown");
-    //     div.style.width = this.width + "px";
-    //     div.style.height = this.height + "px";
-    //     this.view = div;
-    //     return div;
-    // }
-
-    // toggleView() {
-    //     if (this.view.classList.contains("shown")) {
-    //         this.view.classList.remove("shown");
-    //         this.view.classList.add("hidden");
-    //     } else {
-    //         this.view.classList.add("shown");
-    //         this.view.classList.remove("hidden");
-    //     }
-    // }
-
-    // setHeight(height) {
-    //     this.view.style.height = height + "px";
-    // }
-
-    // setSpeed(speed) {
-    //     this.view.style.animationDuration = speed + "s";
-    // }
-
     freeze() {
         this.view.style.animationPlayState = "paused";
+    }
+
+    unfreeze() {
+        this.view.style.animationPlayState = "running";
     }
 
     update() {
@@ -90,11 +66,6 @@ class Obstaculo {
         this.esquinaAbajoIzquierda.update(pos.x, pos.y + pos.height);
         this.esquinaAbajoDerecha.update(pos.x + pos.width, pos.y + pos.height);
     }
-
-    // print() {
-    //     let pos = this.view.getBoundingClientRect();
-    //     console.log(pos.x, pos.y);
-    // }
 
     debug() {
         this.view.style.backgroundColor = "red";

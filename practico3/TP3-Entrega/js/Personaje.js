@@ -45,6 +45,10 @@ class Personaje {
         this.view.style.animationPlayState = "paused";
     }
 
+    unfreeze() {
+        this.view.style.animationPlayState = "running";
+    }
+
     update() {
         let pos = this.view.getBoundingClientRect();
 

@@ -14,24 +14,43 @@
 </head>
 
 <body>
+    <div class="popupContainer popUp_shown">
+        <div class="popupContent">
+            <div class="popupText">
+                <h1>Bienvenido a DaiPar Adventure Game!</h1>
+                <h2>Para comenzar, seleccione un escenario.</h2>
+                <h3>Objetivo: 250 puntos!</h3>
+            </div>
+            <div class="popupChoice">
+                <button id="city">
+                    <img src="images/miniature1.png">
+                </button>
+                <button id="forest">
+                    <img src="images/miniature1.png">
+                </button>
+            </div>
+        </div>
+    </div>
     <div class="layer sky">
         <div class="layer hills">
             <div class="layer middle">
                 <div class="layer fore">
                     <div class="layer cloud">
-                        <div id="avatar"></div>
-                        <!-- <div class="rock rpri"></div> -->
-                        <!-- <div class="rock rseg"></div> -->
-                        <div id="apple" class="shown"></div>
-                        <!-- <div class="apple a2"></div> -->
-                        <span id="obstaculo" class="tronco"></span>
-                        <!-- <span id="tesoro"></span> -->
+                        <div class="layer floor">
+                            <div id="avatar"> </div>
+                            <!-- <div class="rock rpri"></div> -->
+                            <!-- <div class="rock rseg"></div> -->
+                            <div id="apple" class="shown apple_anim"></div>
+                            <!-- <div class="apple a2"></div> -->
+                            <span id="obstaculo" class="tronco"></span>
+                            <!-- <span id="tesoro"></span> -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <h1 id="score">000000</h1>
+    <h1 id="score"></h1>
 
     <script src="js/Obstaculo.js"></script>
     <script src="js/Personaje.js"></script>
