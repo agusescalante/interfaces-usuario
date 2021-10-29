@@ -226,7 +226,8 @@ function setTheme(theme) {
                 }else{
                     if(document.querySelector(".floor").classList.contains('city_floor')){
                         document.querySelector(".floor").classList.remove("city_floor");
-                        
+                        document.querySelector(".back1").classList.remove("city_back1");
+                        document.querySelector(".back2").classList.remove("city_back2");
                 }
                 removeImgFore();
                         removeImgCity();
@@ -239,7 +240,8 @@ function setTheme(theme) {
                }else{
                     if(document.querySelector(".floor").classList.contains('city_floor')){
                         document.querySelector(".floor").classList.remove("city_floor");
-                       
+                        document.querySelector(".back1").classList.remove("city_back1");
+                        document.querySelector(".back2").classList.remove("city_back2");
                     }
                     removeImgFore();
                     removeImgCity();
@@ -270,6 +272,7 @@ function removeImgCity(){
     document.querySelector(".middle").classList.remove("city_middle");
     document.querySelector(".fore").classList.remove("city_fore");
     document.querySelector(".cloud").classList.remove("city_cloud");
+    
     // if(document.querySelector(".floor").classList.contains('floor')){
     //     document.querySelector(".floor").classList.remove("floor");
     // }}
@@ -300,6 +303,9 @@ function addImgCity(){
     document.querySelector(".fore").classList.add("city_fore");
     document.querySelector(".cloud").classList.add("city_cloud");
     document.querySelector(".floor").classList.add("city_floor");
+    document.querySelector(".back1").classList.add("city_back1");
+    document.querySelector(".back2").classList.add("city_back2");
+
 }
 
 function togglePopup() {
