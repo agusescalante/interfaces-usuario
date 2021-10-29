@@ -48,6 +48,11 @@ class Pickup {
                 }
             } else {
                 pickup_collision = false;
+
+                if (this.classList.contains("shown")) {
+                    this.classList.remove("shown");
+                    this.classList.add("hidden");
+                }
             }
         });
     }
@@ -55,6 +60,12 @@ class Pickup {
     freeze() {
         this.view.style.animationPlayState = "paused";
     }
+
+
+    unfreeze() {
+        this.view.style.animationPlayState = "running";
+    }
+
 
     toggleView() {
         if (this.view.classList.contains("shown")) {

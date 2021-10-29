@@ -34,7 +34,7 @@ class Personaje {
         this.imgJump = 'url(images/avatarBetty/jump-right.png)';
         this.imgRun = 'url(images/avatarBetty/avatarRun.png)';
         this.imgDown = 'url(images/avatarBetty/down.png)';
-
+       
         this.view = div;
         div.style.backgroundImage = this.imgRun;
         div.classList.add("run");
@@ -43,6 +43,10 @@ class Personaje {
 
     freeze() {
         this.view.style.animationPlayState = "paused";
+    }
+
+    unfreeze() {
+        this.view.style.animationPlayState = "running";
     }
 
     update() {
@@ -55,19 +59,22 @@ class Personaje {
     }
 
     saltar() {
-        this.view.style.backgroundImage = this.imgJump;
+        // this.view.style.backgroundImage = this.imgJump;
         this.view.classList.remove("run");
         this.view.classList.add("jump-animation");
+
+        // this.view.addEventListener("mousemove", myFunction);
     }
 
     agachar() {
-        this.view.style.backgroundImage = this.imgDown;
+        // this.view.style.backgroundImage = this.imgDown;
         this.view.classList.remove("run");
         this.view.classList.add("down-animation");
     }
 
     restaurarEstado() {
         this.view.classList.remove("jump-animation");
+        this.view.classList.remove("down-animation");
         this.view.classList.add("run");
         this.view.style.backgroundImage = this.imgRun;
     }
