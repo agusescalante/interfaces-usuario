@@ -107,37 +107,18 @@
     background: url(images/forest/sky.png);
 }
 
-.city_sky {
-    background: url(images/city/sky.png);
+.forest_hills {
+    animation: movebg 15s linear infinite;
+    background: url(images/forest/background_hills.png);
 }
-
 .forest_middle {
     animation: movebg 20s linear infinite;
     background: url(images/forest/middle_part.png);
 }
 
-.city_middle {
-    animation: movebg_city 20s linear infinite;
-    background: url(images/city/middle_part.png);
-}
-
-.forest_hills {
-    animation: movebg 15s linear infinite;
-    background: url(images/forest/background_hills.png);
-}
-
-.city_hills {
-    animation: movebg_city 15s linear infinite;
-    background: url(images/city/background.png);
-}
-
-.floor {
-    background: url(images/city/piso.png);
-    /* height: 10vh;
-    top: unset;
-    bottom: 0;
-    z-index: 2500; */
-    z-index: 50;
+.forest_fore {
+    animation: movebg 7s linear infinite;
+    background: url(images/forest/foreground.png);
 }
 
 .forest_cloud {
@@ -145,14 +126,18 @@
     background: url(images/forest/clouds.png);
 }
 
-.city_cloud {
-    animation: movebg_city 7s linear infinite;
-    background: url(images/city/clouds.png);
+.city_sky {
+    background: url(images/city/sky.png);
 }
 
-.forest_fore {
-    animation: movebg 7s linear infinite;
-    background: url(images/forest/foreground.png);
+.city_hills {
+    animation: movebg_city 15s linear infinite;
+    background: url(images/city/background.png);
+}
+
+.city_middle {
+    animation: movebg_city 20s linear infinite;
+    background: url(images/city/middle_part.png);
 }
 
 .city_fore {
@@ -162,6 +147,27 @@
     animation: movetree_city 7s linear infinite;
     background: url(images/city/foreground.png);
 }
+
+.city_cloud {
+    animation: movebg_city 7s linear infinite;
+    background: url(images/city/clouds.png);
+}
+
+.city_floor {
+    background: url(images/city/piso.png);
+    /* height: 10vh;
+    top: unset;
+    bottom: 0;
+    z-index: 2500; */
+    /* z-index: 50; */
+}
+
+
+
+
+
+
+
 
 .shown {
     opacity: 100%;
@@ -268,7 +274,7 @@
     }
     100% {
         top: 85%;
-        transform: rotate(720deg);
+        transform: rotate(-720deg);
         left: -10%;
     }
 }
@@ -315,6 +321,18 @@
     background-position: left;
     background-size: cover;
 }
+
+
+#avatar2 {
+    position: absolute;
+    width: 82.5px;
+    height: 108px;
+    top: 70%;
+    left: 20%;
+    background-position: left;
+    background-size: cover;
+}
+
 
 
 /* key frames */
@@ -412,6 +430,10 @@
 
 .run {
     animation: run .8s steps(6) infinite;
+}
+
+.runAvatar2 {
+    animation: runAvatar2 .8s steps(8) infinite;
 }
 
 @keyframes opacity-collection {
@@ -576,5 +598,18 @@
         background-repeat: no-repeat; */
         background-size: cover;
         background-position: -1463px;
+    }
+}
+
+@keyframes runAvatar2 {
+    0% {
+        background-size: cover;
+        background-position: 0px;
+    }
+    100% {
+        /* background-position: center;
+        background-repeat: no-repeat; */
+        background-size: cover;
+        background-position: -660px;
     }
 }

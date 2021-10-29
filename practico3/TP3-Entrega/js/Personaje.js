@@ -34,7 +34,7 @@ class Personaje {
         this.imgJump = 'url(images/avatarBetty/jump-right.png)';
         this.imgRun = 'url(images/avatarBetty/avatarRun.png)';
         this.imgDown = 'url(images/avatarBetty/down.png)';
-
+       
         this.view = div;
         div.style.backgroundImage = this.imgRun;
         div.classList.add("run");

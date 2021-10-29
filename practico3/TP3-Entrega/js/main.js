@@ -18,7 +18,7 @@ function startGame() {
     avatar = new Personaje(avatar);
     tronco = new Obstaculo(tronco);
     pickup = new Pickup(pickup, 50);
-    setTheme(theme);
+    
 
     // Debug hitboxes
     // avatar.debug();
@@ -44,7 +44,7 @@ function startGame() {
         tronco.update();
         pickup.update();
 
-        console.log(pickup_collision);
+       // console.log(pickup_collision);
         if (checkCollision(avatar, tronco)) {
             clearInterval(stopper);
             freeze();
@@ -219,22 +219,62 @@ function convertScore(score) {
 }
 
 function setTheme(theme) {
-    let sky = document.querySelector(".sky");
-    if (theme == "forest") {
-        document.querySelector(".hills").classList.add("forest_hills");
-        document.querySelector(".sky").classList.add("forest_sky");
-        document.querySelector(".middle").classList.add("forest_middle");
-        document.querySelector(".fore").classList.add("forest_fore");
-        document.querySelector(".cloud").classList.add("forest_cloud");
-    } else if (theme == "city") {
-        setAnimationBG();
-        document.querySelector(".sky").classList.add("city_sky");
-        document.querySelector(".hills").classList.add("city_hills");
-        document.querySelector(".middle").classList.add("city_middle");
-        // document.querySelector(".fore").classList.add("city_fore");
-        document.querySelector(".cloud").classList.add("city_cloud");
-    }
+        let sky = document.querySelector(".sky");
+        if (theme == "forest") {
+            if(!sky.classList.contains('forest_sky') && (!sky.classList.contains('city_sky')) ) {
+                addImgFore();
+                }else{
+                    if(document.querySelector(".floor").classList.contains('city_floor')){
+                        document.querySelector(".floor").classList.remove("city_floor");
+                        
+                }
+                removeImgFore();
+                        removeImgCity();
+                        addImgFore();
+            }
+        }else if (theme == "city"){
+            setAnimationBG();
+            if(!sky.classList.contains('forest_sky') && (!sky.classList.contains('city_sky')) ) {
+                addImgCity();
+               }else{
+                    if(document.querySelector(".floor").classList.contains('city_floor')){
+                        document.querySelector(".floor").classList.remove("city_floor");
+                       
+                    }
+                    removeImgFore();
+                    removeImgCity();
+                    addImgCity();
+        }
+    }   
 }
+
+    
+    
+
+
+function removeImgFore(){
+    document.querySelector(".sky").classList.remove("forest_sky");
+    document.querySelector(".hills").classList.remove("forest_hills");
+    document.querySelector(".middle").classList.remove("forest_middle");
+    document.querySelector(".fore").classList.remove("forest_fore");
+    document.querySelector(".cloud").classList.remove("forest_cloud");
+    // if(document.querySelector(".floor").classList.contains('floor')){
+    // document.querySelector(".floor").classList.remove("floor");
+    // }
+}
+
+
+function removeImgCity(){
+    document.querySelector(".sky").classList.remove("city_sky");
+    document.querySelector(".hills").classList.remove("city_hills");
+    document.querySelector(".middle").classList.remove("city_middle");
+    document.querySelector(".fore").classList.remove("city_fore");
+    document.querySelector(".cloud").classList.remove("city_cloud");
+    // if(document.querySelector(".floor").classList.contains('floor')){
+    //     document.querySelector(".floor").classList.remove("floor");
+    // }}
+}
+
 
 
 function setAnimationBG() {
@@ -243,6 +283,23 @@ function setAnimationBG() {
     document.querySelector(".middle").classList.add("movebg_cityy");
     // document.querySelector(".fore").classList.add("movebg_city");
     document.querySelector(".cloud").classList.add("movebg_city");
+}
+
+function addImgFore(){
+    document.querySelector(".sky").classList.add("forest_sky");
+    document.querySelector(".hills").classList.add("forest_hills");
+    document.querySelector(".middle").classList.add("forest_middle");
+    document.querySelector(".fore").classList.add("forest_fore");
+    document.querySelector(".cloud").classList.add("forest_cloud");
+}
+
+function addImgCity(){
+    document.querySelector(".sky").classList.add("city_sky");
+    document.querySelector(".hills").classList.add("city_hills");
+    document.querySelector(".middle").classList.add("city_middle");
+    document.querySelector(".fore").classList.add("city_fore");
+    document.querySelector(".cloud").classList.add("city_cloud");
+    document.querySelector(".floor").classList.add("city_floor");
 }
 
 function togglePopup() {
@@ -263,8 +320,8 @@ function showBadEnding() {
     let h1 = popupText.children[0];
     let h2 = popupText.children[1];
 
-    h1.innerHTML = "Su personaje ha chocado!";
-    h2.innerHTML = "Quiere reiniciar?"
+    h1.innerHTML = "Te chocaste un obstaculo!";
+    h2.innerHTML = "Quieres jugar nuevamente?"
     togglePopup();
 }
 
@@ -281,6 +338,7 @@ function showGoodEnding() {
 
 document.querySelector("#city").addEventListener("click", () => {
     theme = "city";
+    setTheme(theme);
     startGame();
     resetAnims();
     togglePopup();
@@ -288,7 +346,7 @@ document.querySelector("#city").addEventListener("click", () => {
 
 document.querySelector("#forest").addEventListener("click", () => {
     theme = "forest";
-
+    setTheme(theme);
     startGame();
     resetAnims();
     togglePopup();
