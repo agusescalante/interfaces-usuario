@@ -59,7 +59,11 @@
 
 .popupChoice {
     margin-top: 15%;
+    height:200px;
     display: flex;
+}
+.popupChoice button{
+    background-color: white;
 }
 
 #city {
@@ -209,6 +213,23 @@
 
 .a2 {
     animation: apple 3s infinite linear;
+}
+
+.mini{
+    background-image: url();
+    /* width: 200px;
+    height:200px; */
+    /* background-color: black; */
+    transition: transform 1s;
+}
+
+.mini1:hover {
+        transform: perspective(400px) rotateY(45deg);
+    
+}
+.mini2:hover {
+        transform: perspective(400px) rotateY(-45deg);
+
 }
 
 #obstaculo {
