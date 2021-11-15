@@ -5,7 +5,7 @@ let points_limit = 250;
 function startGame() {
     // pickup_collision = true;
 
-
+    let saltoInterval = false;
     let avatar = document.getElementById("avatar");
     let pickup = document.querySelector("#apple");
     let tronco = document.querySelector("#obstaculo");
@@ -18,24 +18,33 @@ function startGame() {
     avatar = new Personaje(avatar);
     tronco = new Obstaculo(tronco);
     pickup = new Pickup(pickup, 50);
-    
+
 
     // Debug hitboxes
-    // avatar.debug();
-    // tronco.debug();
-    // pickup.debug();
+    avatar.debug();
+    tronco.debug();
+    pickup.debug();
 
 
-    window.addEventListener('keydown', (e) => {
-        tecla = e.keyCode;
+    // window.addEventListener('keydown', (e) => {
+    //     tecla = e.keyCode;
+    // });
+
+    window.addEventListener("keypress", (e) => {
+        if (e.key == "w") {
+            avatar.saltar();
+            avatar.view.addEventListener("animationend", function() {
+                avatar.restaurarEstado();
+            });
+        }
     });
 
-    window.addEventListener("keyup", function() {
-        avatar.update();
-        tronco.update();
-        tecla = null;
-        avatar.restaurarEstado();
-    });
+    // window.addEventListener("keyup", function () {
+    //     avatar.update();
+    //     tronco.update();
+    //     tecla = null;
+    //     avatar.restaurarEstado();
+    // });
 
     //gameLoop
     let stopper = setInterval(() => {
@@ -44,17 +53,17 @@ function startGame() {
         tronco.update();
         pickup.update();
 
-       // console.log(pickup_collision);
-        if (checkCollision(avatar, tronco)) {
-            clearInterval(stopper);
-            freeze();
+        // console.log(pickup_collision);
+        // if (checkCollision(avatar, tronco)) {
+        //     clearInterval(stopper);
+        //     freeze();
 
-            setTimeout(() => {
-                unfreeze();
-            }, 1000);
+        //     setTimeout(() => {
+        //         unfreeze();
+        //     }, 1000);
 
-            showBadEnding();
-        }
+        //     showBadEnding();
+        // }
 
         //colision con pickup
         if (pickup_collision == true) {
@@ -82,11 +91,18 @@ function startGame() {
             }
         }
 
-        if (tecla == 38) {
-            avatar.saltar();
-        } else if (tecla == 40) {
-            avatar.agachar();
-        }
+        // if (tecla == 38) {
+        //     if (saltoInterval == false) {
+        //         tecla == 38;
+        //         saltoInterval = true;
+        //         avatar.saltar();
+        //         setTimeout(() => {
+        //             saltoInterval = false;
+        //         }, 1500);
+        //     }
+        // } else if (tecla == 40) {
+        //     avatar.agachar();
+        // }
     }, 50);
 
 
@@ -130,8 +146,6 @@ function resetAnims() {
 
     restartObjectsAnim();
 }
-
-
 
 function restartAnim(div) {
     let htmlDiv = document.querySelector("." + div);
@@ -219,42 +233,39 @@ function convertScore(score) {
 }
 
 function setTheme(theme) {
-        let sky = document.querySelector(".sky");
-        if (theme == "forest") {
-            if(!sky.classList.contains('forest_sky') && (!sky.classList.contains('city_sky')) ) {
-                addImgFore();
-                }else{
-                    if(document.querySelector(".floor").classList.contains('city_floor')){
-                        document.querySelector(".floor").classList.remove("city_floor");
-                        document.querySelector(".back1").classList.remove("city_back1");
-                        document.querySelector(".back2").classList.remove("city_back2");
-                }
-                removeImgFore();
-                        removeImgCity();
-                        addImgFore();
+    let sky = document.querySelector(".sky");
+    adaptPos();
+    if (theme == "forest") {
+        if (!sky.classList.contains('forest_sky') && (!sky.classList.contains('city_sky'))) {
+            addImgFore();
+        } else {
+            if (document.querySelector(".floor").classList.contains('city_floor')) {
+                document.querySelector(".floor").classList.remove("city_floor");
+                document.querySelector(".back1").classList.remove("city_back1");
+                document.querySelector(".back2").classList.remove("city_back2");
             }
-        }else if (theme == "city"){
-            setAnimationBG();
-            if(!sky.classList.contains('forest_sky') && (!sky.classList.contains('city_sky')) ) {
-                addImgCity();
-               }else{
-                    if(document.querySelector(".floor").classList.contains('city_floor')){
-                        document.querySelector(".floor").classList.remove("city_floor");
-                        document.querySelector(".back1").classList.remove("city_back1");
-                        document.querySelector(".back2").classList.remove("city_back2");
-                    }
-                    removeImgFore();
-                    removeImgCity();
-                    addImgCity();
+            removeImgFore();
+            removeImgCity();
+            addImgFore();
         }
-    }   
+    } else if (theme == "city") {
+        setAnimationBG();
+        if (!sky.classList.contains('forest_sky') && (!sky.classList.contains('city_sky'))) {
+            addImgCity();
+        } else {
+            if (document.querySelector(".floor").classList.contains('city_floor')) {
+                document.querySelector(".floor").classList.remove("city_floor");
+                document.querySelector(".back1").classList.remove("city_back1");
+                document.querySelector(".back2").classList.remove("city_back2");
+            }
+            removeImgFore();
+            removeImgCity();
+            addImgCity();
+        }
+    }
 }
 
-    
-    
-
-
-function removeImgFore(){
+function removeImgFore() {
     document.querySelector(".sky").classList.remove("forest_sky");
     document.querySelector(".hills").classList.remove("forest_hills");
     document.querySelector(".middle").classList.remove("forest_middle");
@@ -265,20 +276,17 @@ function removeImgFore(){
     // }
 }
 
-
-function removeImgCity(){
+function removeImgCity() {
     document.querySelector(".sky").classList.remove("city_sky");
     document.querySelector(".hills").classList.remove("city_hills");
     document.querySelector(".middle").classList.remove("city_middle");
     document.querySelector(".fore").classList.remove("city_fore");
     document.querySelector(".cloud").classList.remove("city_cloud");
-    
+
     // if(document.querySelector(".floor").classList.contains('floor')){
     //     document.querySelector(".floor").classList.remove("floor");
     // }}
 }
-
-
 
 function setAnimationBG() {
     document.querySelector(".sky").classList.add("movebg_city");
@@ -288,7 +296,7 @@ function setAnimationBG() {
     document.querySelector(".cloud").classList.add("movebg_city");
 }
 
-function addImgFore(){
+function addImgFore() {
     document.querySelector(".sky").classList.add("forest_sky");
     document.querySelector(".hills").classList.add("forest_hills");
     document.querySelector(".middle").classList.add("forest_middle");
@@ -296,7 +304,7 @@ function addImgFore(){
     document.querySelector(".cloud").classList.add("forest_cloud");
 }
 
-function addImgCity(){
+function addImgCity() {
     document.querySelector(".sky").classList.add("city_sky");
     document.querySelector(".hills").classList.add("city_hills");
     document.querySelector(".middle").classList.add("city_middle");
@@ -357,5 +365,25 @@ document.querySelector("#forest").addEventListener("click", () => {
     resetAnims();
     togglePopup();
 });
+
+function adaptPos() {
+    let r = document.querySelector(':root');
+
+    if (theme == "forest") {
+        r.style.setProperty('--offset', 15 + 'vh')
+            // r.style.setProperty('--offset', '0%');
+            // let height = document.documentElement.clientHeight;
+            // height = height - document.querySelector(".fore").offsetHeight;
+            // document.querySelector(".fore").style.top = height + "px"
+    } else {
+        r.style.setProperty('--offset', 20 + 'vh')
+            // console.log("ciudad");
+            // let info = document.querySelector(".fore").offsetHeight;
+            // console.log(info);;
+            // let height = document.documentElement.clientHeight;
+            // height = height - document.querySelector(".fore").offsetHeight;
+            // document.querySelector(".fore").style.top = height - 200 + "px"
+    }
+}
 
 //test

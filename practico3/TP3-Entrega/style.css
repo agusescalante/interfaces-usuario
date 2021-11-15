@@ -6,6 +6,7 @@
 :root {
     --salto: "images/avatarBetty/jump-right.png";
     --base: 60%;
+    --offset: 0%;
 }
 
 
@@ -59,10 +60,11 @@
 
 .popupChoice {
     margin-top: 15%;
-    height:200px;
+    height: 200px;
     display: flex;
 }
-.popupChoice button{
+
+.popupChoice button {
     background-color: white;
 }
 
@@ -115,6 +117,7 @@
     animation: movebg 15s linear infinite;
     background: url(images/forest/background_hills.png);
 }
+
 .forest_middle {
     animation: movebg 20s linear infinite;
     background: url(images/forest/middle_part.png);
@@ -138,10 +141,12 @@
     animation: movebg_city 19s linear infinite;
     background: url(images/city/background.png);
 }
+
 .city_back1 {
     animation: movebg_city 15s linear infinite;
     background: url(images/city/background3.png);
 }
+
 .city_back2 {
     animation: movebg_city 13s linear infinite;
     background: url(images/city/background2.png);
@@ -154,14 +159,13 @@
 
 .city_fore {
     animation: movetree_city 7s linear infinite;
-    background: url(images/city/foreground.png);
+    background: url("images/city-base/layer_01_1920 x 1080.png");
     width: 100%;
     height: 100%;
-    min-height: 700px;
     background-repeat: repeat-x;
     background-size: cover;
     position: absolute;
-    top: 0;
+    /* top: 10%; */
     left: 0;
 }
 
@@ -172,14 +176,13 @@
 
 .city_floor {
     background: url(images/city/piso.png);
-    top: 1%;
+    /* top: 1%; */
     /* height: 10vh;
     top: unset;
     
     z-index: 2500; */
     /* z-index: 50; */
 }
-
 
 .shown {
     opacity: 100%;
@@ -194,6 +197,7 @@
 
 .fore {
     animation: movebg 5s linear infinite;
+    /* bottom: 100vh; */
     /* top:145px; */
     /* Pequeño degradado interior para suavizar el mar. Puede consumir muchos recursos */
     /* box-shadow:10px 10px 45px RGBA(0,0,0, 0.85) inset; */
@@ -204,7 +208,8 @@
     display: flex;
     width: 90px;
     height: 90px;
-    top: 75%;
+    /* top: 75%; */
+    bottom: var(--offset);
     background-image: url(images/apple.png);
     /* animation: apple 7s infinite linear; */
     background-size: cover;
@@ -223,7 +228,7 @@
     animation: apple 3s infinite linear;
 }
 
-.mini{
+.mini {
     background-image: url();
     /* width: 200px;
     height:200px; */
@@ -232,34 +237,37 @@
 }
 
 .mini1:hover {
-        transform: perspective(400px) rotateY(45deg);
-    
+    transform: perspective(400px) rotateY(45deg);
 }
-.mini2:hover {
-        transform: perspective(400px) rotateY(-45deg);
 
+.mini2:hover {
+    transform: perspective(400px) rotateY(-45deg);
 }
 
 #obstaculo {
     position: absolute;
     display: flex;
     left: 110%;
+    bottom: var(--offset);
     background-size: cover;
     z-index: 50;
 }
 
 .tronco {
-    top: 85%;
+    /* top: 85%; */
+    bottom: var(--offset);
     width: 200px;
     height: 100px;
     background-image: url(images/tronco.png);
     animation: tronco 4s infinite linear;
+    transform: scale(0.5);
 }
 
 .roca {
     width: 240px;
     height: 200px;
-    top: 78%;
+    bottom: calc(var(--offset) - 15%);
+    transform: scale(0.60);
     background-image: url(images/rock.png);
     animation: tronco 4s infinite linear;
 }
@@ -286,23 +294,23 @@
 @keyframes rebote {
     0% {
         transform: rotate(0deg);
-        top: 85%;
-        left: 100%;
+        bottom: var(--offset);
+        left: 110%;
     }
     25% {
-        top: 50%;
+        bottom: calc(var(--offset) + 25%);
         left: 75%;
     }
     50% {
-        top: 85%;
+        bottom: var(--offset);
         left: 50%;
     }
     75% {
-        top: 50%;
+        bottom: calc(var(--offset) + 25%);
         left: 25%;
     }
     100% {
-        top: 85%;
+        bottom: var(--offset);
         transform: rotate(-720deg);
         left: -10%;
     }
@@ -322,7 +330,7 @@
     width: 100px;
     height: 100px;
     position: absolute;
-    top: 70%;
+    /* top: 70%; */
     background-image: url(images/rock.png);
     background-size: cover;
 }
@@ -340,28 +348,23 @@
 }
 
 #avatar {
-    position: absolute;
+    /* position: absolute;
     width: 244px;
     height: 217px;
-    top: 70%;
+    bottom: var(--offset);
     left: 20%;
-    /* background-image: url(images/spritestrip-.png); */
-    /* animation: run .9s steps(6) forwards;  */
+     background-image: url(images/spritestrip-.png); 
+     animation: run .9s steps(6) forwards;  
     background-position: left;
     background-size: cover;
-}
-
-
-#avatar2 {
+    */
+    /* Avatar modificado */
     position: absolute;
-    width: 82.5px;
-    height: 108px;
-    top: 70%;
+    bottom: var(--offset);
     left: 20%;
-    background-position: left;
-    background-size: cover;
 }
 
+#avatar2 {}
 
 
 /* key frames */
@@ -448,9 +451,10 @@
 }
 
 .jump-animation {
-    width: 244px;
-    height: 217px;
-    animation: jump 1.85s linear;
+    width: 56px;
+    height: 81px;
+    background-size: cover;
+    animation: jump 1.5s steps(10) forwards 1;
 }
 
 .down-animation {
@@ -458,7 +462,12 @@
 }
 
 .run {
-    animation: run .8s steps(6) infinite;
+    width: 82.5px;
+    height: 81px;
+    background-position: left;
+    background-size: cover;
+    background-image: url(images/otherAvatar/corriendo.png);
+    animation: run .9s steps(8) infinite;
 }
 
 .runAvatar2 {
@@ -488,7 +497,7 @@
 
 @keyframes movebg_city {
     0% {
-        background-position:1920px
+        background-position: 1920px
     }
     100% {
         background-position: 0
@@ -506,66 +515,79 @@
 
 @keyframes jump {
     0% {
-        width: 158px;
-        top: var(--base);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-image: url("images/avatarBetty/down.png");
+        /* background-size: cover; */
+        background-position: 0px;
+        bottom: var(--offset);
     }
-    8% {
-        width: 158px;
-        top: var(--base);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-image: url("images/avatarBetty/down.png");
+    9.5% {
+        background-position: 0px;
     }
-    12.5% {
-        top: calc(var(--base) - 10%);
-        background-image: url("images/avatarBetty/jump-right.png");
-        width: 132px;
+    10% {
+        background-position: -56px;
+        bottom: calc(var(--offset) + 5%);
     }
-    25% {
-        top: calc(var(--base) - 20%);
+    19.5% {
+        background-position: -56px;
     }
-    45% {
-        top: calc(var(--base) - 30%);
+    20% {
+        background-position: -112px;
+        bottom: calc(var(--offset) + 10%);
+    }
+    29.5% {
+        background-position: -112px;
+    }
+    30% {
+        background-position: -168px;
+        bottom: calc(var(--offset) + 15%);
+    }
+    39.5% {
+        background-position: -168px;
+    }
+    40% {
+        bottom: calc(var(--offset) + 20%);
+        background-position: -224px;
+    }
+    49.5% {
+        background-position: -224px;
     }
     50% {
-        top: calc(var(--base) - 30%);
+        bottom: calc(var(--offset) + 25%);
+        background-position: -280px;
     }
-    55% {
-        top: calc(var(--base) - 30%);
-        background-image: url("images/avatarBetty/jump-right.png");
-        width: 132px;
+    59.5% {
+        background-position: -280px;
     }
-    74% {
-        background-image: url("images/avatarBetty/jump-right.png");
-        width: 132px;
-        background-size: contain;
+    60% {
+        bottom: calc(var(--offset) + 20%);
+        background-position: -336px;
     }
-    75% {
-        top: calc(var(--base) - 20%);
+    69.5% {
+        background-position: -336px;
     }
-    84% {
-        background-image: url("images/avatarBetty/jump-right.png");
-        background-size: contain;
+    70% {
+        bottom: calc(var(--offset) + 15%);
+        background-position: -392px;
     }
-    85% {
-        width: 158px;
-        background-image: url("images/avatarBetty/down.png");
+    79.5% {
+        background-position: -392px;
     }
-    87.5% {
-        top: calc(var(--base) - 10%);
+    80% {
+        bottom: calc(var(--offset) + 10%);
+        background-position: -448px;
+    }
+    89.5% {
+        background-position: -448px;
+    }
+    90% {
+        bottom: calc(var(--offset) + 5%);
+        background-position: -504px;
+    }
+    99.5% {
+        background-position: -504px;
     }
     100% {
-        width: 158px;
-        top: var(--base);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-image: url("images/avatarBetty/down.png");
+        bottom: var(--offset);
+        background-position: -560px;
     }
 }
 
@@ -619,14 +641,14 @@
 
 @keyframes run {
     0% {
-        background-size: cover;
+        /* background-size: cover; */
         background-position: 0px;
     }
     100% {
         /* background-position: center;
         background-repeat: no-repeat; */
-        background-size: cover;
-        background-position: -1463px;
+        /* background-size: cover; */
+        background-position: -660px;
     }
 }
 
