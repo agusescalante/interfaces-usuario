@@ -5,12 +5,12 @@ let points_limit = 250;
 function startGame() {
     // pickup_collision = true;
 
-    let saltoInterval = false;
+    // let saltoInterval = false;
     let avatar = document.getElementById("avatar");
     let pickup = document.querySelector("#apple");
     let tronco = document.querySelector("#obstaculo");
     let score = document.querySelector("#score");
-    let tecla = false;
+    let pickup_anim = document.querySelector("#pickup");
 
     document.querySelector("#score").innerHTML = "000000";
     let puntaje = 0;
@@ -21,14 +21,9 @@ function startGame() {
 
 
     // Debug hitboxes
-    avatar.debug();
-    tronco.debug();
-    pickup.debug();
-
-
-    // window.addEventListener('keydown', (e) => {
-    //     tecla = e.keyCode;
-    // });
+    // avatar.debug();
+    // tronco.debug();
+    // pickup.debug();
 
     window.addEventListener("keypress", (e) => {
         if (e.key == "w") {
@@ -37,73 +32,72 @@ function startGame() {
                 avatar.restaurarEstado();
             });
         }
-    });
 
-    // window.addEventListener("keyup", function () {
-    //     avatar.update();
-    //     tronco.update();
-    //     tecla = null;
-    //     avatar.restaurarEstado();
-    // });
+    });
 
     //gameLoop
     let stopper = setInterval(() => {
 
-        avatar.update();
-        tronco.update();
-        pickup.update();
+            avatar.update();
+            tronco.update();
+            pickup.update();
 
-        // console.log(pickup_collision);
-        // if (checkCollision(avatar, tronco)) {
-        //     clearInterval(stopper);
-        //     freeze();
+            if (checkCollision(avatar, tronco)) {
+                clearInterval(stopper);
+                freeze();
+                avatar.chocar();
 
-        //     setTimeout(() => {
-        //         unfreeze();
-        //     }, 1000);
+                setTimeout(() => {
+                    unfreeze();
+                }, 3000);
 
-        //     showBadEnding();
-        // }
-
-        //colision con pickup
-        if (pickup_collision == true) {
-            if (checkCollision(avatar, pickup)) {
-
-                pickup.toggleView();
-
-                puntaje += pickup.points;
-                score.innerHTML = convertScore(puntaje);
-
-                if (puntaje >= points_limit) {
-
-                    clearInterval(stopper);
-                    freeze();
-
-                    setTimeout(() => {
-                        unfreeze();
-                    }, 1000);
-
-                    showGoodEnding();
-                }
-
-                //quito la colision
-                pickup_collision = false;
+                showEndScreen();
             }
+
+            //colision con pickup
+            if (pickup_collision == true) {
+                if (checkCollision(avatar, pickup)) {
+
+                    pickup.toggleView();
+
+                    toggle_pickup_anim();
+
+                    puntaje += pickup.points;
+                    score.innerHTML = convertScore(puntaje);
+
+                    if (puntaje >= points_limit) {
+
+                        clearInterval(stopper);
+                        freeze();
+
+                        setTimeout(() => {
+                            unfreeze();
+                        }, 1000);
+
+                        showGoodEnding();
+                    }
+
+                    //quito la colision
+                    pickup_collision = false;
+                }
+            }
+        },
+        50);
+
+    function toggle_pickup_anim() {
+        if (pickup_anim.classList.contains("pickup-hidden")) {
+            pickup_anim.classList.add("pickup-anim");
+            pickup_anim.classList.remove("pickup-hidden");
+        } else {
+            pickup_anim.classList.remove("pickup-anim");
+            pickup_anim.classList.add("pickup-hidden");
         }
 
-        // if (tecla == 38) {
-        //     if (saltoInterval == false) {
-        //         tecla == 38;
-        //         saltoInterval = true;
-        //         avatar.saltar();
-        //         setTimeout(() => {
-        //             saltoInterval = false;
-        //         }, 1500);
-        //     }
-        // } else if (tecla == 40) {
-        //     avatar.agachar();
-        // }
-    }, 50);
+        pickup_anim.addEventListener("animationend", () => {
+            pickup_anim.classList.remove("pickup-anim");
+            pickup_anim.classList.add("pickup-hidden");
+        });
+    }
 
 
     function freeze() {
@@ -112,8 +106,10 @@ function startGame() {
         document.querySelector(".middle").style.animationPlayState = "paused";
         document.querySelector(".fore").style.animationPlayState = "paused";
         document.querySelector(".cloud").style.animationPlayState = "paused";
+        document.querySelector(".back2").style.animationPlayState = "paused";
+        document.querySelector(".back1").style.animationPlayState = "paused";
 
-        avatar.freeze();
+        // avatar.freeze();
         tronco.freeze();
         pickup.freeze();
     }
@@ -124,8 +120,10 @@ function startGame() {
         document.querySelector(".middle").style.animationPlayState = "running";
         document.querySelector(".fore").style.animationPlayState = "running";
         document.querySelector(".cloud").style.animationPlayState = "running";
+        document.querySelector(".back2").style.animationPlayState = "running";
+        document.querySelector(".back1").style.animationPlayState = "running";
 
-        avatar.unfreeze();
+        // avatar.unfreeze();
         tronco.unfreeze();
         pickup.unfreeze();
     }
@@ -143,7 +141,6 @@ function resetAnims() {
     restartAnim("fore");
     restartAnim("cloud");
     restartAnim("sky");
-
     restartObjectsAnim();
 }
 
@@ -153,7 +150,6 @@ function restartAnim(div) {
     htmlDiv.classList.remove(cssClass);
     void htmlDiv.offsetWidth;
     htmlDiv.classList.add(cssClass);
-
 }
 
 function restartObjectsAnim() {
@@ -328,17 +324,6 @@ function togglePopup() {
     }
 }
 
-function showBadEnding() {
-    let popupText = document.querySelector(".popupText");
-
-    let h1 = popupText.children[0];
-    let h2 = popupText.children[1];
-
-    h1.innerHTML = "Te chocaste un obstaculo!";
-    h2.innerHTML = "Quieres jugar nuevamente?"
-    togglePopup();
-}
-
 function showGoodEnding() {
     let popupText = document.querySelector(".popupText");
 
@@ -358,6 +343,38 @@ document.querySelector("#city").addEventListener("click", () => {
     togglePopup();
 });
 
+document.querySelector("#city2").addEventListener("click", () => {
+    theme = "city";
+    setTheme(theme);
+    startGame();
+    resetAnims();
+    hideEndScreen();
+});
+
+function hideEndScreen() {
+    let blackscreen = document.querySelector(".blackscreen");
+    blackscreen.classList.add("hidden");
+    blackscreen.classList.remove("blackscreen-shown");
+    blackscreen.querySelector(".endtitle").classList.remove("blinking");
+}
+
+function showEndScreen() {
+    let blackscreen = document.querySelector(".blackscreen");
+    blackscreen.classList.remove("hidden");
+    blackscreen.classList.add("blackscreen-shown");
+    blackscreen.addEventListener("animationend", () => {
+        blackscreen.querySelector(".endtitle").classList.add("blinking");
+    });
+}
+
+document.querySelector("#forest2").addEventListener("click", () => {
+    theme = "forest";
+    setTheme(theme);
+    startGame();
+    resetAnims();
+    hideEndScreen();
+});
+
 document.querySelector("#forest").addEventListener("click", () => {
     theme = "forest";
     setTheme(theme);
@@ -368,21 +385,19 @@ document.querySelector("#forest").addEventListener("click", () => {
 
 function adaptPos() {
     let r = document.querySelector(':root');
-
+    let height = window.screen.height;
     if (theme == "forest") {
-        r.style.setProperty('--offset', 15 + 'vh')
-            // r.style.setProperty('--offset', '0%');
-            // let height = document.documentElement.clientHeight;
-            // height = height - document.querySelector(".fore").offsetHeight;
-            // document.querySelector(".fore").style.top = height + "px"
+        if (height > 768) {
+            r.style.setProperty('--offset', 15 + 'vh');
+        } else {
+            r.style.setProperty('--offset', '0vh');
+        }
     } else {
-        r.style.setProperty('--offset', 20 + 'vh')
-            // console.log("ciudad");
-            // let info = document.querySelector(".fore").offsetHeight;
-            // console.log(info);;
-            // let height = document.documentElement.clientHeight;
-            // height = height - document.querySelector(".fore").offsetHeight;
-            // document.querySelector(".fore").style.top = height - 200 + "px"
+        if (height > 768) {
+            r.style.setProperty('--offset', 22 + 'vh')
+        } else {
+            r.style.setProperty('--offset', 17 + 'vh')
+        }
     }
 }
 

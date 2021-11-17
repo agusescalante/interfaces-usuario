@@ -11,10 +11,6 @@ class Personaje {
     esquinaArribaDerecha;
     esquinaArribaIzquierda;
 
-    imgJump;
-    imgRun;
-    imgDown;
-
     constructor(div) {
         let pos = div.getBoundingClientRect();
 
@@ -31,14 +27,8 @@ class Personaje {
         this.esquinaArribaDerecha = new Coordenada(x + this.width, y);
         this.esquinaAbajoIzquierda = new Coordenada(x, y + this.height);
 
-        // this.imgJump = 'url(images/avatarBetty/jump-right.png)';
-        this.imgRun = 'url(images/otherAvatar/corriendo.png)';
-        // this.imgDown = 'url(images/avatarBetty/down.png)';
-
         this.view = div;
-        // div.style.backgroundImage = this.imgRun;
-        // div.classList.add("run");
-
+        div.classList.add("run");
     }
 
     freeze() {
@@ -51,7 +41,6 @@ class Personaje {
 
     update() {
         let pos = this.view.getBoundingClientRect();
-
         this.esquinaArribaIzquierda.update(pos.x, pos.y);
         this.esquinaAbajoDerecha.update(pos.x + pos.width, pos.y + pos.height);
         this.esquinaArribaDerecha.update(pos.x + pos.width, pos.y);
@@ -59,22 +48,20 @@ class Personaje {
     }
 
     saltar() {
-        this.view.style.backgroundImage = 'url(images/otherAvatar/salto3.png)';
         this.view.classList.remove("run");
         this.view.classList.add("jump-animation");
     }
 
-    agachar() {
-        // this.view.style.backgroundImage = this.imgDown;
-        // this.view.classList.remove("run");
-        // this.view.classList.add("down-animation");
+    chocar() {
+        this.view.classList.remove("run");
+        this.view.classList.remove("jump-animation");
+        this.view.classList.add("crashed");
     }
 
     restaurarEstado() {
         this.view.classList.remove("jump-animation");
-        this.view.classList.remove("down-animation");
+        this.view.classList.remove("crashed");
         this.view.classList.add("run");
-        this.view.style.backgroundImage = this.imgRun;
     }
 
 

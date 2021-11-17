@@ -20,9 +20,7 @@
                 <h1>Bienvenido a DaiPar Adventure Game!</h1>
                 <h4>Objetivo: 250 puntos!</h4>
                 <br>
-                <h3>Saltar ↑ Agacharse ↓</h3>
-                <br>
-                <h2>Para comenzar, seleccione un escenario.</h2>
+                <h3>Saltar: Tecla W</h3>
             </div>
             <div class="popupChoice">
                 <button id="city" class="mini mini1">
@@ -43,7 +41,8 @@
                     <div class="layer cloud">
                         <div class="layer floor">
                             <div>
-                                <div id="avatar" class="run"> </div>
+                                <div id="pickup" class="pickup-hidden"></div>
+                                <div id="avatar" class=""> </div>
                                 <!-- <div class="rock rpri"></div> -->
                                 <!-- <div class="rock rseg"></div> -->
                                 <div id="apple" class="shown apple_anim"></div>
@@ -55,13 +54,27 @@
                         </div>
                     </div>
                 </div>
-                <h1 id="score"></h1>
+            </div>
+        </div>
+    </div>
+    <div class="blackscreen hidden">
+        <h1 class="endtitle">Ha chocado!</h1>
+        <div class="popupChoice">
+            <button id="city2" class="mini mini1">
+                <img src="images/maniCityDay.png">
+            </button>
+            <button id="forest2" class="mini mini2">
+                <img src="images/miniature1.png">
+            </button>
+        </div>
+    </div>
+    <h1 id="score"></h1>
 
-                <script src="js/Obstaculo.js"></script>
-                <script src="js/Personaje.js"></script>
-                <script src="js/Pickup.js"></script>
-                <script src="js/Coordenada.js"></script>
-                <script src="js/main.js"></script>
+    <script src="js/Obstaculo.js"></script>
+    <script src="js/Personaje.js"></script>
+    <script src="js/Pickup.js"></script>
+    <script src="js/Coordenada.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
