@@ -1,0 +1,22 @@
+:root{
+    --primary-color:#2B2B2B;
+    --secondary-color:#8A5689; 
+    --text-color: white;
+    --text-inverse: black;
+    --text-neutro:#AAAAAA; 
+}
+
+*{
+    margin:0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    border: none;
+    outline: none; 
+}
+
+body{
+    font-family: 'Montserrat',sans-serif;
+    background-color: var(--primary-color);
+    background-color: var(--text-color);
+}
