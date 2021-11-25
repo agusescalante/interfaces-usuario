@@ -48,6 +48,7 @@ body{
 
 #icon-user + p{
     position: relative;
+    font-weight: 900;
     left:15%;
     top:-36px;
 }
@@ -96,4 +97,34 @@ body{
     width:var(--w-size-img);
     color: var(--text-color);
     border-radius: 15px;
+}
+
+#add-post{
+    position: relative;
+    top: -25px;
+}
+
+.container-icon{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0% 2%;
+}
+
+.locate span {
+    display: inline-block;
+    justify-content: space-between;
+    position: relative;
+    background: #E4BE36;
+    height:4px;
+    width:63px;
+}
+
+#icon-2,#icon-3,#icon-4,#icon-5{
+    display: none;
+}
+
+.locate{
+    display: flex;
+    justify-content: space-between;
 }
