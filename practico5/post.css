@@ -128,3 +128,16 @@ body{
     display: flex;
     justify-content: space-between;
 }
+
+
+.reactions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#like,#comment,#shared{
+    display:inline-block;
+    align-items: center;
+
+}
