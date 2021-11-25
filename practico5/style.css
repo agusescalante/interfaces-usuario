@@ -1,18 +1,17 @@
 @import 'main.css';
 
-
-
 section, .container-signin{
     position: relative;
     top: 50px;
     left: 5%;
+    justify-content: center;
 }
 
 .imglogo{
     position: relative;
     left: 22%;
     top: 10px;
-    background-image: url("/images/logo-mobile.png");
+    /* background-image: url("/images/logo-mobile.png"); */
 }
 
 .register-crear-cuenta{

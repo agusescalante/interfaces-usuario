@@ -4,6 +4,10 @@
     --text-color: white;
     --text-inverse: black;
     --text-neutro:#AAAAAA; 
+    --fs-usuario:20px;
+    --fs-post:16px; 
+    --h-size-img:170px;
+    --w-size-img:179px;
 }
 
 *{
