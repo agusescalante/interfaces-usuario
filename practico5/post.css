@@ -40,23 +40,20 @@ body{
     margin-right: 20px;
 }
 
+
 #icon-user + p{
     font-size: var(--fs-usuario);
+    position: relative;
+    font-weight: 900;
+    left:12%;
+    top:-36px;
     stroke-width:"1,5";
 }
 
-
-#icon-user + p{
-    position: relative;
-    font-weight: 900;
-    left:15%;
-    top:-36px;
-}
-
-#icon-user + p + p{
+#icon-user + p + p +p{
     font-size: var(--fs-post);
     position: relative;
-    left:15%;
+    left:12%;
     top:-25px;
 }
 
@@ -78,7 +75,7 @@ body{
     font-size: var(--fs-usuario);
     height:35px;
     background:white;
-    left: 3%;
+    left: 2%;
 }
 
 .h-post{
@@ -143,8 +140,10 @@ body{
 }
 
 .h-new-friend{
-    position: relative;
-    flex-direction: row;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: 1px 1px 20px;
 }
 
 .card-new-friend{
@@ -154,11 +153,17 @@ body{
     border-width: 1px;
     border-style: solid;
     border-color: var(--text-color);
+    display: inline-block;
+    margin:5px;
+    
+}
+.card{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content:center;
+    margin-top: 25%;
 }
+
 
 .card-new-friend p{
     color: var(--text-color);
@@ -166,7 +171,46 @@ body{
 }
 
 .card-new-friend img{
+    position: relative;
     height: 100px;
     width: 100px;    
+    top:-10px;
     border-radius: 50%;
 }
+.btn-agregar{
+    font-size: 18px;
+    background: #64A4D1;
+    color: var(--text-color);
+    height: 38px;
+    width: 116px;
+    border-radius:50px;
+    margin-top: 25px;
+}
+.card-ad{
+    position: relative;
+    left: -2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card-ad p{
+    color: var(--text-color);
+    padding: 15px 1px 5px;
+    position: relative;
+    left: -2%;
+}
+
+.card-ad img{
+    width: 292px;
+    height: 154px;
+    border-radius: 25px;
+}
+
+.post-date{
+    position: relative;
+    color: var(--text-neutro);
+    top: -60px;
+    left: 90%;
+}
+
+
