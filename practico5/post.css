@@ -130,14 +130,43 @@ body{
 }
 
 
-.reactions {
+ .reactions{
+    padding-bottom: 10px;
+    margin-top: -15px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
-#like,#comment,#shared{
-    display:inline-block;
-    align-items: center;
+#shared{
+    position: relative;
+    left:8%;
+}
 
+.h-new-friend{
+    position: relative;
+    flex-direction: row;
+}
+
+.card-new-friend{
+    height: 249px;
+    width: 221px;
+    border-radius: 15px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+}
+
+.card-new-friend p{
+    color: var(--text-color);
+    font-weight: 900;
+}
+
+.card-new-friend img{
+    height: 100px;
+    width: 100px;    
+    border-radius: 50%;
 }
