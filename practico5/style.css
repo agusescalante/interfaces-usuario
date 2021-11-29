@@ -1,49 +1,53 @@
 @import 'main.css';
-
-section, .container-signin{
-    position: relative;
-    top: 50px;
-    left: 5%;
-    justify-content: center;
+* {
+    overflow-x: hidden;
 }
 
-.imglogo{
-    position: relative;
-    left: 22%;
-    top: 10px;
-    /* background-image: url("/images/logo-mobile.png"); */
+.container {
+    background-color: var(--primary-color);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.register-crear-cuenta{
-    position: relative;
-    top: 95px;
-    font-size: 24px;
+.imglogo {
+    width: 200px;
+    padding-top: 5%;
+}
+
+.register-crear-cuenta {
+    margin-top: 15%;
+    font-size: 1.5rem;
     background: #46B451;
     color: var(--text-color);
-    height: 46px;
-    width: 336px;
-    border-radius:50px;
+    white-space: nowrap;
+    padding: 3% 28%;
+    border-radius: 50px;
 }
 
-.iniciar-sesion{
+.iniciar-sesion {
     font-size: 18px;
     background: var(--secondary-color);
     color: var(--text-color);
     height: 32px;
     width: 154px;
-    border-radius:50px;
+    border-radius: 50px;
 }
 
-.register, .container-signin {
-    width: 95%;
-    height:502px;
-    max-width: 398px;
+.register {
+    margin-top: 10%;
+}
+
+.register,
+.container-signin {
+    width: 90%;
     background-color: #CAC8CB;
     border-radius: 25px;
     text-align: center;
 }
 
-h1{
+h1 {
     position: relative;
     top: 20px;
     font-size: 30px;
@@ -51,33 +55,24 @@ h1{
     bottom: unset;
 }
 
-.container-signin{
-    height:90px;
-    position: relative;
-    top: 100px;
-}
-
-.container-signin p, .container-signin a{
-    position: absolute;
-    top: 30%;
+.container-signin {
+    margin-top: 25%;
+    height: 90px;
+    display: flex;
     align-items: center;
+    justify-content: center;
 }
 
-.container-signin p{
-    left: 10%;
-    top: 40%;
+.container-signin p {
+    margin-right: 5%;
 }
 
-
-
-.register-input input{
-    position: relative;
-    top: 50px;
-    font-size: 14px;
-    color: var(--text-neutro);
+.register-input input {
+    font-size: 1.2rem;
+    color: var(--primary-color);
     width: 90%;
     height: 40px;
     border-radius: 15px;
-    margin: 15px;
-    text-indent: 10px;
+    margin: 5%;
+    text-indent: 5%;
 }

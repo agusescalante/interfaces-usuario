@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,39 +9,41 @@
     <link rel="stylesheet" href="style.css">
     <title>daiPar Vet</title>
 </head>
+
 <body>
+    <div class="container">
+        <img class="imglogo" src="images/logo-mobile2.png" alt="logo">
+        <section class="register">
+            <form action="">
+                <h1>Crear Cuenta</h1>
+                <div class="register-input">
 
-  <img class="imglogo" src="images/logo-mobile.png"  alt="logo">
-  <section class="register">
-        <form action="">
-          <h1>Crear Cuenta</h1>
-            <div class="register-input">
+                    <label for="user"><b></b></label>
+                    <input type="text" placeholder="Usuario" name="user" id="user" required>
 
-              <label for="user"><b></b></label>
-              <input type="text" placeholder="Usuario" name="user" id="user" required>
+                    <label for="email"><b></b></label>
+                    <input type="text" placeholder="Correo" name="email" id="email" required>
 
-              <label for="email"><b></b></label>
-              <input type="text" placeholder="Correo" name="email" id="email" required>
-          
-              <label for="psw"><b></b></label>
-              <input type="password" placeholder="Contraseña" name="psw" id="psw" required>
-          
-              <label for="psw-repeat"><b></b></label>
-              <input type="password" placeholder="Repetir contraseña" name="psw-repeat" id="psw-repeat" required>
-            </div>
-          
-            <a href="#"> 
-              <button type="submit" class="register-crear-cuenta">Crear cuenta</button>
-            </a> 
-          </form>
-    </section>
-    
-    <div class="container-signin">
-      <p>¿Ya tienes cuenta?</p>  
-      <a href="#">
-          <button class="iniciar-sesion" type="submit"> Iniciar sesion </button>
-      </a>
+                    <label for="psw"><b></b></label>
+                    <input type="password" placeholder="Contraseña" name="psw" id="psw" required>
+
+                    <label for="psw-repeat"><b></b></label>
+                    <input type="password" placeholder="Repetir contraseña" name="psw-repeat" id="psw-repeat" required>
+                </div>
+
+                <a href="#">
+                    <button type="submit" class="register-crear-cuenta">Crear cuenta</button>
+                </a>
+            </form>
+        </section>
+
+        <div class="container-signin">
+            <p>¿Ya tienes cuenta?</p>
+            <a href="#">
+                <button class="iniciar-sesion" type="submit"> Iniciar sesion </button>
+            </a>
+        </div>
     </div>
-    
 </body>
+
 </html>
