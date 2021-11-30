@@ -149,3 +149,32 @@ nav {
     justify-content: space-between;
     padding: 0% 2%;
 }
+
+.locate {
+    display: flex;
+    justify-content: space-between;
+}
+
+.locate span {
+    display: inline-block;
+    justify-content: space-between;
+    position: relative;
+    background: #E4BE36;
+    height: 4px;
+    width: 63px;
+}
+
+#icon-1,
+#icon-2,
+#icon-3,
+#icon-5 {
+    display: block;
+    opacity: 0;
+}
+
+.container-icon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0% 2%;
+}

@@ -1,0 +1,142 @@
+/* profile img */
+
+.profile-img {
+    width: 30%;
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    margin-right: 2.5%;
+}
+
+#user-img {
+    object-fit: cover;
+    width: 80px;
+    height: 80px;
+    border-radius: 500px;
+}
+
+.info-perfil {
+    display: flex;
+    align-items: center;
+    padding: 5% 0;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    color: var(--text-color);
+}
+
+.username {
+    margin-bottom: 5%;
+}
+
+.detail-container {
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+}
+
+.detail-container h2 {
+    color: gray;
+    font-size: 1.2rem;
+}
+
+.detail-container :first-child {
+    padding-right: 2.5%;
+}
+
+.detail-container :last-child {
+    padding-left: 2.5%;
+}
+
+
+/* posts */
+
+.post {
+    display: flex;
+}
+
+.post-container {
+    width: 100%;
+    color: var(--text-color);
+    margin-top: 7.5%;
+    padding-right: 5%;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-header h1 {
+    font-size: var(--fs-usuario);
+    font-weight: 900;
+}
+
+.post-header h2 {
+    font-size: var(--fs-usuario);
+    font-weight: 400;
+}
+
+.post-comment {
+    padding-top: 3%;
+}
+
+.container-img {
+    padding-top: 3%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.container-img img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+}
+
+.container-img :first-child {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.container-img :last-child {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.reactions {
+    margin: 5% 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reaction-container {
+    font-size: .85rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.reaction-container svg {
+    padding-right: 3%;
+}
+
+.profile-img-container {
+    width: 15%;
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    margin: 5% 2.5% 0 2.5%;
+}
+
+#icon-user {
+    object-fit: cover;
+    width: 45px;
+    height: 45px;
+    border-radius: 500px;
+}

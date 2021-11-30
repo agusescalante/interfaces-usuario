@@ -1,8 +1,4 @@
 @import 'main.css';
-* {
-    overflow-x: hidden;
-}
-
 .h-header {
     width: 100%;
 }
@@ -151,32 +147,21 @@ nav {
     width: 100%;
 }
 
-.locate {
-    display: flex;
-    justify-content: space-between;
-}
-
-.locate span {
-    display: inline-block;
-    justify-content: space-between;
-    position: relative;
-    background: #E4BE36;
-    height: 4px;
-    width: 63px;
-}
-
-#icon-2,
-#icon-3,
-#icon-4,
-#icon-5 {
-    display: none;
-}
-
 .container-icon {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0% 2%;
+}
+
+.container-icon button {
+    background-color: transparent;
+    height: 8vh;
+    padding: 0 1vh;
+}
+
+.icon-selected {
+    border-top: 4px solid #E4BE36;
 }
 
 
