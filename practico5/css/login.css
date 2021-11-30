@@ -1,0 +1,75 @@
+@import 'main.css';
+body {
+    background-color: var(--primary-color);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imglogo {
+    width: 200px;
+    padding-top: 5%;
+}
+
+.register-crear-cuenta {
+    margin: 10% 0;
+    font-size: 1.5rem;
+    background-color: #8A5689;
+    color: var(--text-color);
+    white-space: nowrap;
+    padding: 3% 28%;
+    border-radius: 50px;
+}
+
+.dialog-button {
+    font-size: 1rem;
+    background: #46B451;
+    color: var(--text-color);
+    padding: 3% 7%;
+    width: 40%;
+    border-radius: 50px;
+    white-space: nowrap;
+}
+
+.register {
+    margin-top: 10%;
+}
+
+.register,
+.dialog-container {
+    width: 90%;
+    background-color: #CAC8CB;
+    border-radius: 25px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 30px;
+    margin: 20px;
+    bottom: unset;
+}
+
+.dialog-container {
+    margin-top: 10%;
+    display: flex;
+    padding: 5% 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.dialog-container p {
+    width: 50%;
+}
+
+.register-input input {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    width: 90%;
+    height: 40px;
+    border-radius: 15px;
+    margin: 5%;
+    text-indent: 5%;
+}
