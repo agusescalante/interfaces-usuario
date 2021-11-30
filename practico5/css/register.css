@@ -1,0 +1,78 @@
+@import 'main.css';
+* {
+    overflow-x: hidden;
+}
+
+.container {
+    background-color: var(--primary-color);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imglogo {
+    width: 200px;
+    padding-top: 5%;
+}
+
+.register-crear-cuenta {
+    margin-top: 15%;
+    font-size: 1.5rem;
+    background: #46B451;
+    color: var(--text-color);
+    white-space: nowrap;
+    padding: 3% 28%;
+    border-radius: 50px;
+}
+
+.iniciar-sesion {
+    font-size: 18px;
+    background: var(--secondary-color);
+    color: var(--text-color);
+    height: 32px;
+    width: 154px;
+    border-radius: 50px;
+}
+
+.register {
+    margin-top: 10%;
+}
+
+.register,
+.container-signin {
+    width: 90%;
+    background-color: #CAC8CB;
+    border-radius: 25px;
+    text-align: center;
+}
+
+h1 {
+    position: relative;
+    top: 20px;
+    font-size: 30px;
+    margin: 20px;
+    bottom: unset;
+}
+
+.container-signin {
+    margin-top: 25%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-signin p {
+    margin-right: 5%;
+}
+
+.register-input input {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    width: 90%;
+    height: 40px;
+    border-radius: 15px;
+    margin: 5%;
+    text-indent: 5%;
+}

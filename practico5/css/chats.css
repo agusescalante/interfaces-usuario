@@ -1,0 +1,180 @@
+@import 'main.css';
+.h-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body {
+    background: var(--primary-color);
+}
+
+.line {
+    display: block;
+    height: 1px;
+    width: 100%;
+    background: var(--text-color);
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    height: 60px;
+    background: var(--primary-color);
+}
+
+.chat-searcher {
+    background-color: #464646;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5% 0;
+}
+
+.chat-searcher h1 {
+    margin-top: 5%;
+    font-size: 1rem;
+    color: white;
+}
+
+.search {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    padding: 3% 7% 3% 4%;
+    background-color: white;
+    border-radius: 500px;
+    justify-content: flex-start;
+}
+
+.search svg {
+    padding-right: 5%;
+}
+
+.chats {
+    width: 100%;
+    background-color: #464646;
+}
+
+.selected {
+    background-color: #C4C4C4;
+}
+
+.profile-element {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-container {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5% 0;
+    border-bottom: 2px solid grey;
+}
+
+.state {
+    width: 10px;
+    height: 10px;
+    border-radius: 500px;
+}
+
+.connected {
+    background-color: green;
+}
+
+.disconnected {
+    background-color: grey;
+}
+
+.profile {
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.profile h2 {
+    font-size: 1.1rem;
+    font-weight: lighter;
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 500px;
+    margin-right: 5%;
+}
+
+
+/* _______ sticky nav bar ___________ */
+
+nav {
+    z-index: 1000;
+    position: fixed;
+    bottom: 0;
+    background-color: var(--primary-color);
+    width: 100%;
+}
+
+.locate {
+    display: flex;
+    justify-content: space-between;
+}
+
+.locate span {
+    display: inline-block;
+    justify-content: space-between;
+    position: relative;
+    background: #E4BE36;
+    height: 4px;
+    width: 63px;
+}
+
+#icon-1,
+#icon-2,
+#icon-3,
+#icon-5 {
+    display: block;
+    opacity: 0;
+}
+
+.container-icon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0% 2%;
+}
+
+.locate {
+    display: flex;
+    justify-content: space-between;
+}
+
+.locate span {
+    display: inline-block;
+    justify-content: space-between;
+    position: relative;
+    background: #E4BE36;
+    height: 4px;
+    width: 63px;
+}
+
+#icon-1,
+#icon-2,
+#icon-3,
+#icon-5 {
+    display: block;
+    opacity: 0;
+}
+
+.container-icon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0% 2%;
+}

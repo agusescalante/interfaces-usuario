@@ -1,0 +1,27 @@
+:root{
+    --primary-color:#2B2B2B;
+    --secondary-color:#8A5689; 
+    --color-green:#70C149;
+    --text-color: white;
+    --text-inverse: black;
+    --text-neutro:#AAAAAA; 
+    --fs-usuario:20px;
+    --fs-post:16px; 
+    --h-size-img:170px;
+    --w-size-img:179px;
+}
+
+*{
+    margin:0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    border: none;
+    outline: none; 
+}
+
+body{
+    font-family: 'Montserrat',sans-serif;
+    background-color: var(--primary-color);
+    background-color: var(--text-color);
+}

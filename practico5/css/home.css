@@ -1,0 +1,218 @@
+@import 'main.css';
+.h-header {
+    width: 100%;
+}
+
+body {
+    background: var(--primary-color);
+}
+
+.line {
+    display: block;
+    height: 1px;
+    width: 100%;
+    background: var(--text-color);
+}
+
+.l-post {
+    background: var(--text-neutro);
+}
+
+
+/* __________ nav bar __________*/
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    background: var(--primary-color);
+}
+
+.nav-bar img {
+    width: 25px;
+    padding-right: 20px;
+}
+
+.nav-bar :first-child {
+    width: 55px;
+    padding-right: 0;
+}
+
+
+/*_______ Post section _______*/
+
+
+/* profile img */
+
+.profile-img-container {
+    width: 15%;
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    margin: 5% 2.5% 0 2.5%;
+}
+
+#icon-user {
+    object-fit: cover;
+    width: 45px;
+    height: 45px;
+    border-radius: 500px;
+}
+
+
+/* ----------*/
+
+.post {
+    display: flex;
+}
+
+.post-container {
+    width: 100%;
+    color: var(--text-color);
+    margin-top: 7.5%;
+    padding-right: 5%;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-header h1 {
+    font-size: var(--fs-usuario);
+    font-weight: 900;
+}
+
+.post-header h2 {
+    font-size: var(--fs-usuario);
+    font-weight: 400;
+}
+
+.post-comment {
+    padding-top: 3%;
+}
+
+.container-img {
+    padding-top: 3%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.container-img img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+}
+
+.container-img :first-child {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.container-img :last-child {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.reactions {
+    margin: 5% 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reaction-container {
+    font-size: .85rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.reaction-container svg {
+    padding-right: 3%;
+}
+
+
+/* _______ sticky nav bar ___________ */
+
+nav {
+    z-index: 1000;
+    position: fixed;
+    bottom: 0;
+    background-color: var(--primary-color);
+    width: 100%;
+}
+
+.container-icon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0% 2%;
+}
+
+.container-icon button {
+    background-color: transparent;
+    height: 8vh;
+    padding: 0 1vh;
+}
+
+.icon-selected {
+    border-top: 4px solid #E4BE36;
+}
+
+
+/* ________ add friends __________ */
+
+.friend-scroll-container {
+    /* overflow-x: scroll;
+    overflow-y: hidden; */
+    white-space: nowrap;
+    overflow: auto;
+    /* padding: 1px 1px 20px; */
+}
+
+.card-new-friend {
+    display: inline-block;
+    height: 249px;
+    width: 221px;
+    border-radius: 15px;
+    border: 1px solid var(--text-color);
+    margin: 5px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15%;
+}
+
+.card p {
+    color: var(--text-color);
+    font-weight: 900;
+}
+
+.card img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.btn-agregar {
+    font-size: 1.1rem;
+    background: #64A4D1;
+    color: var(--text-color);
+    height: 38px;
+    width: 116px;
+    border-radius: 50px;
+    margin-top: 12%;
+}
+
+.bottom {
+    height: 10vh;
+}

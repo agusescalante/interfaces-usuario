@@ -1,0 +1,14 @@
+document.addEventListener("DOMContentLoaded", () => {
+    let scroll_y;
+    document.addEventListener("scroll", () => {
+        scroll_y = window.scrollY;
+        let start = document.querySelector(".text").offsetTop;
+        if ((scroll_y >= start - 500) && (scroll_y < 700)) {
+            if (scroll_y < 530) {
+                document.querySelector(".left1").style.left = scroll_y - 500 + "px";
+            } else {
+                document.querySelector(".left2").style.left = (scroll_y - 650) + "px";
+            }
+        }
+    });
+});
