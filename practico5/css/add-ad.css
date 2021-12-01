@@ -1,0 +1,178 @@
+@import 'main.css';
+
+.h-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-color);
+
+}
+
+body {
+    background: var(--primary-color);
+}
+
+.line {
+    display: block;
+    height: 1px;
+    width: 100%;
+    background: var(--text-color);
+}
+.line-2 {
+    display: block;
+    height: 0.2px;
+    width: 100%;
+    background: var(--text-color);
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    height: 60px;
+    background: var(--primary-color);
+}
+
+.title-prom {
+    height: 40px;
+    display: flex;
+    justify-content:center;
+}
+
+h1{
+    position: relative;
+    top: 10px;
+    font-size: var(--fs-title);
+    color:var(--text-color);
+}
+
+
+/* profile img */
+
+.profile-img-container {
+    width: 15%;
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    margin: 5% 2.5% 0 2.5%;
+}
+
+#icon-user {
+    object-fit: cover;
+    width: 45px;
+    height: 45px;
+    border-radius: 500px;
+}
+
+/* POST */
+.post {
+    display: flex;
+}
+
+.post-container {
+    width: 100%;
+    color: var(--text-color);
+    margin-top: 7.5%;
+    padding-right: 5%;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-header h1 {
+    font-size: var(--fs-usuario);
+    font-weight: 900;
+}
+
+.post-header h2 {
+    font-size: var(--fs-usuario);
+    font-weight: 400;
+}
+
+.post-comment {
+    padding-top: 3%;
+}
+
+.container-img {
+    padding-top: 3%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.container-img img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+}
+
+.container-img :first-child {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.container-img :last-child {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.reactions {
+    margin: 5% 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reaction-container {
+    font-size: .85rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.reaction-container svg {
+    padding-right: 3%;
+}
+
+
+/* CIRCLES STEPS */
+
+.load-steps{
+    display: flex;
+    text-align: justify;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.circle-load {
+    color: white;
+    display: block;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: var(--text-neutro);
+}
+
+.circle-load p {
+    position: relative;
+    top: 6px;
+    text-align: center;
+}
+
+/* card price */
+.card-check{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-check div{
+    background-color: var(--text-neutro);
+    width: 80%;
+    max-width: 350px;;
+}
