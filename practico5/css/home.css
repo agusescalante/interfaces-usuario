@@ -161,7 +161,7 @@ nav {
 }
 
 .icon-selected {
-    border-top: 4px solid #E4BE36;
+    border-top: 4px solid #8A5689;
 }
 
 
@@ -215,4 +215,47 @@ nav {
 
 .bottom {
     height: 10vh;
+}
+
+
+/* animation */
+
+.loading-stopped {
+    display: none;
+}
+
+.loading-started {
+    display: block;
+}
+
+.dual-loading-screen {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 120px;
+    height: 120px;
+}
+
+.dual-loading-screen:after {
+    content: " ";
+    display: block;
+    width: 104px;
+    height: 104px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 10px solid #8A5689;
+    border-color: #8A5689 transparent #8A5689 transparent;
+    animation: dual-ring 1.2s linear infinite;
+}
+
+@keyframes dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

@@ -2,24 +2,81 @@ let last_link = null;
 
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("#messages").addEventListener("click", () => {
-        load_chats();
+
+        toggle_loading_screen();
+        deselect_navbar_tab();
+        clear_container();
+
+        setTimeout(() => {
+            toggle_loading_screen();
+            load_chats();
+        }, 1000);
     });
 
     document.querySelector("#home").addEventListener("click", () => {
-        load_home();
+
+
+        toggle_loading_screen();
+        deselect_navbar_tab();
+        clear_container();
+
+        setTimeout(() => {
+            toggle_loading_screen();
+            load_home();
+        }, 1000);
+
     });
 
     document.querySelector("#profile").addEventListener("click", () => {
-        load_profile();
+
+        toggle_loading_screen();
+        deselect_navbar_tab();
+        clear_container();
+
+        setTimeout(() => {
+            toggle_loading_screen();
+            load_profile();
+        }, 1000);
+
     });
 
     document.querySelector("#add-post").addEventListener("click", () => {
-        load_add_post();
+
+        toggle_loading_screen();
+        deselect_navbar_tab();
+        clear_container();
+
+        setTimeout(() => {
+            toggle_loading_screen();
+            load_add_post();
+        }, 1000);
+
+    });
+
+    document.querySelector("#notifications").addEventListener("click", () => {
+
+        toggle_loading_screen();
+        deselect_navbar_tab();
+        clear_container();
+
+        setTimeout(() => {
+            toggle_loading_screen();
+            load_notifications();
+        }, 1000);
+
     });
 });
 
 function clear_container() {
+    document.querySelector(".h-header").innerHTML = "";
     document.querySelector(".container").innerHTML = "";
+}
+
+function load_notifications() {
+    load_module("notification-module.html");
+    attach_css_link("css/notification-module.css");
+    document.title = "Notificaciones";
+    select_navbar_tab(2);
 }
 
 function load_add_post() {
@@ -51,7 +108,7 @@ function load_chats() {
     select_navbar_tab(3);
 }
 
-
+// Carga el fragmento de html pasado por parametro
 function load_module(link) {
     clear_container();
 
@@ -74,6 +131,7 @@ function load_module(link) {
         });
 }
 
+// Añade el fragmento de css por la ruta pasada por parametro
 function attach_css_link(css_link) {
     remove_last_css_link();
     let head = document.getElementsByTagName('HEAD')[0];
@@ -90,7 +148,6 @@ function remove_last_css_link() {
         head.removeChild(last_link);
     }
 }
-
 
 function select_navbar_tab(number) {
     deselect_navbar_tab();
@@ -115,5 +172,17 @@ function deselect_navbar_tab() {
     let div = document.querySelector(".icon-selected");
     if (div != null) {
         div.classList.remove("icon-selected");
+    }
+}
+
+function toggle_loading_screen() {
+    let loading_anim = document.querySelector(".dual-loading-screen");
+
+    if (loading_anim.classList.contains("loading-stopped")) {
+        loading_anim.classList.remove("loading-stopped");
+        loading_anim.classList.add("loading-started");
+    } else {
+        loading_anim.classList.add("loading-stopped");
+        loading_anim.classList.remove("loading-started");
     }
 }
