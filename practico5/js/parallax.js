@@ -1,4 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    // smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
     let scroll_y;
     document.addEventListener("scroll", () => {
         scroll_y = window.scrollY;

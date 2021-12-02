@@ -15,49 +15,12 @@
     text-align: center;
 }
 
-.arrow-container {
-    width: 100%;
-    z-index: 1000;
-    bottom: 0;
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#arrow {
-    position: absolute;
-    color: black;
-    font-size: 5rem;
-    transform: rotate(90deg);
-    animation: scroll 3s infinite;
-}
-
-@keyframes scroll {
-    0% {
-        top: -120px;
-    }
-    50% {
-        top: -80px;
-    }
-    100% {
-        top: -120px;
-    }
-}
-
 .parallax {
     height: 100vh;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-}
-
-.intro {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
 }
 
 .dog {
@@ -151,10 +114,60 @@
     font-family: 'Oswald', sans-serif;
 }
 
-.login-container button {
+.login-container a {
     margin-top: 10%;
     background-color: #8A5689;
-    padding: 5% 10%;
+    padding: 10% 15%;
+    color: white;
     border-radius: 500px;
     font-size: 1rem;
+}
+
+.intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.button-container {
+    width: 100%;
+    /* padding-bottom: 15%; */
+}
+
+.register {
+    color: white;
+    background-color: var( --color-green);
+    padding: 5% 20%;
+    border-radius: 500px;
+    font-size: 1.5rem;
+}
+
+.introduction {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.more-info {
+    color: black;
+    width: 50%;
+    margin: 5% 0;
+    display: flex;
+    font-size: 1.25rem;
+    align-items: center;
+    background-color: white;
+    padding: 2.5% 7.5%;
+    border-radius: 500px;
+    justify-content: space-between;
+}
+
+.more-info span {
+    margin-left: 5%;
+}
+
+#arrow {
+    font-size: 2rem;
+    transform: rotate(90deg);
 }
