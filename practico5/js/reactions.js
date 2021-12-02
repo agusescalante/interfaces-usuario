@@ -2,39 +2,52 @@ let buttons = document.querySelectorAll(".reaction-like-button");
 
 let popup = document.querySelector("#like-popup");
 
+function like(){
+    buttons.forEach(button => {
+            console.log('asd');
+    
+            button.style.fill = 'red';
+        });
+}
+
+
 buttons.forEach(button => {
-    button.addEventListener("click", () => {
+    button.addEventListener("onclick", () => {
 
-        if (!is_popup_visible()) {
-            toggle_popup();
-        }
+        console.log('asd');
 
-        let popup_rect = popup.getBoundingClientRect();
-        let rect = button.getBoundingClientRect();
-        let bodyRect = document.body.getBoundingClientRect();
+        button.style.fill = 'red';
+    })});
+        // if (!is_popup_visible()) {
+        //     toggle_popup();
+        // }
 
-        let top_offset = rect.top - bodyRect.top;
-        let left_offset = rect.left - bodyRect.left;
+        // let popup_rect = popup.getBoundingClientRect();
+        // let rect = button.getBoundingClientRect();
+        // let bodyRect = document.body.getBoundingClientRect();
 
-        popup.style.left = left_offset - popup_rect.width / 2 + 15 + "px";
-        popup.style.top = top_offset - popup_rect.height + "px";
+        // let top_offset = rect.top - bodyRect.top;
+        // let left_offset = rect.left - bodyRect.left;
+
+        // popup.style.left = left_offset - popup_rect.width / 2 + 15 + "px";
+        // popup.style.top = top_offset - popup_rect.height + "px";
 
 
         // let like = document.querySelector("#popup-like");
-        let dislike = document.querySelector("#popup-dislike");
+        // let dislike = document.querySelector("#popup-dislike");
 
         // like.addEventListener("click", () => {
 
         // });
 
-        dislike.addEventListener("click", show_dislike);
+        // dislike.addEventListener("click", show_dislike);
 
-        function show_dislike() {
+        // function show_dislike() {
             // button.innerHTML = like.innerHTML;
             // button.style.width = 30 + "px";
-            toggle_popup();
+         //   toggle_popup();
             // like.removeEventListener("click", show_like);
-        }
+        
 
         //si hizo click afuera lo esconde
         // setTimeout(() => {
@@ -45,8 +58,7 @@ buttons.forEach(button => {
         //         }
         //     });
         // }, 500);
-    });
-});
+    
 
 function toggle_popup() {
     let popup = document.querySelector("#like-popup");

@@ -73,3 +73,9 @@ h1 {
     margin: 5%;
     text-indent: 5%;
 }
+
+#olv-contra{
+    position: relative;
+    top: -10px;
+    padding-bottom: 20px;
+}
