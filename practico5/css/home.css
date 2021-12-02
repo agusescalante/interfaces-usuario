@@ -40,6 +40,11 @@ body {
     padding-right: 0;
 }
 
+#search {
+    width: 25px;
+    padding-right: 20px;
+}
+
 
 /*_______ Post section _______*/
 
@@ -132,6 +137,10 @@ body {
     justify-content: flex-start;
 }
 
+.reaction-count {
+    margin-left: 5%;
+}
+
 .reaction-like-button {
     background-color: transparent;
 }
@@ -154,10 +163,10 @@ nav {
     padding: 0% 2%;
 }
 
-.container-icon button {
+.container-icon a {
     background-color: transparent;
-    height: 8vh;
     padding: 0 1vh;
+    padding-top: 2vh;
 }
 
 .icon-selected {

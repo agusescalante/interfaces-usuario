@@ -20,11 +20,12 @@
     position: relative;
     top: -10px;
     margin-top: 15%;
+    
     font-size: 1.5rem;
     background: #46B451;
     color: var(--text-color);
     white-space: nowrap;
-    padding: 3% 28%;
+    padding: 3% 5%;
     border-radius: 50px;
 }
 
@@ -77,4 +78,11 @@ h1 {
     border-radius: 15px;
     margin: 5%;
     text-indent: 5%;
+}
+
+.register-error {
+    font-size: 1rem;
+    color: red;
+    margin: 5% 0;
+    visibility: hidden;
 }

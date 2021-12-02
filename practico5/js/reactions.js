@@ -4,8 +4,6 @@ let popup = document.querySelector("#like-popup");
 
 function like(){
     buttons.forEach(button => {
-       
-    
             console.log('asd');
     
             button.style.fill = 'red';

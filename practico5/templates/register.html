@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/register.css">
     <title>daiPar Vet</title>
 </head>
@@ -25,12 +25,13 @@
                     <input type="text" placeholder="Correo" name="email" id="email" required>
 
                     <label for="psw"><b></b></label>
-                    <input type="password" placeholder="Contraseña" name="psw" id="psw" required>
+                    <input type="password" id="password1" placeholder="Contraseña" name="psw" id="psw" required>
 
                     <label for="psw-repeat"><b></b></label>
-                    <input type="password" placeholder="Repetir contraseña" name="psw-repeat" id="psw-repeat" required>
+                    <input type="password" id="password2" placeholder="Repetir contraseña" name="psw-repeat" id="psw-repeat" required>
                 </div>
 
+                <h2 class="register-error"></h2>
                 <a href="#">
                     <button type="submit" class="register-crear-cuenta">Crear cuenta</button>
                 </a>
@@ -44,6 +45,7 @@
             </a>
         </div>
     </div>
+    <script src="../js/register.js"></script>
 </body>
 
 </html>
