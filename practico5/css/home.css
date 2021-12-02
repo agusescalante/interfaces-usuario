@@ -132,8 +132,8 @@ body {
     justify-content: flex-start;
 }
 
-.reaction-container svg {
-    padding-right: 3%;
+.reaction-like-button {
+    background-color: transparent;
 }
 
 
@@ -258,4 +258,51 @@ nav {
     100% {
         transform: rotate(360deg);
     }
+}
+
+
+/* _________popUp__________ */
+
+#like-popup {
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+}
+
+.popup-container {
+    background-color: white;
+    display: flex;
+    padding: 13% 17%;
+    border-radius: 500px;
+    box-shadow: 7px 0px 16px 6px rgba(0, 0, 0, 0.75);
+}
+
+.popup-container button {
+    background-color: transparent;
+}
+
+#popup-like,
+#popup-dislike {
+    width: 40px;
+}
+
+#popup-like {
+    width: 50px;
+    margin-right: 25%;
+}
+
+.popup-hidden {
+    display: none;
+}
+
+.popup-shown {
+    display: flex;
+}
+
+.arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 20px solid white;
 }
