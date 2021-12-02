@@ -162,11 +162,19 @@ h1{
     background-color: var(--text-neutro);
 }
 
-.uno{
+.uno, .dos{
     background-color: var(--color-green);
+}
+.primer{
+    position: relative;
+    top: 15px;
+    left: 70px;
+    display: block;
+    height: 0.2px;
+    width: 100px;
+    background: var(--color-green);
 
 }
-
 .circle-load p {
     position: relative;
     top: 6px;
@@ -174,7 +182,11 @@ h1{
 }
 
 .options{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
     position: relative;
+    width:100%;
     top:3%;
 }
 /* card price */
@@ -188,28 +200,45 @@ h1{
 }
 
 .card-check div{
-    background-color: var(--text-neutro);
+    background-color: #5a6cbd;
     width: 80%;
     max-width: 350px;
     border-radius: 10px;
 }
-.card > p{
-    font-size:20px;
+.card  p{
+    font-size:10px;
+    
     text-align: center;
     margin-bottom: 9px;
     margin-top: 5px;
 } 
 
-.options input {
-    margin-top: 10px;
-    margin-left: 5px;
-} 
-.options p {
-    display: inline-block;
+.options input{
+    color: white;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    align-content: space-around;
 } 
 
-#prime{
-    margin-right: 10px;
+.options label{
+    color: rgb(255, 255, 255);
+    margin-top: 10px;
+    margin-left: 10px;
+}
+#exp{
+    width: 50px;
+}
+
+.deb-cred{
+    margin: 20px 20px;
+    display:flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: var(--text-color);
+}
+.deb-cred label{
+    margin-left: 10px;
 }
 
 .next {

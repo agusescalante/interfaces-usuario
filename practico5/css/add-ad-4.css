@@ -69,6 +69,8 @@ h1{
 /* POST */
 .post {
     display: flex;
+    background-color: #6d6b6b;
+    margin-bottom: 50px;
 }
 
 .post-container {
@@ -98,50 +100,6 @@ h1{
     margin-top: 10px;
 }
 
-.post-comment {
-    padding-top: 3%;
-}
-
-.container-img {
-    padding-top: 3%;
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.container-img img {
-    width: 140px;
-    height: 140px;
-    object-fit: cover;
-}
-
-.container-img :first-child {
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-}
-
-.container-img :last-child {
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-}
-
-.reactions {
-    margin: 5% 0;
-    display: flex;
-    justify-content: space-between;
-}
-
-.reaction-container {
-    font-size: .85rem;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.reaction-container svg {
-    padding-right: 3%;
-}
 
 
 /* CIRCLES STEPS */
@@ -162,10 +120,29 @@ h1{
     background-color: var(--text-neutro);
 }
 
-.uno{
+.uno, .dos, .tres{
     background-color: var(--color-green);
-
 }
+.primer{
+    position: relative;
+    top: 15px;
+    left: 70px;
+    display: block;
+    height: 0.2px;
+    width: 100px;
+    background: var(--color-green);
+}
+
+.segunda{
+    position: relative;
+    top: 15px;
+    left: 190px;
+    display: block;
+    height: 0.2px;
+    width: 100px;
+    background: var(--color-green);
+}
+
 
 .circle-load p {
     position: relative;
@@ -173,44 +150,19 @@ h1{
     text-align: center;
 }
 
-.options{
+#text{
+    font-size:18px;
     position: relative;
-    top:3%;
-}
-/* card price */
-.card{
-    height:145px;
-}
-.card-check{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.card-check div{
-    background-color: var(--text-neutro);
-    width: 80%;
-    max-width: 350px;
-    border-radius: 10px;
-}
-.card > p{
-    font-size:20px;
+    margin-top: 70px;
+    margin-bottom: -10px;
+    color: rgb(255, 255, 255);
     text-align: center;
-    margin-bottom: 9px;
-    margin-top: 5px;
-} 
-
-.options input {
-    margin-top: 10px;
-    margin-left: 5px;
-} 
-.options p {
-    display: inline-block;
-} 
-
-#prime{
-    margin-right: 10px;
+    top: 10px;
 }
+
+
+
+
 
 .next {
     position: relative;
@@ -220,7 +172,7 @@ h1{
     justify-content: center;
     margin: 10% 0;
     font-size: 1rem;
-    background-color:var(--color-green);
+    background-color:#8825b6;
     color: var(--text-color);
     white-space: nowrap;
     padding: 3% 28%;
