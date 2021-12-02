@@ -35,6 +35,10 @@
     font-size: 1rem;
 }
 
+.search-results {
+    visibility: hidden;
+}
+
 .search-result {
     display: flex;
     align-items: center;
