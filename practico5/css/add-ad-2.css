@@ -1,0 +1,258 @@
+@import 'main.css';
+
+.h-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-color);
+
+}
+
+body {
+    background: var(--primary-color);
+}
+
+.line {
+    display: block;
+    height: 1px;
+    width: 100%;
+    background: var(--text-color);
+}
+.line-2 {
+    display: block;
+    height: 0.2px;
+    width: 100%;
+    background: var(--text-color);
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    height: 60px;
+    background: var(--primary-color);
+}
+
+.title-prom {
+    height: 40px;
+    display: flex;
+    justify-content:center;
+}
+
+h1{
+    position: relative;
+    top: 10px;
+    font-size: var(--fs-title);
+    color:var(--text-color);
+}
+
+
+/* profile img */
+
+.profile-img-container {
+    width: 15%;
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    margin: 5% 2.5% 0 2.5%;
+}
+
+#icon-user {
+    object-fit: cover;
+    width: 45px;
+    height: 45px;
+    border-radius: 500px;
+}
+
+/* POST */
+.post {
+    display: flex;
+}
+
+.post-container {
+    width: 100%;
+    color: var(--text-color);
+    margin-top: 7.5%;
+    padding-right: 5%;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-header h1 {
+    font-size: var(--fs-usuario);
+    font-weight: 900;
+}
+
+ h2 {
+     color: var(--text-color);
+    font-size: var(--fs-usuario);
+    text-align: center;
+    font-weight: 400;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.post-comment {
+    padding-top: 3%;
+}
+
+.container-img {
+    padding-top: 3%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.container-img img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+}
+
+.container-img :first-child {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.container-img :last-child {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.reactions {
+    margin: 5% 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reaction-container {
+    font-size: .85rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.reaction-container svg {
+    padding-right: 3%;
+}
+
+
+/* CIRCLES STEPS */
+
+.load-steps{
+    display: flex;
+    text-align: justify;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.circle-load {
+    color: white;
+    display: block;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: var(--text-neutro);
+}
+
+.uno, .dos{
+    background-color: var(--color-green);
+}
+.primer{
+    position: relative;
+    top: 15px;
+    left: 70px;
+    display: block;
+    height: 0.2px;
+    width: 100px;
+    background: var(--color-green);
+
+}
+.circle-load p {
+    position: relative;
+    top: 6px;
+    text-align: center;
+}
+
+.options{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    position: relative;
+    width:100%;
+    top:3%;
+}
+/* card price */
+.card{
+    height:145px;
+}
+.card-check{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-check div{
+    background-color: #5a6cbd;
+    width: 80%;
+    max-width: 350px;
+    border-radius: 10px;
+}
+.card  p{
+    font-size:10px;
+    
+    text-align: center;
+    margin-bottom: 9px;
+    margin-top: 5px;
+} 
+
+.options input{
+    color: white;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    align-content: space-around;
+} 
+
+.options label{
+    color: rgb(255, 255, 255);
+    margin-top: 10px;
+    margin-left: 10px;
+}
+#exp{
+    width: 50px;
+}
+
+.deb-cred{
+    margin: 20px 20px;
+    display:flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: var(--text-color);
+}
+.deb-cred label{
+    margin-left: 10px;
+}
+
+.next {
+    position: relative;
+    left:20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10% 0;
+    font-size: 1rem;
+    background-color:var(--color-green);
+    color: var(--text-color);
+    white-space: nowrap;
+    padding: 3% 28%;
+    border-radius: 50px;
+    width: 50%;
+}

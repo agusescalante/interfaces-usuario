@@ -1,0 +1,44 @@
+.noti-container {
+    display: flex;
+    align-items: center;
+    padding: 5% 0;
+    color: white;
+    border-bottom: 1px solid gray;
+}
+
+.noti-profile-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 500px;
+    object-fit: cover;
+    margin: 0 5%;
+}
+
+.noti-header {
+    width: 70vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.noti-header h1 {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.noti-header h2 {
+    font-size: 1.1rem;
+    font-weight: lighter;
+    color: gray;
+}
+
+.noti-action {
+    margin-top: 3%;
+    font-size: 1.25rem;
+    font-weight: lighter;
+    color: gray;
+}
+
+.noti-comment {
+    margin-top: 3%;
+}

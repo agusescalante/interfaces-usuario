@@ -1,0 +1,383 @@
+@import 'main.css';
+.container {
+    background-color: #2B2B2B;
+    display: flex;
+}
+
+header {
+    padding-top: 5%;
+    height: 100vh;
+    border-right: 2px solid white;
+    position: fixed;
+    top: 0;
+    background-color: #2B2B2B;
+}
+
+aside {
+    width: 27.5%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #2B2B2B;
+}
+
+.header-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.header-container img {
+    width: 120px;
+    margin-bottom: 55%;
+}
+
+.nav-container {
+    height: 60vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.nav-container button {
+    padding: 5% 10%;
+    background-color: transparent;
+    border-radius: 500px;
+}
+
+.nav-container button:hover {
+    transition: background-color .75s;
+    background-color: var(--secondary-color);
+}
+
+#profile {
+    background-color: var(--secondary-color);
+}
+
+
+/* feed */
+
+.feed {
+    width: 50%;
+    margin: 2.5% 2.5% 0 14%;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-container {
+    position: relative;
+    background-color: #484848;
+    border-radius: 8px;
+    padding: 1%;
+    display: flex;
+}
+
+.profile-main {
+    width: 100%;
+}
+
+.profile-header {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-header h1 {
+    font-weight: lighter;
+    margin-top: 1%;
+    font-size: 1.5rem;
+}
+
+.profile-img {
+    border-radius: 500px;
+    object-fit: cover;
+    width: 90px;
+    height: 90px;
+    margin-top: 1%;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3% 2.5% 2.5% 2.5%;
+}
+
+.profile-info-container {
+    display: flex;
+    align-items: center;
+}
+
+.profile-info-container h2 {
+    color: white;
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+.profile-info-container h3 {
+    color: lightgray;
+    font-size: .8rem;
+}
+
+.edit {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 500px;
+}
+
+.edit h1 {
+    font-weight: lighter;
+    font-size: 1rem;
+    padding-right: 10px;
+}
+
+
+/* add-publi */
+
+.add-publi {
+    border-radius: 8px;
+    margin-top: 3%;
+    background-color: #484848;
+    padding: 5% 2% 2% 2%;
+}
+
+.add-publi-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3%;
+}
+
+.add-publi-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 500px;
+    margin-right: 2.5%;
+}
+
+.add-publi-input {
+    border-radius: 8px;
+    width: 100%;
+    padding-left: 2.5%;
+    font-size: .9rem;
+    padding: 1% 0 1% 2.5%;
+}
+
+.add-publi-controls {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2.5%;
+}
+
+.other-media {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.add-publi-controls button {
+    padding: 2% 3%;
+    border: 2px solid var(--color-green);
+    color: white;
+    background-color: transparent;
+    border-radius: 500px;
+}
+
+.add-publi-controls button:hover {
+    transition: background-color 1s;
+    background-color: var(--color-green);
+}
+
+
+/* posts */
+
+.feed-posts {
+    margin-top: 3%;
+}
+
+.feed-posts> :first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.post {
+    background-color: #484848;
+    padding: 3% 2%;
+    color: white;
+    border-bottom: 2px solid gray;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.post-header-info {
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.post-header-info h3 {
+    font-size: 1rem;
+}
+
+.post-img {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 500px;
+    margin-right: 10%;
+}
+
+.text-container {
+    margin-top: 4%;
+    padding: 0 1%;
+}
+
+
+/* photo container */
+
+.img-container {
+    margin-top: 5%;
+    display: flex;
+    padding: 0 1%;
+}
+
+.img-left {
+    width: 60%;
+    height: 205px;
+    object-fit: cover;
+    border-right: 5px solid #484848;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.img-right {
+    width: 40%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.img-right :first-child {
+    border-top-right-radius: 8px;
+    border-bottom: 5px solid #484848;
+}
+
+.img-right :last-child {
+    border-bottom-right-radius: 8px;
+}
+
+.img-right img {
+    max-width: 100%;
+    width: 100%;
+    object-fit: cover;
+    max-height: 50%;
+}
+
+
+/* reactions */
+
+.reactions {
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reaction {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reaction svg {
+    margin-right: 10%;
+}
+
+
+/* aside */
+
+.photos-container {
+    margin-top: 10%;
+    width: 80%;
+}
+
+.photos-container h2 {
+    text-align: right;
+    font-weight: lighter;
+    font-size: 1.25rem;
+    color: white;
+}
+
+.photos {
+    margin-top: 2%;
+    background-color: #484848;
+    border-radius: 8px;
+    padding: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.photos img {
+    margin: 2.5%;
+    border-radius: 8px;
+    object-fit: cover;
+    width: 60px;
+    height: 50px;
+}
+
+.follow-users-container {
+    width: 80%;
+    margin-top: 25%;
+}
+
+.follow-users-container h2 {
+    text-align: right;
+    font-weight: lighter;
+    font-size: 1.25rem;
+    color: white;
+}
+
+.follow-users {
+    margin-top: 2%;
+    background-color: #484848;
+    border-radius: 8px;
+    padding: 5%;
+}
+
+.profile {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 5%;
+}
+
+.profile-info img {
+    width: 30px;
+    height: 30px;
+    border-radius: 500px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.profile button {
+    color: white;
+    border-radius: 500px;
+    padding: 2.5% 7.5%;
+    background-color: var(--secondary-color);
+}

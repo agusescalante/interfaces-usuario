@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let scroll_y;
     document.addEventListener("scroll", () => {
         scroll_y = window.scrollY;
+        console.log(scroll_y);
         let start = document.querySelector(".text").offsetTop;
         if ((scroll_y >= start - 500) && (scroll_y < 700)) {
             if (scroll_y < 530) {
