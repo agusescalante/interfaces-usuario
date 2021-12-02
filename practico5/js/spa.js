@@ -13,6 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1000);
     });
 
+    document.querySelector("#search").addEventListener("click", () => {
+        clear_container();
+        load_search();
+    });
+
     document.querySelector("#home").addEventListener("click", () => {
 
 
@@ -77,6 +82,13 @@ function load_notifications() {
     attach_css_link("css/notification-module.css");
     document.title = "Notificaciones";
     select_navbar_tab(2);
+}
+
+function load_search() {
+    load_module("search-module.html");
+    attach_css_link("css/search-module.css");
+    document.title = "Buscar";
+    deselect_navbar_tab();
 }
 
 function load_add_post() {
