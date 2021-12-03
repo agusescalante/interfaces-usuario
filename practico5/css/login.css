@@ -15,7 +15,7 @@ body {
 }
 
 .register-crear-cuenta {
-    margin: 10% 0;
+    margin-bottom: 10%;
     font-size: 1.5rem;
     background-color: #8A5689;
     color: var(--text-color);
@@ -74,8 +74,16 @@ h1 {
     text-indent: 5%;
 }
 
-#olv-contra{
+#olv-contra {
     position: relative;
     top: -10px;
     padding-bottom: 20px;
+}
+
+.error-msg {
+    font-size: 1.25rem;
+    color: red;
+    margin-top: 4%;
+    margin-bottom: 2.5%;
+    visibility: hidden;
 }
