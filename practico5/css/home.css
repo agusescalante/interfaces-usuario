@@ -138,8 +138,9 @@ body {
 }
 
 .reaction-count {
-    margin-left: 5%;
-}
+    color: white;
+    background: transparent;
+    border: none;}
 
 .reaction-like-button {
     background-color: transparent;

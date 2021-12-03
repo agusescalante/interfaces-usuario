@@ -1,23 +1,31 @@
 let buttons = document.querySelectorAll(".reaction-like-button");
 
+let counter = document.querySelector(".reaction-count");
+
 let popup = document.querySelector("#like-popup");
 
-function like(){
-    buttons.forEach(button => {
-            console.log('asd');
-    
+let like = document.querySelectorAll('.liked');
+like.forEach(button => {
+       button.addEventListener("click", () => {
+        if(button.style.fill == 'red'){
+            button.style.fill = '#2B2B2B';
+        }else{
             button.style.fill = 'red';
-        });
-}
+            //counter.innerHTML=12;
+        }
+        
+       })});
+        
 
 
-buttons.forEach(button => {
-    button.addEventListener("onclick", () => {
 
-        console.log('asd');
+// buttons.forEach(button => {
+//     button.addEventListener("onclick", () => {
 
-        button.style.fill = 'red';
-    })});
+//         console.log('asd');
+
+//         button.style.fill = 'red';
+//     })});
         // if (!is_popup_visible()) {
         //     toggle_popup();
         // }
