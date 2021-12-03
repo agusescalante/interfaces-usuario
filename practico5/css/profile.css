@@ -86,8 +86,9 @@
 .post-header h2 {
     font-size: var(--fs-usuario);
     font-weight: 400;
-    font-size: .8rem;
+    font-size: 1rem;
     margin-right: 5%;
+    color: gray;
 }
 
 .post-header a {
@@ -99,7 +100,7 @@
 }
 
 .post-comment {
-    padding: 3% 0;
+    padding: 5% 0 3% 0;
 }
 
 .container-img {
@@ -140,7 +141,7 @@
 }
 
 .reaction-container svg {
-    padding-right: 3%;
+    padding-right: 10px;
 }
 
 .profile-img-container {
